@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ISA DESIGN TOKENS — white dominant / black type / single gold
+   shadcn-compatible CSS variables: --primary IS the ISA gold, so
+   the vendored hero-video-dialog's play button (bg-primary) takes
+   the brand accent without editing the component file.
+   ============================================================ */
+:root {
+  --background: #ffffff;
+  --foreground: #0b0a08;
+  --card: #ffffff;
+  --card-foreground: #0b0a08;
+  --popover: #ffffff;
+  --popover-foreground: #0b0a08;
+  --primary: #c6a15b; /* ISA gold */
+  --primary-foreground: #0b0a08;
+  --secondary: #faf9f6;
+  --secondary-foreground: #0b0a08;
+  --muted: #faf9f6;
+  --muted-foreground: #5e5a52;
+  --accent: #faf9f6;
+  --accent-foreground: #0b0a08;
+  --destructive: #dc2626;
+  --border: #e9e4da;
+  --input: #e9e4da;
+  --ring: #c6a15b;
+  --radius: 0.375rem;
+
+  /* ISA-specific */
+  --ink: #0b0a08;
+  --paper-warm: #faf9f6;
+  --gold: #c6a15b;
+  --gold-deep: #a9853f;
+  --gold-text: #8a6b33; /* contrast-safe gold for small text on white */
+  --muted-dark: #b9b4aa; /* secondary text on black */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-ink: var(--ink);
+  --color-paper-warm: var(--paper-warm);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-text: var(--gold-text);
+  --color-muted-dark: var(--muted-dark);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+  html,
+  body {
+    overflow-x: clip; /* edge-bleed images must not create a horizontal scrollbar */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    line-height: 1.65;
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+}
+
+/* edge bleeds — images crop tight and run off one side of the viewport */
+@utility bleed-right {
+  margin-right: calc(50% - 50vw);
+}
+@utility bleed-left {
+  margin-left: calc(50% - 50vw);
+}
+
+/* the page's 12-column rally grid */
+@utility rally-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  @media (width >= 64rem) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
