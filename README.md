@@ -1,6 +1,6 @@
 # Inspire Squash Academy (ISA)
 
-Single-page marketing site. **v3 "Rally Lines" build** — React 19 + TypeScript +
+Single-page marketing site. **v4 "Court Light" build — no-photo, typographic** — React 19 + TypeScript +
 Tailwind CSS v4 + shadcn project structure (Vite).
 
 ## Stack

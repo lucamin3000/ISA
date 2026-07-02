@@ -1,9 +1,9 @@
-import { IMG } from "@/content/site"
-import { Container, GoldRule, Kicker, PhotoCredit, Reveal } from "./primitives"
+import { Container, GoldRule, Kicker, Reveal } from "./primitives"
 
 /**
- * INTRO PASS — compact band; pitch left in a narrow column,
- * feature image bleeding off the right edge.
+ * INTRO PASS — compact band. Pitch in a narrow left column; the space where
+ * a feature image sat is now deliberate emptiness crossed by one gold line
+ * running off the right viewport edge.
  */
 export function Intro() {
   return (
@@ -30,18 +30,14 @@ export function Intro() {
             </a>
           </Reveal>
 
-          <Reveal delay={0.08} className="col-span-4 lg:col-span-7 lg:col-start-6">
-            <figure className="bleed-right m-0">
-              <img
-                src={IMG.intro.src}
-                alt={IMG.intro.alt}
-                width={IMG.intro.width}
-                height={IMG.intro.height}
-                loading="lazy"
-                className="aspect-[16/10] w-full object-cover"
-              />
-            </figure>
-            <PhotoCredit image={IMG.intro} />
+          {/* negative space, structured by one gold line off the right edge */}
+          <Reveal delay={0.08} className="col-span-4 hidden lg:col-span-7 lg:col-start-6 lg:block">
+            <div className="relative h-56">
+              <div className="bleed-right absolute top-1/2 h-0.5 w-full bg-gold" aria-hidden />
+              <p className="absolute right-0 top-[calc(50%+1rem)] text-[0.75rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                One visit. One plan. On court.
+              </p>
+            </div>
           </Reveal>
         </div>
       </Container>

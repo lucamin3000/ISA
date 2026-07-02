@@ -1,41 +1,38 @@
-import { IMG, TOKENS } from "@/content/site"
-import type { IsaImage } from "@/content/site"
-import { Container, GoldRule, Kicker, Reveal } from "./primitives"
+import { TOKENS } from "@/content/site"
+import { Container, GoldRule, Kicker, Reveal, Token } from "./primitives"
 
 /**
- * FEATURED PLAYERS — a horizontally scrollable row with scroll-snap.
- * Cards vary in width (feature card widest); every name is a flagged
- * placeholder and every photo carries a visible stand-in caption.
+ * FEATURED PLAYERS — a horizontally scrollable, scroll-snap row of
+ * typographic cards: gold numeral, name token, credential token.
+ * No portraits. Cards vary in width and one inverts to black —
+ * not an identical row.
  */
 function PlayerCard({
-  image,
+  index,
   wide = false,
+  dark = false,
 }: {
-  image: IsaImage
+  index: string
   wide?: boolean
+  dark?: boolean
 }) {
   return (
     <article
-      className={`snap-start shrink-0 border border-border bg-white ${
+      className={`flex shrink-0 snap-start flex-col justify-between border-t-2 p-7 ${
         wide ? "w-[min(21rem,78vw)]" : "w-[min(16.5rem,68vw)]"
-      }`}
+      } ${dark ? "border-gold bg-ink text-white" : "border-ink bg-white"}`}
+      style={{ minHeight: "18rem" }}
     >
-      <figure className="m-0">
-        <img
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          loading="lazy"
-          className={`w-full object-cover ${wide ? "aspect-[3/4]" : "aspect-[3/4.4]"}`}
-        />
-        <figcaption className="px-5 pt-2 text-[0.6875rem] uppercase tracking-[0.04em] text-muted-foreground">
-          {image.credit}
-        </figcaption>
-      </figure>
-      <div className="px-5 pb-6 pt-2">
-        <p className="font-display text-lg font-semibold leading-snug">{TOKENS.playerName}</p>
-        <p className="mt-1 text-sm text-muted-foreground">{TOKENS.playerCred}</p>
+      <p className="font-display text-5xl font-bold text-gold" aria-hidden>
+        {index}
+      </p>
+      <div>
+        <p className="font-display text-lg font-semibold leading-snug">
+          <Token dark={dark}>{TOKENS.playerName}</Token>
+        </p>
+        <p className={`mt-2 text-sm ${dark ? "text-muted-dark" : "text-muted-foreground"}`}>
+          {TOKENS.playerCred}
+        </p>
       </div>
     </article>
   )
@@ -53,10 +50,8 @@ export function Players() {
             </h2>
             <GoldRule />
             <p className="max-w-[38rem] text-[1.0625rem] text-muted-foreground">
-              Every card is a placeholder. The photographs are licensed
-              stand-ins of professional players — <strong>not ISA
-              ambassadors</strong> — and no names publish until the client
-              supplies its roster.
+              Every card is a flagged placeholder — no names publish until the
+              client supplies its roster.
             </p>
           </Reveal>
 
@@ -66,9 +61,9 @@ export function Players() {
               role="list"
               aria-label="Featured players (placeholder cards)"
             >
-              <PlayerCard image={IMG.amb1} wide />
-              <PlayerCard image={IMG.amb2} />
-              <PlayerCard image={IMG.amb3} />
+              <PlayerCard index="01" wide dark />
+              <PlayerCard index="02" />
+              <PlayerCard index="03" />
               <div className="flex w-[min(16.5rem,68vw)] shrink-0 snap-start items-center justify-center border border-dashed border-gold p-8 text-center text-sm text-muted-foreground">
                 {TOKENS.nextPlayer}
               </div>

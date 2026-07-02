@@ -1,9 +1,9 @@
-import { IMG } from "@/content/site"
-import { Container, GoldRule, Kicker, PhotoCredit, Reveal } from "./primitives"
+import { Container, GoldRule, Kicker, Reveal } from "./primitives"
 
 /**
- * SQUASH & SCHOOL — staggered image cluster bleeding off the left edge;
- * the text column sits narrow and high on the right.
+ * SQUASH & SCHOOL — the image cluster is gone; in its place a typographic
+ * black panel with one gold line running off the left viewport edge.
+ * Text column narrow and high on the right.
  */
 export function School() {
   return (
@@ -11,25 +11,22 @@ export function School() {
       <Container>
         <div className="rally-grid items-center py-20 lg:py-28">
           <Reveal className="col-span-4 lg:col-span-7">
-            <div className="bleed-left relative pb-16 lg:pb-20">
-              <img
-                src={IMG.clinic.src}
-                alt={IMG.clinic.alt}
-                width={IMG.clinic.width}
-                height={IMG.clinic.height}
-                loading="lazy"
-                className="w-[84%] object-cover"
-              />
-              <img
-                src={IMG.arena.src}
-                alt={IMG.arena.alt}
-                width={IMG.arena.width}
-                height={IMG.arena.height}
-                loading="lazy"
-                className="absolute bottom-0 right-0 w-[52%] border-[6px] border-white object-cover shadow-[0_16px_40px_rgba(11,10,8,0.16)]"
-              />
+            <div className="relative">
+              {/* the gold structural line, running off the left edge */}
+              <div className="bleed-left absolute -top-8 h-0.5 w-[60%] bg-gold" aria-hidden />
+              <div className="bleed-left bg-ink px-6 py-14 text-white sm:px-10 lg:py-20 lg:pl-[max(2.5rem,calc(50vw-40rem))]">
+                <p className="max-w-[16ch] font-display text-4xl font-semibold leading-[1.15] sm:text-5xl">
+                  Train every day.
+                  <br />
+                  Fall behind{" "}
+                  <em className="not-italic text-gold">never.</em>
+                </p>
+                <p className="mt-6 max-w-[26rem] text-[0.9375rem] leading-relaxed text-muted-dark">
+                  Morning court. School day. Supervised study. Evening squad.
+                  One calendar, built around the athlete.
+                </p>
+              </div>
             </div>
-            <PhotoCredit image={IMG.clinic} className="max-w-[60%]" />
           </Reveal>
 
           <Reveal delay={0.08} className="col-span-4 lg:col-span-4 lg:col-start-9">

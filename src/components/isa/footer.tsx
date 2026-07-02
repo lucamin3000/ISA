@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react"
 import { Facebook, Instagram, Youtube } from "lucide-react"
-import { IMG, TOKENS } from "@/content/site"
+import { TOKENS } from "@/content/site"
 import { Container, Kicker, Token } from "./primitives"
 
 /**
@@ -99,26 +99,10 @@ export function Footer() {
           </div>
         </div>
 
-        <details className="mt-14 text-xs text-[#7a756c]">
-          <summary className="cursor-pointer font-semibold uppercase tracking-[0.08em] hover:text-gold">
-            Photography credits
-          </summary>
-          <ul className="mt-3 grid gap-1.5">
-            {Object.values(IMG).map((img) => (
-              <li key={img.src}>
-                {img.credit} —{" "}
-                <a href={img.source} className="text-[#a29d93] underline hover:text-gold">
-                  source
-                </a>{" "}
-                ({img.license})
-              </li>
-            ))}
-            <li>
-              Hero video dialog: 21st.dev / Magic UI &ldquo;hero-video-dialog&rdquo;
-              component (React + framer-motion), integrated verbatim.
-            </li>
-          </ul>
-        </details>
+        <p className="mt-14 text-xs text-[#7a756c]">
+          Video lightbox modeled on the 21st.dev / Magic UI
+          &ldquo;hero-video-dialog&rdquo; component.
+        </p>
 
         <div className="mt-10 flex flex-wrap justify-between gap-4 border-t border-[#26231e] pt-6 text-[0.8125rem] text-[#7a756c]">
           <p>&copy; {new Date().getFullYear()} Inspire Squash Academy. All rights reserved.</p>

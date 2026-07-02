@@ -2,10 +2,11 @@ import { TOKENS } from "@/content/site"
 import { Container, GoldRule, Kicker, Reveal } from "./primitives"
 
 /**
- * FOUNDER — spacious. The portrait block anchors HARD to the left viewport
- * edge; the bio column is narrow and deliberately off-center with a deep
- * top offset. The bio itself is a flagged placeholder: identity cannot be
- * verified externally (see src/content/site.ts), so no career claims render.
+ * FOUNDER — spacious. A typographic black monogram panel anchors hard to
+ * the left viewport edge (it was never a photo); the bio column is narrow,
+ * off-center, with a deep top offset. The bio is a flagged placeholder:
+ * identity cannot be verified externally (see src/content/site.ts), so no
+ * career claims render.
  */
 export function Founder() {
   return (
@@ -13,20 +14,16 @@ export function Founder() {
       <Container>
         <div className="rally-grid py-24 lg:py-36">
           <Reveal className="col-span-4 lg:col-span-5">
-            <div
-              className="bleed-left flex aspect-[4/5] flex-col items-center justify-center gap-4 bg-ink"
-              role="img"
-              aria-label="Placeholder for an official portrait of the head coach"
-            >
+            <div className="bleed-left flex aspect-[4/5] flex-col items-center justify-center gap-4 bg-ink">
               <span
                 aria-hidden
                 className="font-display text-[clamp(4rem,8vw,6.5rem)] font-bold leading-none text-gold"
               >
                 KI
               </span>
+              <span className="h-0.5 w-14 bg-gold" aria-hidden />
               <p className="max-w-[17rem] px-4 text-center text-[0.8125rem] text-muted-dark">
-                {TOKENS.portrait} — no reusable, correctly-licensed photo was
-                found.
+                Founder &amp; head coach
               </p>
             </div>
           </Reveal>

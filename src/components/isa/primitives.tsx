@@ -1,7 +1,6 @@
 import type { ReactNode } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
-import type { IsaImage } from "@/content/site"
 
 /** Scroll reveal — wrapped app-level in <MotionConfig reducedMotion="user">,
  *  so users with prefers-reduced-motion get a static render. */
@@ -74,29 +73,6 @@ export function Token({
     >
       {children}
     </span>
-  )
-}
-
-/** Tiny uppercase caption crediting a layout stand-in photo. */
-export function PhotoCredit({
-  image,
-  dark = false,
-  className,
-}: {
-  image: IsaImage
-  dark?: boolean
-  className?: string
-}) {
-  return (
-    <p
-      className={cn(
-        "pt-2 text-[0.6875rem] uppercase tracking-[0.06em]",
-        dark ? "text-muted-dark" : "text-muted-foreground",
-        className,
-      )}
-    >
-      {image.credit}
-    </p>
   )
 }
 

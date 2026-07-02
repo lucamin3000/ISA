@@ -99,12 +99,58 @@
   }
 }
 
-/* edge bleeds — images crop tight and run off one side of the viewport */
+/* edge bleeds — black bands and gold lines run off one side of the viewport */
 @utility bleed-right {
   margin-right: calc(50% - 50vw);
 }
 @utility bleed-left {
   margin-left: calc(50% - 50vw);
+}
+
+/* ============================================================
+   3D COURT FLOOR — the page's single 3D accent.
+   A perspective-projected plane behind the hero carrying the
+   court's gold lines (short line, half-court line, service boxes).
+   Pure CSS 3D: zero JS, zero WebGL payload, fast on mobile.
+   Motion is one 36s drift, disabled under prefers-reduced-motion
+   (the static projected floor remains).
+   ============================================================ */
+.court-3d {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 1000px;
+  perspective-origin: 50% 30%;
+}
+.court-3d__floor {
+  position: absolute;
+  bottom: -6%;
+  left: 50%;
+  width: 170vw;
+  height: 120vh;
+  transform: translateX(-50%) rotateX(74deg);
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+  animation: court-drift 36s ease-in-out infinite alternate;
+}
+.court-3d__line {
+  position: absolute;
+  background: var(--gold);
+  opacity: 0.32;
+}
+@keyframes court-drift {
+  from {
+    transform: translateX(-50%) rotateX(73deg);
+  }
+  to {
+    transform: translateX(-50%) rotateX(75.5deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .court-3d__floor {
+    animation: none;
+  }
 }
 
 /* the page's 12-column rally grid */

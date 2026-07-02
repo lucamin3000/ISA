@@ -1,37 +1,55 @@
 import { useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Play, XIcon } from "lucide-react"
-import { HeroVideoDialog } from "@/components/ui/hero-video-dialog"
-import { IMG, ISA_FILM_EMBED_URL, TOKENS } from "@/content/site"
-import { Kicker, PhotoCredit, Token } from "./primitives"
+import { ISA_FILM_EMBED_URL, TOKENS } from "@/content/site"
+import { Kicker, Token } from "./primitives"
 
 /**
- * ISA film block.
- *
- * When ISA_FILM_EMBED_URL is set, the verbatim 21st.dev HeroVideoDialog
- * renders it — restyled through the shadcn token system (--primary IS the
- * ISA gold, so its play disc takes the brand accent untouched).
- *
- * Until then the truth policy forbids substituting an unrelated clip, so a
- * visually identical stand-in (same thumbnail, same gold disc, same spring
- * lightbox) opens a flagged placeholder panel instead — with Escape-to-close
- * and focus return, which the vendored component leaves to the backdrop click.
+ * 3D COURT FLOOR — the page's one 3D accent: the court's gold lines on a
+ * perspective-projected plane behind the hero. Pure CSS (see index.css);
+ * degrades to a static projection under prefers-reduced-motion.
  */
-function IsaFilm() {
-  if (ISA_FILM_EMBED_URL) {
-    return (
-      <HeroVideoDialog
-        animationStyle="from-center"
-        videoSrc={ISA_FILM_EMBED_URL}
-        thumbnailSrc={IMG.film.src}
-        thumbnailAlt={IMG.film.alt}
-      />
-    )
-  }
-  return <FilmPlaceholderDialog />
+function CourtFloor() {
+  return (
+    <div className="court-3d" aria-hidden>
+      <div className="court-3d__floor">
+        {/* short line (across the court) */}
+        <div className="court-3d__line" style={{ left: 0, right: 0, top: "42%", height: 2 }} />
+        {/* half-court line (down the court) */}
+        <div
+          className="court-3d__line"
+          style={{ left: "50%", top: "42%", bottom: 0, width: 2 }}
+        />
+        {/* service boxes */}
+        <div
+          className="court-3d__line"
+          style={{ left: "18%", top: "42%", height: "26%", width: 2 }}
+        />
+        <div
+          className="court-3d__line"
+          style={{ right: "18%", top: "42%", height: "26%", width: 2 }}
+        />
+        <div
+          className="court-3d__line"
+          style={{ left: "18%", top: "68%", width: "14%", height: 2 }}
+        />
+        <div
+          className="court-3d__line"
+          style={{ right: "18%", top: "68%", width: "14%", height: 2 }}
+        />
+      </div>
+    </div>
+  )
 }
 
-function FilmPlaceholderDialog() {
+/**
+ * THE HOOK — a designed film frame: black field, gold play disc, title type.
+ * No photography anywhere. Opens the lightbox; with ISA_FILM_EMBED_URL set
+ * the iframe goes live, otherwise a flagged placeholder panel renders (the
+ * truth policy forbids substituting an unrelated clip). Escape and
+ * click-outside close; focus is trapped while open and returned on close.
+ */
+function FilmFrame() {
   const [open, setOpen] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
@@ -41,8 +59,7 @@ function FilmPlaceholderDialog() {
     closeRef.current?.focus()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false)
-      if (e.key === "Tab") {
-        // two focusables total: keep Tab inside the dialog
+      if (e.key === "Tab" && !ISA_FILM_EMBED_URL) {
         e.preventDefault()
         closeRef.current?.focus()
       }
@@ -57,32 +74,31 @@ function FilmPlaceholderDialog() {
   }, [open])
 
   return (
-    <div className="relative">
+    <>
       <button
         ref={triggerRef}
         type="button"
-        className="group relative block w-full cursor-pointer"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         aria-label="Play the academy film (video not yet supplied — opens placeholder)"
+        className="group relative block aspect-[16/9] w-full cursor-pointer bg-ink text-left"
       >
-        <img
-          src={IMG.film.src}
-          alt={IMG.film.alt}
-          width={IMG.film.width}
-          height={IMG.film.height}
-          fetchPriority="high"
-          className="w-full border shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]"
-        />
-        <span className="absolute inset-0 flex scale-[0.9] items-center justify-center transition-all duration-200 ease-out group-hover:scale-100">
-          <span className="flex size-28 items-center justify-center rounded-full bg-primary/10 backdrop-blur-md">
-            <span className="relative flex size-20 scale-100 items-center justify-center rounded-full bg-gradient-to-b from-primary/30 to-primary shadow-md transition-all duration-200 ease-out group-hover:scale-[1.2]">
-              <Play
-                className="size-8 scale-100 fill-white text-white transition-transform duration-200 ease-out group-hover:scale-105"
-                aria-hidden
-              />
+        {/* designed frame — type and gold only */}
+        <span className="absolute left-6 top-6 text-[0.75rem] font-semibold uppercase tracking-[0.22em] text-gold sm:left-10 sm:top-9">
+          The academy film
+        </span>
+        <span className="absolute inset-0 flex items-center justify-center">
+          <span className="flex size-24 items-center justify-center rounded-full border border-gold/40 transition-transform duration-200 ease-out group-hover:scale-105 sm:size-28">
+            <span className="flex size-16 items-center justify-center rounded-full bg-gold transition-colors duration-200 group-hover:bg-gold-deep sm:size-20">
+              <Play className="ml-1 size-7 fill-ink text-ink" aria-hidden />
             </span>
           </span>
+        </span>
+        <span className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-3 sm:bottom-9 sm:left-10 sm:right-10">
+          <span className="font-display text-2xl font-semibold leading-tight text-white sm:text-3xl">
+            Watch the method<span className="text-gold">.</span>
+          </span>
+          <span className="h-0.5 w-14 bg-gold" aria-hidden />
         </span>
       </button>
 
@@ -96,7 +112,7 @@ function FilmPlaceholderDialog() {
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md"
             role="dialog"
             aria-modal="true"
-            aria-label="Academy film — placeholder"
+            aria-label="Academy film"
           >
             <motion.div
               initial={{ scale: 0.5, opacity: 0 }}
@@ -116,34 +132,47 @@ function FilmPlaceholderDialog() {
                 <XIcon className="size-5" aria-hidden />
               </button>
               <div className="isolate z-[1] relative flex size-full items-center justify-center overflow-hidden border-2 border-white bg-ink">
-                <div className="max-w-xl px-8 text-center">
-                  <p className="font-display text-2xl text-white">
-                    The academy film belongs here.
-                  </p>
-                  <hr className="mx-auto my-5 h-0.5 w-14 border-0 bg-gold" />
-                  <p className="text-sm leading-relaxed text-muted-dark">
-                    {TOKENS.film} — set <code>ISA_FILM_EMBED_URL</code> in{" "}
-                    <code>src/content/site.ts</code> to a license-cleared embed
-                    and the lightbox goes live. No stand-in footage is shown.
-                  </p>
-                </div>
+                {ISA_FILM_EMBED_URL ? (
+                  <iframe
+                    src={ISA_FILM_EMBED_URL}
+                    title="ISA academy film"
+                    className="size-full"
+                    allowFullScreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  />
+                ) : (
+                  <div className="max-w-xl px-8 text-center">
+                    <p className="font-display text-2xl text-white">
+                      The academy film belongs here.
+                    </p>
+                    <hr className="mx-auto my-5 h-0.5 w-14 border-0 bg-gold" />
+                    <p className="text-sm leading-relaxed text-muted-dark">
+                      {TOKENS.film} — set <code>ISA_FILM_EMBED_URL</code> in{" "}
+                      <code>src/content/site.ts</code> to a license-cleared
+                      embed and this lightbox goes live. No stand-in footage is
+                      shown.
+                    </p>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   )
 }
 
 /**
- * HERO — the oversized typographic gesture claims the upper-left;
- * the film block is weighted low-right and bleeds off the right edge.
+ * HERO — the oversized typographic gesture over the 3D court floor;
+ * the designed film frame is the only object on the page competing
+ * with nothing.
  */
 export function Hero() {
   return (
-    <section className="relative min-h-svh pt-[4.5rem]" aria-labelledby="hero-h">
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+    <section className="relative min-h-svh overflow-hidden pt-[4.5rem]" aria-labelledby="hero-h">
+      <CourtFloor />
+      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="rally-grid items-end pb-16 pt-10 lg:pb-24 lg:pt-16">
           {/* type: full width — the one reckless gesture on the page */}
           <div className="col-span-4 lg:col-span-12">
@@ -159,7 +188,7 @@ export function Hero() {
             </h1>
           </div>
 
-          {/* CTA rail: narrow column left under the headline */}
+          {/* CTA rail: narrow left column */}
           <div className="col-span-4 self-start lg:col-span-3 lg:pt-10">
             <p className="max-w-[24rem] text-[1.0625rem] text-muted-foreground">
               Champions are made on court, session by session — that is the
@@ -173,15 +202,14 @@ export function Hero() {
             </a>
           </div>
 
-          {/* the hook: film weighted right, bleeding off the viewport edge */}
+          {/* the hook: designed film frame, weighted right, bleeding off the edge */}
           <div className="col-span-4 mt-8 lg:col-span-9 lg:col-start-4 lg:mt-4">
             <div className="bleed-right">
-              <IsaFilm />
+              <FilmFrame />
             </div>
-            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2 pt-3">
+            <p className="pt-3">
               <Token>{TOKENS.film}</Token>
-              <PhotoCredit image={IMG.film} className="pt-0" />
-            </div>
+            </p>
           </div>
         </div>
       </div>
