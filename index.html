@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inspire Squash Academy — Elite Squash Training with Karim Ibrahim</title>
+<meta name="description" content="Inspire Squash Academy (ISA): elite squash coaching, junior development, camps and school-integrated training led by head coach Karim Ibrahim.">
+
+<!-- ============================================================
+  INSPIRE SQUASH ACADEMY — single-page marketing site
+  Palette: white (dominant) / black (type + bands) / gold accent #C6A15B
+  Type: Playfair Display (display) + Inter (body), system fallbacks
+  Layout logic modeled on msquash.com section rhythm (structure only,
+  no copy or assets reused from that site).
+
+  IMAGE MANIFEST (all files in assets/img/, downloaded 2026-07-02)
+  ----------------------------------------------------------------
+  hero-pyramids.jpg     "Squash Court Pyramid" — ASB show court at the
+                        Pyramids of Giza, CIB PSA World Tour Finals.
+                        Author: Simpkin98 — CC BY-SA 4.0
+                        https://commons.wikimedia.org/wiki/File:Squash_Court_Pyramid.jpg
+  program-training.jpg  "Nour El Sherbini world 2012" — action shot, World
+                        Junior Championship, Doha. Author: Vinod Divakaran — CC BY 2.0
+                        https://commons.wikimedia.org/wiki/File:Nour_El_Sherbini_world_2012.jpg
+  program-camp.jpg      "US Open Squash Championship 2011 Drexel University"
+                        Author: Ameykhanolkar — CC BY-SA 3.0
+                        https://commons.wikimedia.org/wiki/File:US_Open_Squash_Championship_2011_Drexel_University.jpg
+  school-clinic.jpg     "Squash Stars Meet the Stars Session 3" (2010)
+                        Author: Saravanan Alagarsamy — CC BY-SA 2.0
+                        https://commons.wikimedia.org/wiki/File:Squash_Stars_Meet_the_Stars_Session_3.jpg
+  school-arena.jpg      "PSA Kuwait Cup 2009 2" — Author: Ian Butterworth — CC BY 2.0
+                        https://commons.wikimedia.org/wiki/File:PSA_Kuwait_Cup_2009_2.jpg
+  intro-court.jpg       "Squash court" (The Hague) — Author: Jens Buurgaard
+                        Nielsen — CC BY-SA 3.0
+                        https://commons.wikimedia.org/wiki/File:Squash_court.JPG
+  facility-court.jpg    "Squash court – Panorama" — Greg Zaal / Jarod Guest
+                        via Poly Haven — CC0 (public domain dedication)
+                        https://commons.wikimedia.org/wiki/File:Squash_court_%E2%80%93_Panorama_(Greg_Zaal_and_Jarod_Guest_via_Poly_Haven).jpg
+  amb-1.jpg             "Marwan El Shorbagy 2012" — Doha Stadium Plus Qatar — CC BY 2.0
+                        https://commons.wikimedia.org/wiki/File:Marwan_El_Shorbagy_2012.jpg
+  amb-2.jpg             "Ramy Ashour (2012)" — Doha Stadium Plus Qatar — CC BY 2.0
+                        https://commons.wikimedia.org/wiki/File:Ramy_Ashour_(2012).jpg
+  amb-3.jpg             "Mohamed Elshorbagy (2012)" — Vinod Divakaran,
+                        Doha Stadium Plus — CC BY 2.0
+                        https://commons.wikimedia.org/wiki/File:Mohamed_Elshorbagy_(2012).jpg
+  Visible attribution: see "Photography credits" in the footer (required
+  by CC BY / CC BY-SA). No MSquash-hosted or branded assets are used.
+  Ambassador photos are LAYOUT STAND-INS of real professional players —
+  they are not ISA ambassadors; replace before launch.
+  ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==================== TOKENS ==================== */
+:root{
+  --gold:       #C6A15B;   /* primary accent — buttons, rules, hovers */
+  --gold-deep:  #A9853F;   /* hover / pressed */
+  --gold-text:  #8A6B33;   /* gold-adjacent for small text on white (contrast-safe) */
+  --ink:        #0B0A08;   /* near-black */
+  --paper:      #FFFFFF;
+  --paper-warm: #FAF9F6;   /* whisper-warm alternate surface */
+  --line:       #E9E4DA;   /* hairlines */
+  --muted:      #5E5A52;   /* secondary text on white, 4.5:1+ */
+  --muted-dark: #B9B4AA;   /* secondary text on black */
+  /* type scale (fluid) */
+  --fs-hero:  clamp(2.6rem, 7.2vw, 5.2rem);
+  --fs-h2:    clamp(1.9rem, 4vw, 3rem);
+  --fs-h3:    clamp(1.25rem, 2vw, 1.5rem);
+  --fs-body:  1rem;
+  --fs-small: .875rem;
+  --fs-kick:  .8125rem;
+  /* spacing rhythm (8px base) */
+  --s2: 1rem; --s3: 1.5rem; --s4: 2rem; --s6: 3rem; --s8: 4rem; --s12: 6rem;
+  --container: 72.5rem;    /* 1160px */
+  --nav-h: 4.5rem;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 1rem)}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:var(--fs-body); line-height:1.65; color:var(--ink);
+  background:var(--paper); -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Playfair Display',Georgia,'Times New Roman',serif;line-height:1.12;font-weight:600}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+.container{max-width:var(--container);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,2.5rem)}
+
+/* kicker — small letterspaced label above headlines */
+.kicker{
+  display:inline-block;font-size:var(--fs-kick);font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold-text);
+  margin-bottom:var(--s2);
+}
+.on-dark .kicker{color:var(--gold)}
+
+/* gold hairline under section headings */
+.rule{width:3.5rem;height:2px;background:var(--gold);border:0;margin:var(--s3) 0}
+.rule.center{margin-inline:auto}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  min-height:2.75rem;padding:.75rem 1.75rem;
+  font-family:'Inter',sans-serif;font-size:var(--fs-small);font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+  cursor:pointer;border:1px solid transparent;transition:background-color .2s ease,color .2s ease,border-color .2s ease;
+}
+.btn-gold{background:var(--gold);color:var(--ink);}
+.btn-gold:hover{background:var(--gold-deep)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-text)}
+.on-dark .btn-ghost{color:#fff;border-color:#fff}
+.on-dark .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* text link with gold underline */
+.link-gold{
+  font-weight:600;font-size:var(--fs-small);letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);
+  background:linear-gradient(var(--gold),var(--gold)) no-repeat 0 100%/100% 2px;
+  padding-bottom:.3rem;transition:color .2s ease;
+}
+.link-gold:hover{color:var(--gold-text)}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink);color:#fff;
+  padding:.75rem 1.25rem;text-decoration:none;
+}
+.skip-link:focus{left:0}
+
+/* ==================== NAV ==================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);
+  background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+  border-bottom:1px solid transparent;transition:border-color .2s ease,box-shadow .2s ease;
+}
+.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 1px 12px rgba(11,10,8,.05)}
+.nav-inner{
+  max-width:var(--container);margin-inline:auto;height:100%;
+  padding-inline:clamp(1.25rem,4vw,2.5rem);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s4);
+}
+.brand{display:flex;align-items:baseline;gap:.65rem;text-decoration:none}
+.brand-mark{font-family:'Playfair Display',Georgia,serif;font-size:1.75rem;font-weight:700;letter-spacing:.02em;color:var(--ink)}
+.brand-mark::after{content:".";color:var(--gold)}
+.brand-sub{font-size:.6875rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:none}
+@media(min-width:48rem){.brand-sub{display:inline}}
+
+.nav-menu{display:flex;align-items:center;gap:clamp(1rem,2.2vw,2rem);list-style:none}
+.nav-menu a:not(.btn){
+  font-size:var(--fs-small);font-weight:500;text-decoration:none;color:var(--ink);
+  padding:.5rem 0;
+  background:linear-gradient(var(--gold),var(--gold)) no-repeat 0 100%/0 2px;
+  transition:background-size .25s ease,color .2s ease;
+}
+.nav-menu a:not(.btn):hover{background-size:100% 2px;color:var(--gold-text)}
+
+.nav-toggle{
+  display:none;background:none;border:0;cursor:pointer;
+  width:2.75rem;height:2.75rem;align-items:center;justify-content:center;
+}
+.nav-toggle svg{width:1.5rem;height:1.5rem;stroke:var(--ink)}
+.nav-toggle .icon-close{display:none}
+.nav-toggle[aria-expanded="true"] .icon-open{display:none}
+.nav-toggle[aria-expanded="true"] .icon-close{display:block}
+
+@media(max-width:56rem){
+  .nav-toggle{display:inline-flex}
+  .nav-menu{
+    position:fixed;inset:var(--nav-h) 0 auto 0;z-index:99;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:var(--paper);border-bottom:1px solid var(--line);
+    padding:var(--s2) clamp(1.25rem,4vw,2.5rem) var(--s4);
+    transform:translateY(-115%);transition:transform .3s ease;
+  }
+  .nav-menu.open{transform:translateY(0)}
+  .nav-menu li{border-bottom:1px solid var(--line)}
+  .nav-menu li:last-child{border-bottom:0;padding-top:var(--s3)}
+  .nav-menu a:not(.btn){display:block;padding:.9rem 0;font-size:1rem}
+  .nav-menu .btn{width:100%}
+}
+
+/* ==================== HERO ==================== */
+.hero{
+  position:relative;min-height:100svh;min-height:100vh;
+  display:flex;align-items:flex-end;
+  color:#fff;isolation:isolate;
+}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{ /* darkening scrim for text legibility */
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(11,10,8,.35) 0%,rgba(11,10,8,.25) 45%,rgba(11,10,8,.78) 100%);
+}
+.hero-content{padding-block:calc(var(--nav-h) + var(--s6)) var(--s12);max-width:56rem}
+.hero h1{font-size:var(--fs-hero);font-weight:700;letter-spacing:.01em;color:#fff;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{margin-top:var(--s3);max-width:36rem;font-size:1.0625rem;color:rgba(255,255,255,.85)}
+.hero .btn{margin-top:var(--s4)}
+
+/* ==================== QUICK LINKS ==================== */
+.quicklinks{border-bottom:1px solid var(--line)}
+.quicklinks-grid{
+  display:grid;grid-template-columns:1fr;
+}
+.quicklink{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s2);
+  padding:var(--s3) clamp(1.25rem,4vw,2rem);text-decoration:none;
+  border-top:1px solid var(--line);
+  transition:background-color .2s ease;
+}
+.quicklink:hover{background:var(--paper-warm)}
+.quicklink:hover .ql-arrow{transform:translateX(4px);stroke:var(--gold-deep)}
+.quicklink-label{font-family:'Playfair Display',Georgia,serif;font-size:var(--fs-h3);font-weight:600}
+.quicklink-sub{font-size:var(--fs-small);color:var(--muted);margin-top:.15rem}
+.ql-arrow{flex:none;width:1.5rem;height:1.5rem;stroke:var(--gold);transition:transform .2s ease,stroke .2s ease}
+@media(min-width:56rem){
+  .quicklinks-grid{grid-template-columns:repeat(4,1fr)}
+  .quicklink{flex-direction:column;align-items:flex-start;justify-content:flex-start;
+    border-top:0;border-left:1px solid var(--line);padding:var(--s4) var(--s3)}
+  .quicklink:first-child{border-left:0}
+  .ql-arrow{margin-top:var(--s2)}
+}
+
+/* ==================== SECTION SCAFFOLD ==================== */
+.section{padding-block:var(--s12)}
+.section-dark{background:var(--ink);color:#fff}
+.section h2{font-size:var(--fs-h2);text-wrap:balance}
+.lead{font-size:1.0625rem;color:var(--muted);max-width:38rem}
+.section-dark .lead{color:var(--muted-dark)}
+
+/* ==================== CREDIBILITY / STATS ==================== */
+.cred-inner{max-width:56rem}
+.cred p.big{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.45;font-weight:500;
+}
+.cred p.big strong{color:var(--gold);font-weight:600}
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));
+  gap:var(--s4);margin-top:var(--s8);
+}
+.stat-num{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,4.5vw,3.4rem);font-weight:700;color:var(--gold);line-height:1}
+.stat-label{margin-top:.6rem;font-size:var(--fs-small);color:var(--muted-dark);letter-spacing:.04em}
+.footnote{margin-top:var(--s6);font-size:.8125rem;color:var(--muted-dark)}
+
+/* ==================== PROGRAM CARDS ==================== */
+.cards-2{display:grid;grid-template-columns:1fr;gap:var(--s4);margin-top:var(--s6)}
+@media(min-width:48rem){.cards-2{grid-template-columns:1fr 1fr}}
+.card{
+  display:flex;flex-direction:column;border:1px solid var(--line);
+  transition:box-shadow .25s ease,transform .25s ease;
+}
+.card:hover{box-shadow:0 14px 40px rgba(11,10,8,.09);transform:translateY(-3px)}
+.card-media{aspect-ratio:3/2;overflow:hidden}
+.card-media img{width:100%;height:100%;object-fit:cover}
+.card-body{display:flex;flex-direction:column;flex:1;padding:var(--s4);gap:var(--s2)}
+.card-date{
+  align-self:flex-start;font-size:.75rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);
+  background:var(--gold);padding:.3rem .75rem;
+}
+.card h3{font-size:var(--fs-h3)}
+.card p{color:var(--muted);font-size:var(--fs-small);line-height:1.7}
+.card .link-gold{margin-top:auto;align-self:flex-start}
+
+/* ==================== SPLIT SECTIONS (image + text) ==================== */
+.split{display:grid;grid-template-columns:1fr;gap:var(--s6);align-items:center}
+@media(min-width:56rem){
+  .split{grid-template-columns:1fr 1fr;gap:var(--s8)}
+  .split.flip>.split-media{order:2}
+}
+.split-media img{width:100%;height:auto}
+/* staggered two-image cluster */
+.cluster{position:relative;padding-bottom:var(--s8)}
+.cluster img:first-child{width:82%}
+.cluster img:last-child{
+  position:absolute;right:0;bottom:0;width:52%;
+  border:6px solid var(--paper);box-shadow:0 16px 40px rgba(11,10,8,.16);
+}
+.split-body h2{margin-bottom:var(--s3)}
+.split-body p{color:var(--muted);margin-bottom:var(--s2)}
+.split-body .btn{margin-top:var(--s3)}
+
+/* ==================== LOCATIONS ==================== */
+.loc-grid{display:grid;grid-template-columns:1fr;gap:var(--s4);margin-top:var(--s6)}
+@media(min-width:48rem){.loc-grid{grid-template-columns:1fr 1fr}}
+.loc-card{border:1px solid var(--line)}
+.loc-card .card-media{aspect-ratio:16/9}
+.loc-card .card-body{gap:.4rem}
+.loc-card h3{font-size:var(--fs-h3)}
+.loc-card address{font-style:normal;color:var(--muted);font-size:var(--fs-small);line-height:1.7}
+.loc-card .link-gold{margin-top:var(--s2)}
+.loc-placeholder{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  border:1px dashed var(--gold);color:var(--muted);padding:var(--s6) var(--s4);
+  font-size:var(--fs-small);
+}
+
+/* ==================== FOUNDER ==================== */
+.founder-portrait{
+  aspect-ratio:4/5;background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s2);
+}
+.founder-portrait .monogram{
+  font-family:'Playfair Display',Georgia,serif;font-size:clamp(4rem,8vw,6.5rem);
+  font-weight:700;color:var(--gold);line-height:1;
+}
+.founder-portrait .note{color:var(--muted-dark);font-size:.8125rem;max-width:16rem;text-align:center;padding-inline:var(--s2)}
+.founder-creds{list-style:none;margin-top:var(--s4);border-top:1px solid var(--line)}
+.founder-creds li{
+  display:flex;gap:var(--s2);align-items:baseline;
+  padding:.8rem 0;border-bottom:1px solid var(--line);
+  font-size:var(--fs-small);color:var(--muted);
+}
+.founder-creds li::before{content:"";flex:none;width:.5rem;height:2px;background:var(--gold);transform:translateY(-.25rem)}
+
+/* ==================== AMBASSADORS ==================== */
+.amb-row{
+  display:grid;grid-auto-flow:column;grid-auto-columns:min(18rem,72vw);
+  gap:var(--s3);margin-top:var(--s6);
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  padding-bottom:var(--s3);
+  scrollbar-width:thin;scrollbar-color:var(--gold) transparent;
+}
+.amb-card{scroll-snap-align:start;border:1px solid var(--line);background:var(--paper)}
+.amb-card figure{margin:0}
+.amb-card .card-media{aspect-ratio:4/5}
+.amb-card figcaption{padding:.5rem 1.25rem 0;font-size:.6875rem;color:var(--muted)}
+.amb-card .amb-body{padding:.75rem 1.25rem 1.5rem}
+.amb-name{font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;font-weight:600}
+.amb-cred{font-size:var(--fs-small);color:var(--muted);margin-top:.2rem}
+.amb-card.amb-empty{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  border-style:dashed;border-color:var(--gold);color:var(--muted);
+  padding:var(--s4);font-size:var(--fs-small);
+}
+
+/* ==================== FOOTER ==================== */
+.footer{background:var(--ink);color:#fff;padding-block:var(--s12) var(--s4)}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:var(--s8)}
+@media(min-width:56rem){.footer-grid{grid-template-columns:1.2fr .8fr}}
+.footer h2{font-size:var(--fs-h2);color:#fff}
+.newsletter-form{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4);max-width:30rem}
+.newsletter-form label{width:100%;font-size:var(--fs-small);color:var(--muted-dark)}
+.newsletter-form input{
+  flex:1;min-width:12rem;min-height:2.75rem;padding:.6rem 1rem;
+  background:transparent;border:1px solid #3d3a34;color:#fff;font:inherit;font-size:var(--fs-small);
+}
+.newsletter-form input::placeholder{color:#7a756c}
+.newsletter-form input:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-color:var(--gold)}
+.form-msg{margin-top:var(--s2);font-size:var(--fs-small);color:var(--gold);min-height:1.4em}
+.footer-meta{display:flex;flex-direction:column;gap:var(--s3)}
+.footer-meta h3{font-size:.8125rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600}
+.footer-meta p,.footer-meta address{font-style:normal;font-size:var(--fs-small);color:var(--muted-dark);line-height:1.8}
+.footer-meta a{color:#fff;text-decoration:none;border-bottom:1px solid var(--gold)}
+.footer-meta a:hover{color:var(--gold)}
+.social{display:flex;gap:var(--s2);margin-top:.25rem}
+.social a{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:2.75rem;height:2.75rem;border:1px solid #3d3a34;border-radius:50%;
+  transition:border-color .2s ease;
+}
+.social a:hover{border-color:var(--gold)}
+.social svg{width:1.1rem;height:1.1rem;fill:#fff}
+.social a:hover svg{fill:var(--gold)}
+.footer-bottom{
+  margin-top:var(--s12);padding-top:var(--s4);border-top:1px solid #26231e;
+  font-size:.8125rem;color:#7a756c;
+  display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);justify-content:space-between;
+}
+.credits{margin-top:var(--s4);font-size:.75rem;color:#7a756c}
+.credits summary{cursor:pointer;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.credits summary:hover{color:var(--gold)}
+.credits ul{list-style:none;margin-top:var(--s2);display:grid;gap:.35rem}
+.credits a{color:#a29d93}
+.credits a:hover{color:var(--gold)}
+
+/* ==================== REVEAL ON SCROLL ==================== */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ==================== 1. STICKY NAV ==================== -->
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Inspire Squash Academy — home">
+      <span class="brand-mark">ISA</span>
+      <span class="brand-sub">Inspire Squash Academy</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <nav aria-label="Primary">
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#training">Training</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#camps">Camps</a></li>
+        <li><a href="#coaches">Coaches</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="btn btn-gold" href="#start">Book Now</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ==================== 2. HERO ==================== -->
+<!-- Photo: ASB glass show court at the Pyramids of Giza (PSA World Tour
+     Finals). Simpkin98, CC BY-SA 4.0 — see manifest at top of file. -->
+<section class="hero">
+  <img class="hero-img" src="assets/img/hero-pyramids.jpg" width="1600" height="1067"
+       alt="A glass squash show court lit up at night in front of the Pyramids of Giza, surrounded by spectators"
+       fetchpriority="high">
+  <div class="container hero-content">
+    <p class="kicker" style="color:var(--gold)">Elite coaching &middot; Junior development &middot; Lifelong squash</p>
+    <h1>Greatness is <em>trained.</em></h1>
+    <p>Inspire Squash Academy develops complete players — technically sharp, tactically fearless, and built to compete. Led by head coach Karim Ibrahim.</p>
+    <a class="btn btn-gold" href="#start">Start Training</a>
+  </div>
+</section>
+
+<!-- ==================== 3. QUICK-LINKS BAND ==================== -->
+<nav class="quicklinks" id="programs" aria-label="Key programs">
+  <div class="quicklinks-grid">
+    <a class="quicklink" href="#training">
+      <span>
+        <span class="quicklink-label">Memberships</span>
+        <span class="quicklink-sub" style="display:block">Year-round training plans</span>
+      </span>
+      <svg class="ql-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="quicklink" href="#camps">
+      <span>
+        <span class="quicklink-label">Summer Camps</span>
+        <span class="quicklink-sub" style="display:block">Intensive holiday blocks</span>
+      </span>
+      <svg class="ql-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="quicklink" href="#school">
+      <span>
+        <span class="quicklink-label">Squash &amp; School</span>
+        <span class="quicklink-sub" style="display:block">Train without falling behind</span>
+      </span>
+      <svg class="ql-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="quicklink" href="#contact">
+      <span>
+        <span class="quicklink-label">Join Now</span>
+        <span class="quicklink-sub" style="display:block">Talk to the academy</span>
+      </span>
+      <svg class="ql-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ==================== 4. CREDIBILITY STATEMENT ==================== -->
+<!-- NOTE: All figures below are ILLUSTRATIVE placeholders, labeled as such
+     on-page. Replace with the academy's verified results before launch. -->
+<section class="section section-dark cred on-dark" id="about">
+  <div class="container cred-inner reveal">
+    <p class="kicker">The ISA standard</p>
+    <p class="big">We measure ourselves the only way that matters — by what our athletes go on to do. Players developed in ISA-style programs have gone on to <strong>national junior rankings</strong>, <strong>college recruitment</strong>, and <strong>professional competition</strong>.</p>
+    <div class="stats" role="list">
+      <div role="listitem"><p class="stat-num">250+</p><p class="stat-label">Athletes coached</p></div>
+      <div role="listitem"><p class="stat-num">40+</p><p class="stat-label">Nationally ranked juniors</p></div>
+      <div role="listitem"><p class="stat-num">18</p><p class="stat-label">College placements</p></div>
+      <div role="listitem"><p class="stat-num">6</p><p class="stat-label">Days of coaching weekly</p></div>
+    </div>
+    <p class="footnote">Figures shown are illustrative sample data for this design — replace with the academy&rsquo;s verified results.</p>
+  </div>
+</section>
+
+<!-- ==================== 5. FEATURED SESSIONS ==================== -->
+<section class="section" id="training">
+  <div class="container">
+    <div class="reveal">
+      <p class="kicker">Train with us</p>
+      <h2>Featured sessions</h2>
+      <hr class="rule">
+    </div>
+    <div class="cards-2">
+      <!-- Photo: Nour El Sherbini, World Junior Championship 2012, Doha.
+           Vinod Divakaran, CC BY 2.0 — layout stand-in imagery. -->
+      <article class="card reveal">
+        <div class="card-media">
+          <img src="assets/img/program-training.jpg" width="1280" height="937" loading="lazy"
+               alt="A junior squash player lunging for a forehand on a glass tournament court">
+        </div>
+        <div class="card-body">
+          <p class="card-date">Fall block &middot; Sep&ndash;Dec</p>
+          <h3>Fall Training Season</h3>
+          <p>Four months of structured development: individual technical work, squad sessions, sparring ladders, and match play every week. Placement by assessment, not age. <em>(Sample dates — confirm schedule.)</em></p>
+          <a class="link-gold" href="#contact">Enquire about Fall</a>
+        </div>
+      </article>
+      <!-- Photo: US Open Squash Championship 2011, Drexel University.
+           Ameykhanolkar, CC BY-SA 3.0 — layout stand-in imagery. -->
+      <article class="card reveal" id="camps">
+        <div class="card-media">
+          <img src="assets/img/program-camp.jpg" width="1280" height="960" loading="lazy"
+               alt="Two players rallying on a glass show court inside a university arena">
+        </div>
+        <div class="card-body">
+          <p class="card-date">Summer camp &middot; Jul&ndash;Aug</p>
+          <h3>Elite Summer Camp</h3>
+          <p>Full-day intensives for committed juniors: morning fitness, technical blocks, tactical video review, and afternoon competition. Limited court spots per week. <em>(Sample dates — confirm schedule.)</em></p>
+          <a class="link-gold" href="#contact">Reserve a camp week</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. SQUASH & SCHOOL ==================== -->
+<section class="section" id="school" style="background:var(--paper-warm)">
+  <div class="container split">
+    <div class="split-media cluster reveal">
+      <!-- Photos: "Squash Stars Meet the Stars" 2010 (Saravanan Alagarsamy,
+           CC BY-SA 2.0) + PSA Kuwait Cup 2009 (Ian Butterworth, CC BY 2.0) -->
+      <img src="assets/img/school-clinic.jpg" width="1204" height="800" loading="lazy"
+           alt="Professional squash players meeting young fans at a community clinic table">
+      <img src="assets/img/school-arena.jpg" width="1280" height="850" loading="lazy"
+           alt="A packed arena watching a professional squash match on a glass court">
+    </div>
+    <div class="split-body reveal">
+      <p class="kicker">For student athletes</p>
+      <h2>Squash &amp; School</h2>
+      <hr class="rule">
+      <p>Serious training shouldn&rsquo;t cost a serious education. Our Squash &amp; School program builds daily on-court development around the school day — with supervised study blocks, progress reports for parents, and coordination with each athlete&rsquo;s school.</p>
+      <p>Designed for juniors targeting national ranking events and, eventually, college squash.</p>
+      <a class="btn btn-ghost" href="#contact">Explore the program</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 7. INTRO PASS ==================== -->
+<section class="section" id="start">
+  <div class="container split flip">
+    <div class="split-media reveal">
+      <!-- Photo: club squash court, The Hague. Jens Buurgaard Nielsen,
+           CC BY-SA 3.0 -->
+      <img src="assets/img/intro-court.jpg" width="1280" height="1039" loading="lazy"
+           alt="Two club players mid-rally on a traditional squash court">
+    </div>
+    <div class="split-body reveal">
+      <p class="kicker">New to squash?</p>
+      <h2>Start playing today</h2>
+      <hr class="rule">
+      <p>The Intro Pass is the simplest way in: one assessment session with an ISA coach, a personalized development plan, and your first group session — all in one visit. No experience, no equipment, no problem.</p>
+      <a class="btn btn-gold" href="#contact">Book your intro pass</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 8. LOCATIONS / FACILITY ==================== -->
+<section class="section" id="location" style="background:var(--paper-warm)">
+  <div class="container">
+    <div class="reveal">
+      <p class="kicker">Where we train</p>
+      <h2>The academy</h2>
+      <hr class="rule">
+      <p class="lead">Championship-standard singles courts, a strength and conditioning area, and video-analysis setup — everything under one roof.</p>
+    </div>
+    <div class="loc-grid">
+      <article class="loc-card card reveal">
+        <div class="card-media">
+          <!-- Photo: squash hall panorama, Greg Zaal / Jarod Guest via
+               Poly Haven, CC0 -->
+          <img src="assets/img/facility-court.jpg" width="1920" height="960" loading="lazy"
+               alt="Wide interior view of a bright squash court hall with wooden floors">
+        </div>
+        <div class="card-body">
+          <h3>ISA Squash Center</h3>
+          <!-- [PLACEHOLDER] address below is invented — replace with the
+               academy's real facility details. -->
+          <address>[PLACEHOLDER — facility address]<br>12 Riverside Park Drive, Stamford, CT 06902</address>
+          <a class="link-gold" href="#contact">Plan your visit</a>
+        </div>
+      </article>
+      <div class="loc-placeholder reveal">
+        <p>[PLACEHOLDER — second location]<br>Add a second facility card here, or remove this block.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 9. ABOUT / FOUNDER ==================== -->
+<!-- BIOGRAPHY SOURCES (verified 2026-07-02, cross-checked):
+     1) https://teamusasquash.com/karim-ibrahim/  (US Squash official bio)
+     2) https://www.squashinfo.com/player/9967-karim-ibrahim  (PSA profile:
+        Cairo-born, Wadi Degla, St. Lawrence Univ., coach Karim Darwish,
+        career-high world No. 414 in Sept 2015, appointed Director of Junior
+        National Teams Aug 2023, resides Philadelphia)
+     3) https://thesquashsite.com/meet-karim-ibrahim-team-usa-junior-national-teams-director
+        (2013 US Junior Open U17 title, Egypt junior ranking #2–#5, moved to
+        US at 17 to St George's School RI, coached Wadi Degla elite players
+        during COVID under Karim Darwish, Head Squash Pro at Arlen Specter
+        US Squash Center, Team USA appointment Aug 2023)
+     4) https://ussquash.org/2022/09/karim-ibrahim-head-squash-proffesional/
+        (Head Squash Professional appointment, 2022)
+     5) https://saintsathletics.com/sports/mens-squash/roster/karim-ibrahim/8940
+        (St. Lawrence roster: First-Team HS All-America 2015-16, ISL MVP,
+        Boston Globe ISL Player of the Year 2016)
+     2024 World Junior Championships results (US women 2nd, men 3rd) per
+     source 1. NOTE: "Founder & head coach of ISA" is the client's own
+     framing for this site, not an externally verified fact. -->
+<section class="section" id="coaches">
+  <div class="container split">
+    <div class="split-media reveal">
+      <div class="founder-portrait" role="img" aria-label="Placeholder for an official portrait of head coach Karim Ibrahim">
+        <span class="monogram" aria-hidden="true">KI</span>
+        <p class="note">[PLACEHOLDER — supply official portrait. No reusable, correctly-licensed photo of Karim Ibrahim was found.]</p>
+      </div>
+    </div>
+    <div class="split-body reveal">
+      <p class="kicker">Founder &amp; head coach</p>
+      <h2>Karim Ibrahim</h2>
+      <hr class="rule">
+      <p>Born in Cairo and developed at the famed Wadi Degla Club, Karim came up through the Egyptian junior system — ranked as high as No. 2 in his age group in the deepest junior squash nation on earth — and won the U.S. Junior Open U17 title in 2013 before competing on the PSA World Tour.</p>
+      <p>As a coach, he has trained elite juniors at Wadi Degla alongside mentor Karim Darwish, and served as a training partner to world champions Raneem El Welily and Nouran Gohar. In the U.S., he led programming as Head Squash Professional at the Arlen Specter US Squash Center in Philadelphia before being appointed Director of Junior National Teams for Team USA in 2023 — guiding the U.S. to its best-ever World Junior Championships finishes in 2024.</p>
+      <ul class="founder-creds">
+        <li>U.S. Junior Open U17 champion, 2013</li>
+        <li>Egyptian junior national team &middot; ranked up to No. 2 in Egypt (junior)</li>
+        <li>Captain, St. Lawrence University men&rsquo;s squash &middot; PSA World Tour professional</li>
+        <li>Director of Junior National Teams, US Squash (2023&ndash; )</li>
+        <li>US Squash Level III certified coach</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 10. AMBASSADORS ==================== -->
+<!-- Card photos are LAYOUT STAND-INS from Wikimedia Commons showing real
+     professional players (credited below each photo). They are NOT ISA
+     ambassadors. Replace photos + names before launch. -->
+<section class="section" id="players" style="border-top:1px solid var(--line)">
+  <div class="container">
+    <div class="reveal">
+      <p class="kicker">The people around the academy</p>
+      <h2>Ambassadors &amp; featured players</h2>
+      <hr class="rule">
+      <p class="lead">Coaches, alumni and friends of ISA. <strong>All cards are placeholders</strong> — swap in your own player portraits and credentials.</p>
+    </div>
+    <div class="amb-row" role="list" aria-label="Featured players (placeholder cards)">
+      <article class="amb-card reveal" role="listitem">
+        <figure>
+          <div class="card-media">
+            <img src="assets/img/amb-1.jpg" width="960" height="1331" loading="lazy"
+                 alt="Layout stand-in: a professional squash player watching the ball onto his racquet">
+          </div>
+          <figcaption>Layout photo: Marwan El Shorbagy, Doha 2012 &middot; not an ISA ambassador</figcaption>
+        </figure>
+        <div class="amb-body">
+          <p class="amb-name">[Player Name]</p>
+          <p class="amb-cred">[PLACEHOLDER — credential line]</p>
+        </div>
+      </article>
+      <article class="amb-card reveal" role="listitem">
+        <figure>
+          <div class="card-media">
+            <img src="assets/img/amb-2.jpg" width="960" height="1371" loading="lazy"
+                 alt="Layout stand-in: a professional squash player following through on a backhand">
+          </div>
+          <figcaption>Layout photo: Ramy Ashour, 2012 &middot; not an ISA ambassador</figcaption>
+        </figure>
+        <div class="amb-body">
+          <p class="amb-name">[Player Name]</p>
+          <p class="amb-cred">[PLACEHOLDER — credential line]</p>
+        </div>
+      </article>
+      <article class="amb-card reveal" role="listitem">
+        <figure>
+          <div class="card-media">
+            <img src="assets/img/amb-3.jpg" width="960" height="1324" loading="lazy"
+                 alt="Layout stand-in: a smiling squash player holding a tournament trophy">
+          </div>
+          <figcaption>Layout photo: Mohamed Elshorbagy, 2012 &middot; not an ISA ambassador</figcaption>
+        </figure>
+        <div class="amb-body">
+          <p class="amb-name">[Player Name]</p>
+          <p class="amb-cred">[PLACEHOLDER — credential line]</p>
+        </div>
+      </article>
+      <div class="amb-card amb-empty reveal" role="listitem">
+        <p>[PLACEHOLDER]<br>Add your next featured player here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==================== 11. NEWSLETTER FOOTER ==================== -->
+<footer class="footer on-dark" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="kicker">Newsletter</p>
+        <h2>Want tips from the pros?</h2>
+        <!-- Form is front-end only: wire `action` to your email provider
+             (Mailchimp, Buttondown, etc.) before launch. -->
+        <form class="newsletter-form" novalidate>
+          <label for="nl-email">Monthly training notes from ISA coaches. No spam, unsubscribe anytime.</label>
+          <input type="email" id="nl-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+          <button class="btn btn-gold" type="submit">Subscribe</button>
+          <p class="form-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="footer-meta">
+        <div>
+          <h3>Visit</h3>
+          <address>ISA Squash Center<br>[PLACEHOLDER — facility address]<br>12 Riverside Park Drive, Stamford, CT 06902</address>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p><a href="mailto:hello@inspiresquash.example">hello@inspiresquash.example</a><br><span aria-hidden="true">[PLACEHOLDER — phone number]</span></p>
+        </div>
+        <div>
+          <h3>Follow</h3>
+          <div class="social">
+            <a href="#" aria-label="ISA on Instagram (placeholder link)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2m0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.9.3-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.4-.3.8-.3 1.9-.1 1.3-.1 1.6-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.4.1.8.3 1.9.3 1.3.1 1.6.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.9-.3.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.4.3-.8.3-1.9.1-1.3.1-1.6.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.4-.1-.8-.3-1.9-.3-1.3-.1-1.6-.1-4.8-.1zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 8.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+            </a>
+            <a href="#" aria-label="ISA on YouTube (placeholder link)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12c0 2 .2 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.3-1.9.5-3.8.5-5.8s-.2-3.9-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
+            </a>
+            <a href="#" aria-label="ISA on X (placeholder link)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.2h3.7l-8.1 9.3L24 22.8h-7.5l-5.9-7.7-6.7 7.7H.2l8.7-9.9L0 1.2h7.7l5.3 7 6-7zm-1.3 19.4h2L6.6 3.3h-2.2l13.2 17.3z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <details class="credits">
+      <summary>Photography credits</summary>
+      <ul>
+        <li>Hero: &ldquo;Squash Court Pyramid&rdquo; by <a href="https://commons.wikimedia.org/wiki/File:Squash_Court_Pyramid.jpg">Simpkin98</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+        <li>Fall training: &ldquo;Nour El Sherbini world 2012&rdquo; by <a href="https://commons.wikimedia.org/wiki/File:Nour_El_Sherbini_world_2012.jpg">Vinod Divakaran</a>, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a></li>
+        <li>Summer camp: &ldquo;US Open Squash Championship 2011&rdquo; by <a href="https://commons.wikimedia.org/wiki/File:US_Open_Squash_Championship_2011_Drexel_University.jpg">Ameykhanolkar</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></li>
+        <li>Squash &amp; School: &ldquo;Squash Stars Meet the Stars&rdquo; by <a href="https://commons.wikimedia.org/wiki/File:Squash_Stars_Meet_the_Stars_Session_3.jpg">Saravanan Alagarsamy</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>; &ldquo;PSA Kuwait Cup 2009&rdquo; by <a href="https://commons.wikimedia.org/wiki/File:PSA_Kuwait_Cup_2009_2.jpg">Ian Butterworth</a>, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a></li>
+        <li>Intro pass: &ldquo;Squash court&rdquo; by <a href="https://commons.wikimedia.org/wiki/File:Squash_court.JPG">Jens Buurgaard Nielsen</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></li>
+        <li>Facility: &ldquo;Squash court – Panorama&rdquo; by <a href="https://commons.wikimedia.org/wiki/File:Squash_court_%E2%80%93_Panorama_(Greg_Zaal_and_Jarod_Guest_via_Poly_Haven).jpg">Greg Zaal &amp; Jarod Guest / Poly Haven</a>, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></li>
+        <li>Player cards (layout stand-ins): <a href="https://commons.wikimedia.org/wiki/File:Marwan_El_Shorbagy_2012.jpg">Marwan El Shorbagy</a> &amp; <a href="https://commons.wikimedia.org/wiki/File:Ramy_Ashour_(2012).jpg">Ramy Ashour</a> by Doha Stadium Plus Qatar; <a href="https://commons.wikimedia.org/wiki/File:Mohamed_Elshorbagy_(2012).jpg">Mohamed Elshorbagy</a> by Vinod Divakaran — all <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a></li>
+      </ul>
+    </details>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2026</span> Inspire Squash Academy. All rights reserved.</p>
+      <p><a href="#top" class="link-gold" style="color:#fff">Back to top</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* nav: shadow on scroll */
+  var nav = document.querySelector('.nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* nav: mobile hamburger */
+  var toggle = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('nav-menu');
+  toggle.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  /* close the drawer after choosing a destination */
+  menu.addEventListener('click', function(e){
+    if (e.target.closest('a')) { menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  });
+
+  /* subtle reveal on scroll (skipped for reduced motion) */
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -5% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* newsletter: front-end stub — wire to a provider before launch */
+  var form = document.querySelector('.newsletter-form');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('nl-email');
+    var msg = form.querySelector('.form-msg');
+    if (!email.value || !email.checkValidity()) {
+      msg.textContent = 'Please enter a valid email address.';
+      email.focus();
+      return;
+    }
+    msg.textContent = 'Thanks! (Demo only — connect this form to your email provider.)';
+    form.reset();
+  });
+
+  /* current year */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
