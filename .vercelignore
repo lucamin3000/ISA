@@ -1,0 +1,7 @@
+# Vercel CLI upload rules. NOTE: when this file exists it takes the place
+# of .gitignore for deploy uploads — deliberately, so that CLI deploys from
+# this machine DO include public/img/coach/ (the FPO comps that are kept
+# out of the public git repo). Git-connected deploys still exclude them.
+node_modules
+dist
+.git
