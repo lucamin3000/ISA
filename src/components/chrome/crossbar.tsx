@@ -10,25 +10,31 @@ export const TABS: TabItem[] = [
 ]
 
 /**
- * THE CROSSBAR — the horizontal stroke of the T. Wordmark centered above,
- * five tabs centered on the axis, one gold hairline across the full width.
- * On mobile the crossbar docks to the bottom edge (see MobileCrossbar).
+ * Header — wordmark left, tabs right, gold Book Now CTA far right
+ * (gold appears only on CTAs, the active-tab underline, and hovers).
+ * On mobile the tabs dock as a fixed bottom bar.
  */
 export function Crossbar() {
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl flex-col items-center px-4">
+    <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6">
         <Link
           to="/"
-          className="pt-4 font-display text-3xl uppercase leading-none tracking-wide text-ink"
+          className="font-display text-2xl uppercase leading-none tracking-wide text-ink"
           aria-label="Inspire Squash Academy — home"
         >
-          ISA<span className="text-gold">.</span>
+          ISA.
         </Link>
-        <IsaTabs items={TABS} className="mt-1 hidden md:flex" />
+        <div className="flex items-center gap-6">
+          <IsaTabs items={TABS} className="hidden md:flex" />
+          <Link
+            to="/contact"
+            className="hidden min-h-10 items-center bg-gold px-5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep sm:inline-flex"
+          >
+            Book Now
+          </Link>
+        </div>
       </div>
-      {/* the crossbar itself */}
-      <div aria-hidden className="h-px w-full bg-gold" />
     </header>
   )
 }
@@ -37,9 +43,8 @@ export function MobileCrossbar() {
   return (
     <nav
       aria-label="Primary"
-      className="fixed inset-x-0 bottom-0 z-40 bg-white/95 backdrop-blur md:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-white/95 backdrop-blur md:hidden"
     >
-      <div aria-hidden className="h-px w-full bg-gold" />
       <IsaTabs
         items={TABS}
         className="flex justify-center"

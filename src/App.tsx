@@ -43,24 +43,6 @@ function useHashRedirect() {
   }, [hash, navigate])
 }
 
-/**
- * THE SPINE — the vertical stroke of the T, descending from the crossbar
- * down the center of every view. Redrawn on each view entry; the only
- * continuous gold structure on the page besides the crossbar.
- */
-function Spine() {
-  return (
-    <motion.span
-      aria-hidden
-      className="pointer-events-none absolute inset-y-0 left-1/2 z-0 w-px -translate-x-1/2 bg-gold/60"
-      style={{ transformOrigin: "top" }}
-      initial={{ scaleY: 0 }}
-      animate={{ scaleY: 1 }}
-      transition={{ duration: 0.9, ease: EASE }}
-    />
-  )
-}
-
 export default function App() {
   const location = useLocation()
   useHashRedirect()
@@ -88,18 +70,15 @@ export default function App() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: EASE }}
         >
-          <main id="main" className="relative pb-16 md:pb-0">
-            <Spine />
-            <div className="relative z-10">
-              <Routes location={location}>
-                <Route path="/" element={<Home />} />
-                <Route path="/programs" element={<Programs />} />
-                <Route path="/camps" element={<Camps />} />
-                <Route path="/academy" element={<Academy />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </div>
+          <main id="main" className="pb-16 md:pb-0">
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/programs" element={<Programs />} />
+              <Route path="/camps" element={<Camps />} />
+              <Route path="/academy" element={<Academy />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
           </main>
           <Footer />
         </motion.div>

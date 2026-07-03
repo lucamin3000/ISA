@@ -12,11 +12,11 @@ export default function Academy() {
     <div className="pb-8">
       <section className="px-4 pt-16 lg:pt-20" aria-labelledby="ac-h">
         <Reveal>
-          <Kicker className="mb-5 text-center">Academy</Kicker>
+          <Kicker className="mb-4 text-center">Academy</Kicker>
           <Monument id="ac-h">
-            Built around
+            The
             <br />
-            the T<span className="text-gold">.</span>
+            academy.
           </Monument>
         </Reveal>
       </section>
@@ -43,7 +43,6 @@ export default function Academy() {
             <h2 id="fo-h" className="font-display text-5xl uppercase tracking-wide sm:text-6xl">
               Karim Ibrahim
             </h2>
-            <div aria-hidden className="mx-auto mt-6 h-0.5 w-14 bg-gold" />
             <p className="mt-6 text-sm text-muted-dark">Full profile publishing soon.</p>
           </div>
         </Reveal>

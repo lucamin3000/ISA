@@ -14,7 +14,7 @@ export function Footer() {
           className="font-display text-2xl uppercase leading-none tracking-wide text-ink"
           aria-label="Inspire Squash Academy — home"
         >
-          ISA<span className="text-gold">.</span>
+          ISA.
         </Link>
         <p className="max-w-4xl text-[0.6875rem] leading-relaxed text-muted-foreground">
           Photography: Wikimedia Commons — Simpkin98 · Vinod Divakaran · Ameykhanolkar ·

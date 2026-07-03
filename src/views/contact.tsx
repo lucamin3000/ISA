@@ -27,11 +27,11 @@ export default function Contact() {
     <div className="pb-8">
       <section className="px-4 pt-16 lg:pt-20" aria-labelledby="co-h">
         <Reveal>
-          <Kicker className="mb-5 text-center">Contact</Kicker>
+          <Kicker className="mb-4 text-center">Contact</Kicker>
           <Monument id="co-h">
             Join the
             <br />
-            academy<span className="text-gold">.</span>
+            academy.
           </Monument>
         </Reveal>
       </section>
@@ -66,7 +66,7 @@ export default function Contact() {
                 Subscribe
               </button>
             </div>
-            <p role="status" aria-live="polite" className="mt-4 min-h-6 text-center text-sm text-gold-text">
+            <p role="status" aria-live="polite" className="mt-4 min-h-6 text-center text-sm text-muted-foreground">
               {msg}
             </p>
           </form>

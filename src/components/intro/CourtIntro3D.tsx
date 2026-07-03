@@ -158,24 +158,22 @@ function Scene({ onDone }: { onDone: () => void }) {
         pointer.current.y = (e.pointer?.y ?? 0)
       }}
     >
-      <ambientLight intensity={1.25} />
-      <directionalLight position={[3, 8, 5]} intensity={0.55} />
       {/* white volume */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
         <planeGeometry args={[W, L]} />
-        <meshStandardMaterial color="#ffffff" roughness={0.95} />
+        <meshBasicMaterial color="#ffffff" />
       </mesh>
       <mesh position={[0, H / 2, -L / 2]}>
         <planeGeometry args={[W, H]} />
-        <meshStandardMaterial color="#ffffff" roughness={0.95} />
+        <meshBasicMaterial color="#ffffff" />
       </mesh>
       <mesh position={[-W / 2, H / 2, 0]} rotation={[0, Math.PI / 2, 0]}>
         <planeGeometry args={[L, H]} />
-        <meshStandardMaterial color="#ffffff" roughness={0.95} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" side={THREE.DoubleSide} />
       </mesh>
       <mesh position={[W / 2, H / 2, 0]} rotation={[0, -Math.PI / 2, 0]}>
         <planeGeometry args={[L, H]} />
-        <meshStandardMaterial color="#ffffff" roughness={0.95} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" side={THREE.DoubleSide} />
       </mesh>
       {/* black edges */}
       <primitive object={blackEdges} />
@@ -196,13 +194,11 @@ export default function CourtIntro3D({ onDone }: { onDone: () => void }) {
   return (
     <Canvas
       className="h-full w-full"
+      flat
       camera={{ fov: 42, position: [0, 5.4, 9.2], near: 0.1, far: 60 }}
       dpr={[1, 2]}
       gl={{ antialias: true }}
-      onCreated={({ gl }) => {
-        gl.toneMapping = THREE.NoToneMapping // keep the volume truly white
-        gl.setClearColor("#ffffff", 1)
-      }}
+      onCreated={({ gl }) => gl.setClearColor("#ffffff", 1)}
     >
       <Scene onDone={onDone} />
     </Canvas>
