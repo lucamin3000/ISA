@@ -8,7 +8,7 @@ export function Blog() {
   return (
     <div>
       <PageHero image={IMG.arena} kicker="Blog" title="Notes from the academy" compact />
-      <section className="mx-auto max-w-3xl px-4 py-20 text-center">
+      <section className="mx-auto max-w-3xl px-4 py-14 text-center">
         <Reveal>
           <QuietLine>First posts publish soon — season notes, results and coaching essays.</QuietLine>
           <GoldCTA to="/book" className="mt-8">
@@ -20,7 +20,7 @@ export function Blog() {
   )
 }
 
-/** RESOURCES — a simple centered link list (the model links out here). */
+/** RESOURCES — just the logo and the links. */
 export function Resources() {
   const LINKS = [
     { label: "Book a session", to: "/book" },
@@ -28,14 +28,17 @@ export function Resources() {
     { label: "Summer camps", to: "/summer-camps" },
     { label: "School & Squash", to: "/school-and-squash" },
     { label: "Meet the coaches", to: "/coaches" },
+    { label: "First Swings", to: "/first-swings" },
   ]
   return (
     <div>
-      <PageHero image={IMG.facility} kicker="Resources" title="Everything ISA, one page" compact />
-      <section className="mx-auto max-w-md px-4 py-16">
-        <ul className="flex flex-col gap-3">
+      <section className="mx-auto max-w-4xl px-4 pb-12 pt-14 text-center">
+        <p className="font-display text-6xl uppercase leading-none tracking-wide text-ink">
+          ISA<span className="text-gold">.</span>
+        </p>
+        <div className="mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-2">
           {LINKS.map((l, i) => (
-            <Reveal key={l.to + l.label} delay={i * 0.04}>
+            <Reveal key={l.to + l.label} delay={i * 0.03}>
               <a
                 href={l.to}
                 className="block border-2 border-ink px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.12em] transition-colors duration-(--dur-fast) ease-(--ease) hover:border-gold hover:text-gold-text"
@@ -44,8 +47,7 @@ export function Resources() {
               </a>
             </Reveal>
           ))}
-        </ul>
-        <QuietLine className="mt-8">Guides and downloads publish soon.</QuietLine>
+        </div>
       </section>
     </div>
   )
@@ -85,7 +87,7 @@ export function Book() {
       <PageHero image={IMG.camp} kicker="Book now" title="Get on court" compact />
 
       {/* direct contact — one tap */}
-      <section className="mx-auto max-w-3xl px-4 py-14 text-center" aria-labelledby="bk-call">
+      <section className="mx-auto max-w-6xl px-4 py-10 text-center" aria-labelledby="bk-call">
         <Reveal>
           <Kicker>Fastest way</Kicker>
           <h2 id="bk-call" className="mt-2 font-display text-3xl uppercase tracking-wide">
@@ -108,7 +110,7 @@ export function Book() {
         </Reveal>
       </section>
 
-      {/* what you can book */}
+      {/* options + slot form side by side on laptop */}
       <section className="mx-auto max-w-6xl px-4 pb-4" aria-label="Booking options">
         <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
           {OPTIONS.map((o, i) => (
@@ -126,8 +128,8 @@ export function Book() {
       </section>
 
       {/* request a slot — composes the text message for you */}
-      <section className="bg-paper-warm py-16" aria-labelledby="bk-cal">
-        <Reveal className="mx-auto max-w-xl px-4 text-center">
+      <section className="mt-10 bg-paper-warm py-12" aria-labelledby="bk-cal">
+        <Reveal className="mx-auto max-w-4xl px-4 text-center">
           <Kicker>Or request a time</Kicker>
           <h2 id="bk-cal" className="mt-2 font-display text-3xl uppercase tracking-wide">
             Pick a slot
@@ -139,8 +141,8 @@ export function Book() {
             </a>{" "}
             for you.
           </p>
-          <form className="mt-8 grid gap-4 text-left" onSubmit={onSubmit}>
-            <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em]">
+          <form className="mx-auto mt-8 grid max-w-3xl gap-4 text-left sm:grid-cols-2" onSubmit={onSubmit}>
+            <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em] sm:col-span-2">
               Program
               <select
                 name="program"
@@ -151,7 +153,7 @@ export function Book() {
                 ))}
               </select>
             </label>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="contents">
               <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em]">
                 Date
                 <input
@@ -174,7 +176,7 @@ export function Book() {
                 </select>
               </label>
             </div>
-            <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em]">
+            <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em] sm:col-span-2">
               Your name <span className="font-normal normal-case text-muted-foreground">(optional)</span>
               <input
                 type="text"
@@ -185,11 +187,11 @@ export function Book() {
             </label>
             <button
               type="submit"
-              className="mt-2 inline-flex min-h-12 items-center justify-center bg-gold px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
+              className="mt-2 inline-flex min-h-12 items-center justify-center bg-gold sm:col-span-2 px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
             >
               Send booking text
             </button>
-            <p role="status" aria-live="polite" className="min-h-6 text-center text-sm text-muted-foreground">
+            <p role="status" aria-live="polite" className="min-h-6 text-center text-sm text-muted-foreground sm:col-span-2">
               {msg}
             </p>
           </form>

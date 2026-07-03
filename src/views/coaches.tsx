@@ -1,4 +1,4 @@
-import { COACH, IMG } from "@/content/site"
+import { COACH } from "@/content/site"
 import { FilmBlock } from "@/components/chrome/film"
 import { GoldCTA, Kicker, PageHero, QuietLine, Reveal } from "@/components/chrome/shared"
 
@@ -54,23 +54,27 @@ export default function Coaches() {
         ctaTo="/book"
       />
 
-      {/* mission intro */}
-      <section className="mx-auto max-w-3xl px-4 py-16 text-center" aria-labelledby="co-h">
+      {/* mission — heading left, text right on laptop */}
+      <section className="mx-auto max-w-6xl px-4 py-10" aria-labelledby="co-h">
         <Reveal>
-          <Kicker>How we coach</Kicker>
-          <h2 id="co-h" className="mt-3 font-display text-3xl uppercase tracking-wide sm:text-4xl">
-            Standards first, always
-          </h2>
-          <p className="mt-5 text-muted-foreground">
-            One coaching philosophy runs through every ISA session: champions
-            are made on court, session by session. Every athlete's plan is
-            written down, reviewed every block, and owned by a coach.
-          </p>
+          <div className="grid gap-6 lg:grid-cols-[2fr_3fr] lg:gap-12">
+            <div>
+              <Kicker>How we coach</Kicker>
+              <h2 id="co-h" className="mt-3 font-display text-3xl uppercase tracking-wide sm:text-4xl">
+                Standards first, always
+              </h2>
+            </div>
+            <p className="self-center text-muted-foreground">
+              One coaching philosophy runs through every ISA session: champions
+              are made on court, session by session. Every athlete's plan is
+              written down, reviewed every block, and owned by a coach.
+            </p>
+          </div>
         </Reveal>
       </section>
 
       {/* two-column profile grid */}
-      <section className="bg-paper-warm py-16" aria-label="Coach profiles">
+      <section className="bg-paper-warm py-12" aria-label="Coach profiles">
         <div className="mx-auto grid max-w-5xl gap-8 px-4 sm:grid-cols-2">
           {PROFILES.map((p, i) => (
             <Reveal key={p.name} delay={i * 0.05}>
@@ -93,7 +97,7 @@ export default function Coaches() {
       </section>
 
       {/* standalone film block */}
-      <section className="mx-auto max-w-4xl px-4 py-16" aria-labelledby="co-film">
+      <section className="mx-auto max-w-2xl px-4 py-12" aria-labelledby="co-film">
         <Reveal>
           <h2 id="co-film" className="text-center font-display text-3xl uppercase tracking-wide">
             Inside the academy
@@ -107,15 +111,6 @@ export default function Coaches() {
         <GoldCTA to="/book">Train with us</GoldCTA>
       </section>
 
-      {/* the licensed action imagery closes the page */}
-      <section aria-hidden className="mx-auto max-w-6xl px-4 pb-16">
-        <img
-          src={IMG.arena.src}
-          alt={IMG.arena.alt}
-          loading="lazy"
-          className="photo aspect-[21/9] w-full object-cover"
-        />
-      </section>
     </div>
   )
 }

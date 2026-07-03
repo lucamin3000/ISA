@@ -23,25 +23,31 @@ export default function SummerCamps() {
         ctaTo="/book"
       />
 
-      {/* single-column primary messaging */}
-      <section className="mx-auto max-w-3xl px-4 py-16 text-center" aria-labelledby="sc-h">
+      {/* how camp works — heading left, text right on laptop */}
+      <section className="mx-auto max-w-6xl px-4 py-12" aria-labelledby="sc-h">
         <Reveal>
-          <Kicker>How camp works</Kicker>
-          <h2 id="sc-h" className="mt-3 font-display text-3xl uppercase tracking-wide sm:text-4xl">
-            Full days, total focus
-          </h2>
-          <p className="mt-5 text-muted-foreground">
-            Morning fitness, technical blocks, tactical video review and
-            afternoon competition — full-day intensives for committed juniors,
-            grouped by assessment. Every camper leaves with a written
-            development plan for the season ahead.
-          </p>
-          <QuietLine className="mt-4">Camp weeks and enrolment publish soon.</QuietLine>
+          <div className="grid gap-6 lg:grid-cols-[2fr_3fr] lg:gap-12">
+            <div>
+              <Kicker>How camp works</Kicker>
+              <h2 id="sc-h" className="mt-3 font-display text-3xl uppercase tracking-wide sm:text-4xl">
+                Full days, total focus
+              </h2>
+            </div>
+            <div className="self-center">
+              <p className="text-muted-foreground">
+                Morning fitness, technical blocks, tactical video review and
+                afternoon competition — full-day intensives for committed
+                juniors, grouped by assessment. Every camper leaves with a
+                written development plan for the season ahead.
+              </p>
+              <QuietLine className="mt-3 text-left">Camp weeks and enrolment publish soon.</QuietLine>
+            </div>
+          </div>
         </Reveal>
       </section>
 
       {/* two-column location cards */}
-      <section className="bg-paper-warm py-16" aria-labelledby="sc-loc">
+      <section className="bg-paper-warm py-12" aria-labelledby="sc-loc">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <h2 id="sc-loc" className="text-center font-display text-3xl uppercase tracking-wide">

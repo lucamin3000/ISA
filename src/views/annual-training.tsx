@@ -68,23 +68,27 @@ export default function AnnualTraining() {
         </Reveal>
       </section>
 
-      {/* mission — single column */}
-      <section className="mx-auto max-w-3xl px-4 py-10 text-center" aria-labelledby="at-mission">
+      {/* mission — heading left, text right on laptop */}
+      <section className="mx-auto max-w-6xl px-4 py-10" aria-labelledby="at-mission">
         <Reveal>
-          <Kicker>The approach</Kicker>
-          <h2 id="at-mission" className="mt-3 font-display text-3xl uppercase tracking-wide sm:text-4xl">
-            Whole athletes, not just wristwork
-          </h2>
-          <p className="mt-5 text-muted-foreground">
-            Every ISA season plans the athlete's year as one arc — technique,
-            physicality, mindset and school — reviewed block by block with the
-            family. Placement is by assessment, not age.
-          </p>
+          <div className="grid gap-6 lg:grid-cols-[2fr_3fr] lg:gap-12">
+            <div>
+              <Kicker>The approach</Kicker>
+              <h2 id="at-mission" className="mt-3 font-display text-3xl uppercase tracking-wide sm:text-4xl">
+                Whole athletes, not just wristwork
+              </h2>
+            </div>
+            <p className="self-center text-muted-foreground">
+              Every ISA season plans the athlete's year as one arc — technique,
+              physicality, mindset and school — reviewed block by block with the
+              family. Placement is by assessment, not age.
+            </p>
+          </div>
         </Reveal>
       </section>
 
       {/* platform section — text left, stacked images right */}
-      <section className="bg-paper-warm py-16" aria-labelledby="at-portal">
+      <section className="bg-paper-warm py-12" aria-labelledby="at-portal">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2">
           <Reveal>
             <Kicker>The training portal</Kicker>
@@ -107,22 +111,26 @@ export default function AnnualTraining() {
         </div>
       </section>
 
-      {/* three full-width level blocks */}
-      <section className="mx-auto max-w-6xl px-4 py-16" aria-labelledby="at-levels">
+      {/* squad levels — three cards, images at native size */}
+      <section className="mx-auto max-w-6xl px-4 py-12" aria-labelledby="at-levels">
         <Reveal>
           <h2 id="at-levels" className="text-center font-display text-3xl uppercase tracking-wide sm:text-4xl">
             The squads
           </h2>
         </Reveal>
-        <div className="mt-10 flex flex-col gap-8">
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
           {LEVELS.map((l, i) => (
             <Reveal key={l.title} delay={i * 0.05}>
-              <article className="relative isolate">
-                <img src={l.image.src} alt={l.image.alt} loading="lazy" className="photo h-64 w-full object-cover sm:h-80" />
-                <div aria-hidden className="absolute inset-0 bg-ink/55" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-white">
-                  <h3 className="font-display text-2xl uppercase tracking-wide sm:text-3xl">{l.title}</h3>
-                  <p className="mt-2 max-w-xl text-sm text-white/85">{l.body}</p>
+              <article className="flex h-full flex-col border border-border bg-white">
+                <img
+                  src={l.image.src}
+                  alt={l.image.alt}
+                  loading="lazy"
+                  className="photo aspect-[4/3] w-full object-cover"
+                />
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-display text-2xl uppercase tracking-wide">{l.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{l.body}</p>
                 </div>
               </article>
             </Reveal>
@@ -131,7 +139,7 @@ export default function AnnualTraining() {
       </section>
 
       {/* coaching team — two columns, round headshots (FPO comps) */}
-      <section className="bg-paper-warm py-16" aria-labelledby="at-team">
+      <section className="bg-paper-warm py-12" aria-labelledby="at-team">
         <div className="mx-auto max-w-5xl px-4">
           <Reveal>
             <h2 id="at-team" className="text-center font-display text-3xl uppercase tracking-wide">
@@ -174,7 +182,7 @@ export default function AnnualTraining() {
       </section>
 
       {/* six-item package grid — no invented pricing */}
-      <section className="mx-auto max-w-6xl px-4 py-16" aria-labelledby="at-pack">
+      <section className="mx-auto max-w-6xl px-4 py-12" aria-labelledby="at-pack">
         <Reveal>
           <h2 id="at-pack" className="text-center font-display text-3xl uppercase tracking-wide">
             Training plans

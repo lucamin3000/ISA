@@ -31,7 +31,7 @@ export function FirstSwings() {
         ctaTo="/book"
       />
       {/* why choose — text + bullets left, CTA right */}
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-[3fr_2fr]" aria-labelledby="fs-why">
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 md:grid-cols-[3fr_2fr]" aria-labelledby="fs-why">
         <Reveal>
           <Kicker>Why First Swings</Kicker>
           <h2 id="fs-why" className="mt-3 font-display text-3xl uppercase tracking-wide">
@@ -49,7 +49,7 @@ export function FirstSwings() {
         </Reveal>
       </section>
       {/* three pillars */}
-      <section className="bg-paper-warm py-16" aria-label="Program pillars">
+      <section className="bg-paper-warm py-12" aria-label="Program pillars">
         <div className="mx-auto max-w-5xl px-4">
           <FeatureColumns
             items={[
@@ -61,7 +61,7 @@ export function FirstSwings() {
         </div>
       </section>
       {/* schedule — two columns */}
-      <section className="mx-auto max-w-4xl px-4 py-16 text-center" aria-labelledby="fs-sched">
+      <section className="mx-auto max-w-4xl px-4 py-12 text-center" aria-labelledby="fs-sched">
         <Reveal>
           <h2 id="fs-sched" className="font-display text-3xl uppercase tracking-wide">
             Weekly schedule
@@ -101,7 +101,7 @@ export function MindsetCoaching() {
         cta="Enquire"
         ctaTo="/book"
       />
-      <section className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <section className="mx-auto max-w-4xl px-4 py-12 text-center">
         <Reveal>
           <p className="text-muted-foreground">
             Pressure, routines, self-talk and recovery — trained deliberately,
@@ -110,7 +110,7 @@ export function MindsetCoaching() {
           </p>
         </Reveal>
       </section>
-      <section className="bg-paper-warm py-16">
+      <section className="bg-paper-warm py-12">
         <div className="mx-auto max-w-5xl px-4">
           <FeatureColumns
             items={[
@@ -149,7 +149,7 @@ export function Strength() {
         cta="Enquire"
         ctaTo="/book"
       />
-      <section className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <section className="mx-auto max-w-4xl px-4 py-12 text-center">
         <Reveal>
           <p className="text-muted-foreground">
             Squash is repeated sprints with a swing at the end. Our S&amp;C
@@ -158,7 +158,7 @@ export function Strength() {
           </p>
         </Reveal>
       </section>
-      <section className="bg-paper-warm py-16">
+      <section className="bg-paper-warm py-12">
         <div className="mx-auto max-w-5xl px-4">
           <FeatureColumns
             items={[
@@ -198,7 +198,7 @@ export function OnlineSchool() {
         cta="Enquire"
         ctaTo="/book"
       />
-      <section className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <section className="mx-auto max-w-4xl px-4 py-12 text-center">
         <Reveal>
           <p className="text-muted-foreground">
             For athletes whose calendars outgrow a classroom: accredited online
@@ -236,7 +236,7 @@ export function CollegeRecruiting() {
         cta="Enquire"
         ctaTo="/book"
       />
-      <section className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <section className="mx-auto max-w-4xl px-4 py-12 text-center">
         <Reveal>
           <p className="text-muted-foreground">
             Rankings, video, outreach and campus visits — a season-by-season

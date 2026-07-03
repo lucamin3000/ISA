@@ -138,7 +138,8 @@ export function PhotoPair({
   )
 }
 
-/** Full-width photo hero with centered overlay title and optional CTA. */
+/** Page hero — ink band, headline left, photo contained at native size
+ *  on the right (never upscaled past its real resolution). */
 export function PageHero({
   image,
   kicker,
@@ -147,37 +148,41 @@ export function PageHero({
   ctaTo,
   compact = false,
 }: {
-  image: IsaImage | { src: string; alt: string }
+  image: (IsaImage | { src: string; alt: string; width?: number }) & { width?: number }
   kicker?: string
   title: ReactNode
   cta?: string
   ctaTo?: string
   compact?: boolean
 }) {
+  const naturalMax = Math.min(image.width ?? 560, 620)
   return (
-    <section className="relative isolate" aria-label="Page introduction">
-      <img
-        src={image.src}
-        alt={image.alt}
-        fetchPriority="high"
+    <section className="bg-ink text-white" aria-label="Page introduction">
+      <div
         className={cn(
-          "photo w-full object-cover",
-          compact ? "h-[44svh] min-h-[18rem]" : "h-[62svh] min-h-[24rem]",
+          "mx-auto grid max-w-6xl items-center gap-8 px-4 lg:grid-cols-[3fr_2fr] lg:gap-12",
+          compact ? "py-10 lg:py-12" : "py-12 lg:py-16",
         )}
-      />
-      <div aria-hidden className="absolute inset-0 bg-ink/55" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-        {kicker && (
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/80">{kicker}</p>
-        )}
-        <h1 className="mt-3 font-display text-[clamp(2.25rem,7vw,4.5rem)] uppercase leading-[0.98] tracking-wide text-white">
-          {title}
-        </h1>
-        {cta && ctaTo && (
-          <GoldCTA to={ctaTo} className="mt-7">
-            {cta}
-          </GoldCTA>
-        )}
+      >
+        <div>
+          {kicker && (
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">{kicker}</p>
+          )}
+          <h1 className="mt-3 font-display text-[clamp(2.25rem,4.5vw,3.75rem)] uppercase leading-[0.98] tracking-wide">
+            {title}
+          </h1>
+          {cta && ctaTo && (
+            <GoldCTA to={ctaTo} className="mt-6">
+              {cta}
+            </GoldCTA>
+          )}
+        </div>
+        <img
+          src={image.src}
+          alt={image.alt}
+          className="photo w-full justify-self-center border border-white/15 lg:justify-self-end"
+          style={{ maxWidth: naturalMax }}
+        />
       </div>
     </section>
   )
@@ -220,7 +225,7 @@ export function CTABand({
   flip?: boolean
 }) {
   return (
-    <section className="bg-paper-warm py-16" aria-label={title}>
+    <section className="bg-paper-warm py-12" aria-label={title}>
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2">
         <Reveal className={flip ? "md:order-2" : ""}>
           <img src={image.src} alt={image.alt} loading="lazy" className="photo aspect-[4/3] w-full object-cover" />

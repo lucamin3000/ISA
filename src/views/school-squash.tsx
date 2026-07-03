@@ -63,7 +63,7 @@ export default function SchoolSquash() {
       </section>
 
       {/* program discovery grid */}
-      <section className="bg-paper-warm py-16" aria-labelledby="ss-disc">
+      <section className="bg-paper-warm py-12" aria-labelledby="ss-disc">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <h2 id="ss-disc" className="text-center font-display text-3xl uppercase tracking-wide">
@@ -96,7 +96,7 @@ export default function SchoolSquash() {
       </section>
 
       {/* why ISA — numbered columns */}
-      <section className="mx-auto max-w-5xl px-4 py-16" aria-labelledby="ss-why">
+      <section className="mx-auto max-w-5xl px-4 py-12" aria-labelledby="ss-why">
         <Reveal>
           <h2 id="ss-why" className="text-center font-display text-3xl uppercase tracking-wide">
             Why families choose ISA
@@ -121,7 +121,7 @@ export default function SchoolSquash() {
       </section>
 
       {/* closing two-card block */}
-      <section className="bg-paper-warm py-16" aria-label="Latest from the program">
+      <section className="bg-paper-warm py-12" aria-label="Latest from the program">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 md:grid-cols-2">
           <Reveal>
             <article className="border border-border bg-white p-8 text-center">

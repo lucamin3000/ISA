@@ -16,35 +16,37 @@ import { GoldCTA, Kicker, QuietLine, Reveal } from "@/components/chrome/shared"
 
 function Hero() {
   return (
-    <section className="relative isolate" aria-labelledby="home-h">
-      <img
-        src={IMG.fall.src}
-        alt={IMG.fall.alt}
-        width={IMG.fall.width}
-        height={IMG.fall.height}
-        fetchPriority="high"
-        className="photo h-[74svh] min-h-[26rem] w-full object-cover"
-      />
-      <div aria-hidden className="absolute inset-0 bg-ink/55" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/80">
-          Inspire Squash Academy
-        </p>
-        <h1
-          id="home-h"
-          className="mt-4 font-display text-[clamp(2.75rem,9vw,6.5rem)] uppercase leading-[0.95] tracking-wide text-white"
-        >
-          We build
-          <br />
-          champions.
-        </h1>
-        <p className="mt-6 max-w-md text-[1.0625rem] text-white/85">
-          Elite coaching, junior development and lifelong squash — session by
-          session.
-        </p>
-        <GoldCTA to="/book" className="mt-8">
-          Start training
-        </GoldCTA>
+    <section className="bg-ink text-white" aria-labelledby="home-h">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-14 lg:grid-cols-[3fr_2fr] lg:gap-12 lg:py-20">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
+            Inspire Squash Academy
+          </p>
+          <h1
+            id="home-h"
+            className="mt-4 font-display text-[clamp(2.75rem,6vw,5.25rem)] uppercase leading-[0.95] tracking-wide"
+          >
+            We build
+            <br />
+            champions.
+          </h1>
+          <p className="mt-5 max-w-md text-[1.0625rem] text-white/85">
+            Elite coaching, junior development and lifelong squash — session by
+            session.
+          </p>
+          <GoldCTA to="/book" className="mt-7">
+            Start training
+          </GoldCTA>
+        </div>
+        <img
+          src={IMG.fall.src}
+          alt={IMG.fall.alt}
+          width={IMG.fall.width}
+          height={IMG.fall.height}
+          fetchPriority="high"
+          className="photo w-full justify-self-center border border-white/15 lg:justify-self-end"
+          style={{ maxWidth: IMG.fall.width }}
+        />
       </div>
     </section>
   )
@@ -77,7 +79,7 @@ const FEATURES: { image: IsaImage; title: string; line: string; to: string; cta:
 
 function FeatureGrid() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24" aria-label="Explore ISA">
+    <section className="mx-auto max-w-6xl px-4 py-12 lg:py-16" aria-label="Explore ISA">
       <div className="grid gap-8 md:grid-cols-3">
         {FEATURES.map((f, i) => (
           <Reveal key={f.to} delay={i * 0.06}>
@@ -127,7 +129,7 @@ function Discover() {
     },
   ]
   return (
-    <section className="bg-paper-warm py-16 lg:py-24" aria-labelledby="disc-h">
+    <section className="bg-paper-warm py-12 lg:py-16" aria-labelledby="disc-h">
       <div className="mx-auto max-w-6xl px-4">
         <Reveal>
           <Kicker className="text-center">Discover ISA</Kicker>
@@ -168,7 +170,7 @@ function Discover() {
 function SquashSchool() {
   const row = [IMG.clinic, IMG.arena, IMG.intro]
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24" aria-labelledby="ss-h">
+    <section className="mx-auto max-w-6xl px-4 py-12 lg:py-16" aria-labelledby="ss-h">
       <Reveal>
         <Kicker className="text-center">For student athletes</Kicker>
         <h2 id="ss-h" className="mt-3 text-center font-display text-4xl uppercase tracking-wide sm:text-5xl">
@@ -212,7 +214,7 @@ function SquashSchool() {
 /** Large image right, left-aligned text with one CTA. */
 function StartPlaying() {
   return (
-    <section className="bg-paper-warm py-16 lg:py-24" aria-labelledby="sp-h">
+    <section className="bg-paper-warm py-12 lg:py-16" aria-labelledby="sp-h">
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2">
         <Reveal>
           <Kicker>New to squash?</Kicker>
@@ -247,7 +249,7 @@ function StartPlaying() {
 /** One centered CTA above two equal location cards. */
 function Locations() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24" aria-labelledby="loc-h">
+    <section className="mx-auto max-w-6xl px-4 py-12 lg:py-16" aria-labelledby="loc-h">
       <Reveal className="text-center">
         <Kicker>Where we train</Kicker>
         <h2 id="loc-h" className="mt-3 font-display text-4xl uppercase tracking-wide">
@@ -295,28 +297,19 @@ function Locations() {
 function Founders() {
   return (
     <section aria-labelledby="fo-h">
-      <div className="relative isolate">
-        <img
-          src={IMG.film.src}
-          alt={IMG.film.alt}
-          width={IMG.film.width}
-          height={IMG.film.height}
-          loading="lazy"
-          className="photo h-[46svh] min-h-[20rem] w-full object-cover"
-        />
-        <div aria-hidden className="absolute inset-0 bg-ink/60" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-          <Kicker className="text-white/80">The academy</Kicker>
-          <h2 id="fo-h" className="mt-3 font-display text-4xl uppercase tracking-wide text-white sm:text-5xl">
+      <div className="bg-ink py-12 text-white lg:py-14">
+        <div className="mx-auto max-w-6xl px-4 text-center">
+          <Kicker className="text-white/70">The academy</Kicker>
+          <h2 id="fo-h" className="mt-3 font-display text-4xl uppercase tracking-wide sm:text-5xl">
             Built by coaches
           </h2>
-          <p className="mt-4 max-w-lg text-sm text-white/85">
+          <p className="mx-auto mt-4 max-w-lg text-sm text-white/85">
             One belief runs through everything at ISA: champions are made on
             court, session by session.
           </p>
         </div>
       </div>
-      <div className="mx-auto max-w-4xl px-4 pt-14">
+      <div className="mx-auto max-w-2xl px-4 pt-12">
         <Reveal>
           <FilmBlock />
         </Reveal>
@@ -359,7 +352,7 @@ function Founders() {
 function Ambassadors() {
   const cards = [IMG.amb1, IMG.amb2, IMG.amb3]
   return (
-    <section className="bg-paper-warm py-16 lg:py-24" aria-labelledby="am-h">
+    <section className="bg-paper-warm py-12 lg:py-16" aria-labelledby="am-h">
       <div className="mx-auto max-w-6xl px-4">
         <Reveal className="text-center">
           <Kicker>The people around the academy</Kicker>
