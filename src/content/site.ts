@@ -175,3 +175,71 @@ export const IMG = {
     height: 1324,
   },
 } satisfies Record<string, IsaImage>
+
+/* ============================================================
+   COACH IMAGERY — FPO COMPS (for placement only)
+   Client-supplied photos of the coach placed at public/img/coach/
+   on this machine. They are third-party event/federation
+   photography: comp only — clear or replace before publication.
+   The folder is gitignored; these files never enter the public
+   repository. Every slot renders whatever the client later clears.
+   ============================================================ */
+export interface CoachImage {
+  src: string
+  alt: string
+  status: "FPO"
+  note: string
+}
+
+const FPO_NOTE = "comp only — clear or replace before publication"
+
+export const COACH = {
+  portrait: {
+    src: "/img/coach/coach-1.jpg",
+    alt: "Head coach Karim Ibrahim, arms crossed, at an indoor squash facility",
+    status: "FPO",
+    note: FPO_NOTE,
+  },
+  action: {
+    src: "/img/coach/coach-2.jpg",
+    alt: "Karim Ibrahim mid-rally on a college squash court",
+    status: "FPO",
+    note: FPO_NOTE,
+  },
+  podium: {
+    src: "/img/coach/coach-3.jpg",
+    alt: "Karim Ibrahim speaking at a lectern at a squash event",
+    status: "FPO",
+    note: FPO_NOTE,
+  },
+  speaking: {
+    src: "/img/coach/coach-4.jpg",
+    alt: "Karim Ibrahim speaking in an interview setting",
+    status: "FPO",
+    note: FPO_NOTE,
+  },
+  brothers: {
+    src: "/img/coach/coach-5.jpg",
+    alt: "Karim Ibrahim with his brother holding college squash shirts",
+    status: "FPO",
+    note: FPO_NOTE,
+  },
+  staff: {
+    src: "/img/coach/coach-6.jpg",
+    alt: "A national-team coaching staff standing together at an arena",
+    status: "FPO",
+    note: FPO_NOTE,
+  },
+  juniors: {
+    src: "/img/coach/coach-7.jpg",
+    alt: "A junior national squad holding a flag on a glass court",
+    status: "FPO",
+    note: FPO_NOTE,
+  },
+  team: {
+    src: "/img/coach/coach-8.jpg",
+    alt: "A national team celebrating with a flag on court",
+    status: "FPO",
+    note: FPO_NOTE,
+  },
+} satisfies Record<string, CoachImage>

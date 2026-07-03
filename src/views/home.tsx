@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
-import { IMG } from "@/content/site"
+import { COACH, IMG } from "@/content/site"
 import type { IsaImage } from "@/content/site"
+import { FilmBlock } from "@/components/chrome/film"
 import { GoldCTA, Kicker, QuietLine, Reveal } from "@/components/chrome/shared"
 
 /**
@@ -41,7 +42,7 @@ function Hero() {
           Elite coaching, junior development and lifelong squash — session by
           session.
         </p>
-        <GoldCTA to="/contact" className="mt-8">
+        <GoldCTA to="/book" className="mt-8">
           Start training
         </GoldCTA>
       </div>
@@ -55,21 +56,21 @@ const FEATURES: { image: IsaImage; title: string; line: string; to: string; cta:
     image: IMG.clinic,
     title: "Programs",
     line: "Memberships, seasonal squads and Squash & School — placement by assessment.",
-    to: "/programs",
+    to: "/annual-training",
     cta: "Explore programs",
   },
   {
     image: IMG.camp,
     title: "Camps",
     line: "Full-day summer intensives and the Intro Pass for new players.",
-    to: "/camps",
+    to: "/summer-camps",
     cta: "See camps",
   },
   {
     image: IMG.facility,
     title: "Academy",
     line: "The facility, the founder and the people around the academy.",
-    to: "/academy",
+    to: "/coaches",
     cta: "Visit the academy",
   },
 ]
@@ -113,7 +114,7 @@ function Discover() {
       kicker: "Summer",
       title: "Elite Summer Camp",
       body: "Full-day intensives for committed juniors: morning fitness, technical blocks, tactical video review, afternoon competition. Camp weeks publish soon.",
-      to: "/camps",
+      to: "/summer-camps",
       cta: "Reserve a week",
     },
     {
@@ -121,7 +122,7 @@ function Discover() {
       kicker: "Fall season",
       title: "The Fall Block",
       body: "A full season of structured development — squads built around school terms and ranking events, progress reviewed every block. Dates publish soon.",
-      to: "/programs",
+      to: "/annual-training",
       cta: "Enquire about Fall",
     },
   ]
@@ -200,7 +201,7 @@ function SquashSchool() {
           Designed for juniors targeting ranking events and, eventually,
           college squash.
         </p>
-        <GoldCTA to="/programs" className="mt-6">
+        <GoldCTA to="/school-and-squash" className="mt-6">
           Explore the program
         </GoldCTA>
       </Reveal>
@@ -224,7 +225,7 @@ function StartPlaying() {
             session — all in one visit. No experience, no equipment, no
             problem.
           </p>
-          <GoldCTA to="/camps" className="mt-7">
+          <GoldCTA to="/first-swings" className="mt-7">
             Book your intro pass
           </GoldCTA>
         </Reveal>
@@ -252,7 +253,7 @@ function Locations() {
         <h2 id="loc-h" className="mt-3 font-display text-4xl uppercase tracking-wide">
           Our locations
         </h2>
-        <GoldCTA to="/contact" className="mt-6">
+        <GoldCTA to="/book" className="mt-6">
           Plan your visit
         </GoldCTA>
       </Reveal>
@@ -288,7 +289,9 @@ function Locations() {
   )
 }
 
-/** Photo band with overlaid text, then the founder profile card. */
+/** Founders section — photo band with overlaid text, the academy film
+ *  (the model embeds its video here), then two side-by-side profile
+ *  cards. Coach photos are FPO comps, local only. */
 function Founders() {
   return (
     <section aria-labelledby="fo-h">
@@ -313,20 +316,40 @@ function Founders() {
           </p>
         </div>
       </div>
-      <div className="mx-auto max-w-6xl px-4 py-14">
+      <div className="mx-auto max-w-4xl px-4 pt-14">
         <Reveal>
-          <div className="mx-auto flex max-w-md flex-col items-center gap-3 border border-border p-8 text-center">
-            <span
-              aria-hidden
-              className="flex size-20 items-center justify-center bg-ink font-display text-3xl text-white"
-            >
-              KI
-            </span>
-            <h3 className="font-display text-3xl uppercase tracking-wide">Karim Ibrahim</h3>
-            <Kicker>Founder &amp; head coach</Kicker>
-            <QuietLine>Full profile publishing soon.</QuietLine>
-          </div>
+          <FilmBlock />
         </Reveal>
+      </div>
+      <div className="mx-auto max-w-5xl px-4 py-14">
+        <div className="grid gap-6 sm:grid-cols-2">
+          <Reveal>
+            <div className="flex h-full flex-col items-center gap-3 border border-border p-8 text-center">
+              <img
+                src={COACH.portrait.src}
+                alt={COACH.portrait.alt}
+                loading="lazy"
+                className="photo size-28 rounded-full object-cover"
+              />
+              <h3 className="font-display text-2xl uppercase tracking-wide">Karim Ibrahim</h3>
+              <Kicker>Founder &amp; head coach</Kicker>
+              <QuietLine>Full profile publishing soon.</QuietLine>
+            </div>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <div className="flex h-full flex-col items-center gap-3 border border-border p-8 text-center">
+              <img
+                src={COACH.staff.src}
+                alt={COACH.staff.alt}
+                loading="lazy"
+                className="photo size-28 rounded-full object-cover"
+              />
+              <h3 className="font-display text-2xl uppercase tracking-wide">The coaching team</h3>
+              <Kicker>Squad &amp; specialist coaches</Kicker>
+              <QuietLine>Roster announcing soon.</QuietLine>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   )

@@ -137,3 +137,103 @@ export function PhotoPair({
     </div>
   )
 }
+
+/** Full-width photo hero with centered overlay title and optional CTA. */
+export function PageHero({
+  image,
+  kicker,
+  title,
+  cta,
+  ctaTo,
+  compact = false,
+}: {
+  image: IsaImage | { src: string; alt: string }
+  kicker?: string
+  title: ReactNode
+  cta?: string
+  ctaTo?: string
+  compact?: boolean
+}) {
+  return (
+    <section className="relative isolate" aria-label="Page introduction">
+      <img
+        src={image.src}
+        alt={image.alt}
+        fetchPriority="high"
+        className={cn(
+          "photo w-full object-cover",
+          compact ? "h-[44svh] min-h-[18rem]" : "h-[62svh] min-h-[24rem]",
+        )}
+      />
+      <div aria-hidden className="absolute inset-0 bg-ink/55" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+        {kicker && (
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/80">{kicker}</p>
+        )}
+        <h1 className="mt-3 font-display text-[clamp(2.25rem,7vw,4.5rem)] uppercase leading-[0.98] tracking-wide text-white">
+          {title}
+        </h1>
+        {cta && ctaTo && (
+          <GoldCTA to={ctaTo} className="mt-7">
+            {cta}
+          </GoldCTA>
+        )}
+      </div>
+    </section>
+  )
+}
+
+/** Three equal columns of pillars: title + text, centered. */
+export function FeatureColumns({
+  items,
+}: {
+  items: { title: string; body: string }[]
+}) {
+  return (
+    <div className="grid gap-8 sm:grid-cols-3">
+      {items.map((f) => (
+        <div key={f.title} className="text-center">
+          <h3 className="font-display text-xl uppercase tracking-wide">{f.title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Two-column CTA band: image one side, text and button the other. */
+export function CTABand({
+  image,
+  kicker,
+  title,
+  body,
+  cta,
+  ctaTo,
+  flip = false,
+}: {
+  image: { src: string; alt: string }
+  kicker: string
+  title: string
+  body: string
+  cta: string
+  ctaTo: string
+  flip?: boolean
+}) {
+  return (
+    <section className="bg-paper-warm py-16" aria-label={title}>
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2">
+        <Reveal className={flip ? "md:order-2" : ""}>
+          <img src={image.src} alt={image.alt} loading="lazy" className="photo aspect-[4/3] w-full object-cover" />
+        </Reveal>
+        <Reveal delay={0.06}>
+          <Kicker>{kicker}</Kicker>
+          <h2 className="mt-3 font-display text-3xl uppercase tracking-wide sm:text-4xl">{title}</h2>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{body}</p>
+          <GoldCTA to={ctaTo} className="mt-6">
+            {cta}
+          </GoldCTA>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
