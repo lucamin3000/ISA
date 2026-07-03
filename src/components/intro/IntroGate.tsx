@@ -17,15 +17,19 @@ function webglAvailable() {
 type Phase = "3d" | "static" | "leaving" | "done"
 
 /**
- * First-visit intro gate. Plays once per session, never on internal
- * navigation. Reduced-motion and WebGL-less devices get the static
- * rendered court frame, cross-fading to HOME in under a second. The 3D
- * bundle is lazy-loaded behind this gate only; the static frame is the
- * Suspense fallback, so first paint never waits on three.js. Skip is
- * visible, focused, and keyboard-operable from the first frame.
+ * First-visit intro gate — now a night scene. Plays once per session,
+ * never on internal navigation. Reduced-motion and WebGL-less devices get
+ * the pre-rendered frame of the arena, cross-fading to the hero in under
+ * a second. The 3D bundle is lazy-loaded behind this gate only; the
+ * pre-rendered frame is the Suspense fallback, so first paint never waits
+ * on three.js. Skip is visible, focused, and keyboard-operable from the
+ * first frame.
  */
 export function IntroGate() {
   const [phase, setPhase] = useState<Phase>(() => {
+    // ?frame previews the static fallback path (same branch reduced-motion
+    // and WebGL-less devices take)
+    if (new URLSearchParams(window.location.search).has("frame")) return "static"
     if (sessionStorage.getItem(SESSION_KEY)) return "done"
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     return reduced || !webglAvailable() ? "static" : "3d"
@@ -35,7 +39,7 @@ export function IntroGate() {
   const finish = () => {
     sessionStorage.setItem(SESSION_KEY, "1")
     setPhase((p) => (p === "done" ? p : "leaving"))
-    window.setTimeout(() => setPhase("done"), 380)
+    window.setTimeout(() => setPhase("done"), 620)
   }
 
   useEffect(() => {
@@ -51,7 +55,7 @@ export function IntroGate() {
 
   useEffect(() => {
     if (phase !== "static") return
-    const t = window.setTimeout(finish, 650) // static frame → HOME in <1s
+    const t = window.setTimeout(finish, 650) // static frame → hero in <1s
     return () => window.clearTimeout(t)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase])
@@ -63,10 +67,10 @@ export function IntroGate() {
       role="dialog"
       aria-modal="true"
       aria-label="Inspire Squash Academy — loading"
-      className="fixed inset-0 z-50 bg-white"
+      className="fixed inset-0 z-50 bg-ink"
       style={{
         opacity: phase === "leaving" ? 0 : 1,
-        transition: "opacity var(--dur-slow) var(--ease)",
+        transition: "opacity 600ms var(--ease)",
         pointerEvents: phase === "leaving" ? "none" : "auto",
       }}
     >
@@ -81,7 +85,7 @@ export function IntroGate() {
         ref={skipRef}
         type="button"
         onClick={finish}
-        className="absolute right-5 top-5 z-10 border border-ink px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors duration-(--dur-fast) ease-(--ease) hover:border-gold hover:text-gold-text"
+        className="absolute right-5 top-5 z-10 border border-white/60 px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-(--dur-fast) ease-(--ease) hover:border-gold hover:text-gold"
       >
         Skip
       </button>
