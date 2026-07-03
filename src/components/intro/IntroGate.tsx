@@ -67,7 +67,7 @@ export function IntroGate() {
       role="dialog"
       aria-modal="true"
       aria-label="Inspire Squash Academy — loading"
-      className="fixed inset-0 z-50 bg-ink"
+      className="fixed inset-0 z-50 bg-[#E5E1DA]"
       style={{
         opacity: phase === "leaving" ? 0 : 1,
         transition: "opacity 600ms var(--ease)",
@@ -85,7 +85,7 @@ export function IntroGate() {
         ref={skipRef}
         type="button"
         onClick={finish}
-        className="absolute right-5 top-5 z-10 border border-white/60 px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-(--dur-fast) ease-(--ease) hover:border-gold hover:text-gold"
+        className="absolute right-5 top-5 z-10 border border-ink/50 px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink/80 transition-colors duration-(--dur-fast) ease-(--ease) hover:border-ink hover:text-ink"
       >
         Skip
       </button>

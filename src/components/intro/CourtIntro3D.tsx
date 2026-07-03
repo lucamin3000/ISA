@@ -1,7 +1,8 @@
 /**
- * THE 3D INTRO — a lit glass arena at night. WSF-correct court, physical
- * glass walls, pale wood floor with clearcoat, the court lines as emissive
- * gold that blooms, the ISA ACADEMY wordmark glowing on the front glass.
+ * THE 3D INTRO — a real squash court in real court colors: plaster-white
+ * walls, maple floor, standard painted red lines, the ISA ACADEMY wordmark
+ * in ink on the front wall. (The site's gold/white/black system does not
+ * apply inside the intro, by design.)
  * The lines draw themselves per-segment (eased) — this IS the loading —
  * then one continuous eased camera move resolves down toward the T and
  * hands off to the hero. Pointer input drifts the camera with inertia.
@@ -39,9 +40,11 @@ const T_POINT = new THREE.Vector3(0, 0.02, SHORT_Z)
 const DRAW_SECONDS = 3.4
 const GLIDE_SECONDS = 1.2
 
-const GOLD = "#C6A15B"
-const WOOD = "#C9B287"
-const NIGHT = "#0B0A08"
+const LINE = "#C8102E" // standard painted red
+const WOOD = "#D3BD93" // maple
+const PLASTER = "#F7F5F1"
+const HALL = "#E5E1DA" // bright hall beyond the court
+const INK_TEXT = "#1A1714"
 
 const LOW_POWER =
   typeof navigator !== "undefined" && (navigator.hardwareConcurrency ?? 8) <= 4
@@ -78,7 +81,7 @@ function makeWallText(): { mesh: THREE.Mesh; redraw: () => void } {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillStyle = "#ffffff"
+    ctx.fillStyle = INK_TEXT
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
     ctx.font = '400 300px Anton, "Arial Narrow", Impact, sans-serif'
@@ -87,12 +90,8 @@ function makeWallText(): { mesh: THREE.Mesh; redraw: () => void } {
   }
   draw()
 
-  const material = new THREE.MeshStandardMaterial({
-    color: "#000000",
+  const material = new THREE.MeshBasicMaterial({
     map: texture,
-    emissive: new THREE.Color(GOLD),
-    emissiveMap: texture,
-    emissiveIntensity: 2.4, // above the bloom threshold — the sign glows
     transparent: true,
     opacity: 0,
   })
@@ -157,7 +156,7 @@ function Env() {
     const pmrem = new THREE.PMREMGenerator(gl)
     const env = pmrem.fromScene(new RoomEnvironment(), 0.04)
     scene.environment = env.texture
-    scene.environmentIntensity = 0.32 // night arena — env for reflections, not daylight
+    scene.environmentIntensity = 0.55 // even club light
     return () => {
       env.texture.dispose()
       pmrem.dispose()
@@ -171,30 +170,26 @@ function Scene({ onDone }: { onDone: () => void }) {
   const pointerTarget = useRef({ x: 0, y: 0 })
   const pointerSmooth = useRef({ x: 0, y: 0 })
   const doneRef = useRef(false)
+  const startRef = useRef<number | null>(null)
   const tGlow = useRef<THREE.Mesh>(null)
 
   const lineMat = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: "#000000",
-        emissive: new THREE.Color(GOLD),
-        emissiveIntensity: 2.2,
+        color: LINE,
+        emissive: new THREE.Color(LINE),
+        emissiveIntensity: 0.3, // painted, not glowing
         side: THREE.DoubleSide,
       }),
     [],
   )
 
-  const glassMat = useMemo(
+  const wallMat = useMemo(
     () =>
-      new THREE.MeshPhysicalMaterial({
-        transmission: 1,
-        roughness: 0.07,
+      new THREE.MeshStandardMaterial({
+        color: PLASTER,
+        roughness: 0.92,
         metalness: 0,
-        thickness: GLASS_T,
-        ior: 1.5,
-        attenuationColor: new THREE.Color(GOLD),
-        attenuationDistance: 7, // the subtle edge tint
-        envMapIntensity: 0.8,
       }),
     [],
   )
@@ -203,11 +198,11 @@ function Scene({ onDone }: { onDone: () => void }) {
     () =>
       new THREE.MeshPhysicalMaterial({
         color: WOOD,
-        roughness: 0.5,
+        roughness: 0.48,
         metalness: 0,
-        clearcoat: 0.55,
+        clearcoat: 0.4,
         clearcoatRoughness: 0.28,
-        envMapIntensity: 0.45,
+        envMapIntensity: 0.6,
       }),
     [],
   )
@@ -285,7 +280,11 @@ function Scene({ onDone }: { onDone: () => void }) {
   }, [])
 
   useFrame(({ clock }) => {
-    const t = clock.getElapsedTime()
+    // measure from the first rendered frame — the shared clock's origin
+    // can predate the mount (preloaded chunk), which would fast-forward
+    // the whole sequence
+    if (startRef.current === null) startRef.current = clock.getElapsedTime()
+    const t = clock.getElapsedTime() - startRef.current
     const p = Math.min(t / DRAW_SECONDS, 1)
 
     // loading IS the line painting — each segment eased
@@ -332,15 +331,15 @@ function Scene({ onDone }: { onDone: () => void }) {
       {/* physical glass walls with visible thickness */}
       <mesh position={[0, H / 2, -L / 2 - GLASS_T / 2]}>
         <boxGeometry args={[W + GLASS_T * 2, H, GLASS_T]} />
-        <primitive object={glassMat} attach="material" />
+        <primitive object={wallMat} attach="material" />
       </mesh>
       <mesh position={[-W / 2 - GLASS_T / 2, H / 2, 0]}>
         <boxGeometry args={[GLASS_T, H, L]} />
-        <primitive object={glassMat} attach="material" />
+        <primitive object={wallMat} attach="material" />
       </mesh>
       <mesh position={[W / 2 + GLASS_T / 2, H / 2, 0]}>
         <boxGeometry args={[GLASS_T, H, L]} />
-        <primitive object={glassMat} attach="material" />
+        <primitive object={wallMat} attach="material" />
       </mesh>
       {/* the wordmark, glowing on the front glass */}
       <primitive object={wallText.mesh} />
@@ -351,12 +350,12 @@ function Scene({ onDone }: { onDone: () => void }) {
       {/* the T */}
       <mesh ref={tGlow} position={T_POINT} rotation={[-Math.PI / 2, 0, 0]} scale={0}>
         <circleGeometry args={[0.16, 32]} />
-        <meshStandardMaterial color="#000000" emissive={GOLD} emissiveIntensity={2.6} />
+        <meshStandardMaterial color={LINE} emissive={LINE} emissiveIntensity={0.3} />
       </mesh>
       {/* arena lighting: one angled key with soft shadows + dim fill */}
       <directionalLight
-        position={[7, 9.5, 6.5]}
-        intensity={1.15}
+        position={[5, 11, 1.5]}
+        intensity={0.85}
         castShadow
         shadow-mapSize={[LOW_POWER ? 1024 : 2048, LOW_POWER ? 1024 : 2048]}
         shadow-camera-left={-8}
@@ -365,7 +364,7 @@ function Scene({ onDone }: { onDone: () => void }) {
         shadow-camera-bottom={-8}
         shadow-radius={6}
       />
-      <directionalLight position={[-6, 4, -4]} intensity={0.18} />
+      <directionalLight position={[-6, 4, -4]} intensity={0.3} />
     </group>
   )
 }
@@ -379,9 +378,9 @@ export default function CourtIntro3D({ onDone }: { onDone: () => void }) {
       shadows="soft"
       gl={{ antialias: true }}
       onCreated={({ gl }) => {
-        gl.setClearColor(NIGHT, 1)
+        gl.setClearColor(HALL, 1)
         gl.toneMapping = THREE.ACESFilmicToneMapping
-        gl.toneMappingExposure = 0.92
+        gl.toneMappingExposure = 0.9
       }}
     >
       <Env />

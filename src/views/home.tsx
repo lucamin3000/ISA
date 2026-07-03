@@ -1,241 +1,385 @@
-import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { AnimatePresence, motion } from "framer-motion"
-import { Play, XIcon } from "lucide-react"
-import { HeroVideoDialog } from "@/components/ui/hero-video-dialog"
-import { IMG, ISA_FILM_EMBED_URL } from "@/content/site"
+import { IMG } from "@/content/site"
 import type { IsaImage } from "@/content/site"
-import { Kicker, Reveal } from "@/components/chrome/shared"
-
-const EASE = [0.22, 0.8, 0.3, 1] as const
+import { GoldCTA, Kicker, QuietLine, Reveal } from "@/components/chrome/shared"
 
 /**
- * THE PREMIERE — the intro resolves onto this. The film is the first
- * thing the visitor meets: full-width cinematic still in the intro's
- * palette (deep blacks, gold), the gold play disc pulsing once on
- * arrival, opening the lightbox with the same spring. When the client
- * supplies ISA_FILM_EMBED_URL the verbatim 21st.dev HeroVideoDialog
- * takes the slot untouched; until then the premiere frame opens a
- * deep-black placeholder panel — no substitute footage.
+ * HOME — the MSquash homepage flow, section for section, rebuilt for ISA:
+ * hero (full-width photo, centered overlay, one CTA) → three-column feature
+ * grid → two stacked discover cards → Squash & School (heading, three-image
+ * row, closing CTA) → start playing (image right, text left) → two location
+ * cards under one centered CTA → founders (photo band with overlay, then
+ * profile card) → ambassadors grid. Structure copied; every word and photo
+ * is ISA's own.
  */
-function Premiere() {
-  const [open, setOpen] = useState(false)
-  const triggerRef = useRef<HTMLButtonElement>(null)
-  const closeRef = useRef<HTMLButtonElement>(null)
 
-  useEffect(() => {
-    if (!open) return
-    closeRef.current?.focus()
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false)
-      if (e.key === "Tab") {
-        e.preventDefault()
-        closeRef.current?.focus()
-      }
-    }
-    document.addEventListener("keydown", onKey, true)
-    document.body.style.overflow = "hidden"
-    return () => {
-      document.removeEventListener("keydown", onKey, true)
-      document.body.style.overflow = ""
-      triggerRef.current?.focus()
-    }
-  }, [open])
-
-  if (ISA_FILM_EMBED_URL) {
-    return (
-      <div className="premiere relative">
-        <div className="film-still">
-          <HeroVideoDialog
-            animationStyle="from-center"
-            videoSrc={ISA_FILM_EMBED_URL}
-            thumbnailSrc={IMG.film.src}
-            thumbnailAlt={IMG.film.alt}
-          />
-        </div>
-        {/* one slow pulse of light on arrival — an invitation, then still */}
-        <span aria-hidden className="premiere-pulse pointer-events-none absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold" />
-      </div>
-    )
-  }
-
+function Hero() {
   return (
-    <>
-      <button
-        ref={triggerRef}
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-haspopup="dialog"
-        aria-label="Play the academy film (video not yet supplied — opens placeholder)"
-        className="group relative block w-full cursor-pointer"
-      >
+    <section className="relative isolate" aria-labelledby="home-h">
+      <img
+        src={IMG.fall.src}
+        alt={IMG.fall.alt}
+        width={IMG.fall.width}
+        height={IMG.fall.height}
+        fetchPriority="high"
+        className="photo h-[74svh] min-h-[26rem] w-full object-cover"
+      />
+      <div aria-hidden className="absolute inset-0 bg-ink/55" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/80">
+          Inspire Squash Academy
+        </p>
+        <h1
+          id="home-h"
+          className="mt-4 font-display text-[clamp(2.75rem,9vw,6.5rem)] uppercase leading-[0.95] tracking-wide text-white"
+        >
+          We build
+          <br />
+          champions.
+        </h1>
+        <p className="mt-6 max-w-md text-[1.0625rem] text-white/85">
+          Elite coaching, junior development and lifelong squash — session by
+          session.
+        </p>
+        <GoldCTA to="/contact" className="mt-8">
+          Start training
+        </GoldCTA>
+      </div>
+    </section>
+  )
+}
+
+/** Three equal columns: image, heading, CTA. */
+const FEATURES: { image: IsaImage; title: string; line: string; to: string; cta: string }[] = [
+  {
+    image: IMG.clinic,
+    title: "Programs",
+    line: "Memberships, seasonal squads and Squash & School — placement by assessment.",
+    to: "/programs",
+    cta: "Explore programs",
+  },
+  {
+    image: IMG.camp,
+    title: "Camps",
+    line: "Full-day summer intensives and the Intro Pass for new players.",
+    to: "/camps",
+    cta: "See camps",
+  },
+  {
+    image: IMG.facility,
+    title: "Academy",
+    line: "The facility, the founder and the people around the academy.",
+    to: "/academy",
+    cta: "Visit the academy",
+  },
+]
+
+function FeatureGrid() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24" aria-label="Explore ISA">
+      <div className="grid gap-8 md:grid-cols-3">
+        {FEATURES.map((f, i) => (
+          <Reveal key={f.to} delay={i * 0.06}>
+            <div className="flex h-full flex-col items-center text-center">
+              <img
+                src={f.image.src}
+                alt={f.image.alt}
+                width={f.image.width}
+                height={f.image.height}
+                loading="lazy"
+                className="photo aspect-[4/3] w-full object-cover"
+              />
+              <h2 className="mt-5 font-display text-2xl uppercase tracking-wide">{f.title}</h2>
+              <p className="mt-2 text-sm text-muted-foreground">{f.line}</p>
+              <Link
+                to={f.to}
+                className="mt-4 border-b-2 border-gold pb-1 text-xs font-semibold uppercase tracking-[0.12em] transition-colors duration-(--dur-fast) ease-(--ease) hover:text-gold-text"
+              >
+                {f.cta}
+              </Link>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/** Two stacked discover cards — image left, text and right-aligned CTA. */
+function Discover() {
+  const cards = [
+    {
+      image: IMG.camp,
+      kicker: "Summer",
+      title: "Elite Summer Camp",
+      body: "Full-day intensives for committed juniors: morning fitness, technical blocks, tactical video review, afternoon competition. Camp weeks publish soon.",
+      to: "/camps",
+      cta: "Reserve a week",
+    },
+    {
+      image: IMG.arena,
+      kicker: "Fall season",
+      title: "The Fall Block",
+      body: "A full season of structured development — squads built around school terms and ranking events, progress reviewed every block. Dates publish soon.",
+      to: "/programs",
+      cta: "Enquire about Fall",
+    },
+  ]
+  return (
+    <section className="bg-paper-warm py-16 lg:py-24" aria-labelledby="disc-h">
+      <div className="mx-auto max-w-6xl px-4">
+        <Reveal>
+          <Kicker className="text-center">Discover ISA</Kicker>
+          <h2 id="disc-h" className="mt-3 text-center font-display text-4xl uppercase tracking-wide">
+            Train with us
+          </h2>
+        </Reveal>
+        <div className="mt-10 flex flex-col gap-6">
+          {cards.map((c, i) => (
+            <Reveal key={c.title} delay={i * 0.06}>
+              <article className="grid items-center gap-6 border border-border bg-white md:grid-cols-[2fr_3fr]">
+                <img
+                  src={c.image.src}
+                  alt={c.image.alt}
+                  width={c.image.width}
+                  height={c.image.height}
+                  loading="lazy"
+                  className="photo aspect-[16/10] h-full w-full object-cover"
+                />
+                <div className="flex flex-col items-start gap-3 p-6 md:p-8">
+                  <Kicker>{c.kicker}</Kicker>
+                  <h3 className="font-display text-3xl uppercase tracking-wide">{c.title}</h3>
+                  <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+                  <GoldCTA to={c.to} className="mt-2 self-end">
+                    {c.cta}
+                  </GoldCTA>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** Heading + text, three images in a row, closing text and one CTA. */
+function SquashSchool() {
+  const row = [IMG.clinic, IMG.arena, IMG.intro]
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24" aria-labelledby="ss-h">
+      <Reveal>
+        <Kicker className="text-center">For student athletes</Kicker>
+        <h2 id="ss-h" className="mt-3 text-center font-display text-4xl uppercase tracking-wide sm:text-5xl">
+          Squash &amp; School
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-center text-muted-foreground">
+          Serious training shouldn&rsquo;t cost a serious education. Daily
+          on-court development built around the school day — supervised study
+          blocks, progress reports for parents, coordination with each
+          athlete&rsquo;s school.
+        </p>
+      </Reveal>
+      <Reveal className="mt-10">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+          {row.map((im) => (
+            <img
+              key={im.src}
+              src={im.src}
+              alt={im.alt}
+              width={im.width}
+              height={im.height}
+              loading="lazy"
+              className="photo aspect-[4/3] w-full object-cover"
+            />
+          ))}
+        </div>
+      </Reveal>
+      <Reveal className="mt-10 text-center">
+        <p className="mx-auto max-w-xl text-sm text-muted-foreground">
+          Designed for juniors targeting ranking events and, eventually,
+          college squash.
+        </p>
+        <GoldCTA to="/programs" className="mt-6">
+          Explore the program
+        </GoldCTA>
+      </Reveal>
+    </section>
+  )
+}
+
+/** Large image right, left-aligned text with one CTA. */
+function StartPlaying() {
+  return (
+    <section className="bg-paper-warm py-16 lg:py-24" aria-labelledby="sp-h">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2">
+        <Reveal>
+          <Kicker>New to squash?</Kicker>
+          <h2 id="sp-h" className="mt-3 font-display text-4xl uppercase tracking-wide sm:text-5xl">
+            Start playing today
+          </h2>
+          <p className="mt-5 max-w-md text-muted-foreground">
+            The Intro Pass is the simplest way in: one assessment session with
+            an ISA coach, a personal development plan, and your first group
+            session — all in one visit. No experience, no equipment, no
+            problem.
+          </p>
+          <GoldCTA to="/camps" className="mt-7">
+            Book your intro pass
+          </GoldCTA>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <img
+            src={IMG.intro.src}
+            alt={IMG.intro.alt}
+            width={IMG.intro.width}
+            height={IMG.intro.height}
+            loading="lazy"
+            className="photo aspect-[4/3] w-full object-cover"
+          />
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/** One centered CTA above two equal location cards. */
+function Locations() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24" aria-labelledby="loc-h">
+      <Reveal className="text-center">
+        <Kicker>Where we train</Kicker>
+        <h2 id="loc-h" className="mt-3 font-display text-4xl uppercase tracking-wide">
+          Our locations
+        </h2>
+        <GoldCTA to="/contact" className="mt-6">
+          Plan your visit
+        </GoldCTA>
+      </Reveal>
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <Reveal>
+          <article className="border border-border">
+            <img
+              src={IMG.facility.src}
+              alt={IMG.facility.alt}
+              width={IMG.facility.width}
+              height={IMG.facility.height}
+              loading="lazy"
+              className="photo aspect-[16/9] w-full object-cover"
+            />
+            <div className="p-6">
+              <h3 className="font-display text-2xl uppercase tracking-wide">ISA Squash Center</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Courts, strength &amp; conditioning, video analysis. Location
+                details publish soon.
+              </p>
+            </div>
+          </article>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <article className="flex h-full items-center justify-center border border-border bg-paper-warm p-10 text-center">
+            <p className="text-sm text-muted-foreground">
+              A second location is in the works — announcing soon.
+            </p>
+          </article>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/** Photo band with overlaid text, then the founder profile card. */
+function Founders() {
+  return (
+    <section aria-labelledby="fo-h">
+      <div className="relative isolate">
         <img
           src={IMG.film.src}
           alt={IMG.film.alt}
           width={IMG.film.width}
           height={IMG.film.height}
-          fetchPriority="high"
-          className="film-still aspect-[16/9] w-full object-cover sm:aspect-[21/9]"
+          loading="lazy"
+          className="photo h-[46svh] min-h-[20rem] w-full object-cover"
         />
-        {/* deep-black grade toward the edges, gold accents only */}
-        <span
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-ink/40"
-        />
-        <span className="absolute inset-0 flex items-center justify-center">
-          <span className="relative flex size-24 items-center justify-center">
-            <span aria-hidden className="premiere-pulse absolute inset-0 rounded-full border-2 border-gold" />
-            <span className="flex size-20 items-center justify-center rounded-full bg-gold shadow-[0_10px_50px_rgba(11,10,8,0.6)] transition-transform duration-(--dur-fast) ease-(--ease) group-hover:scale-105">
-              <Play className="ml-1 size-8 fill-ink text-ink" aria-hidden />
-            </span>
-          </span>
-        </span>
-        <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs font-semibold uppercase tracking-[0.28em] text-white/85">
-          The academy film
-        </span>
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/85 backdrop-blur-md"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Academy film"
-          >
-            <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.5, opacity: 0 }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="relative mx-4 aspect-video w-full max-w-4xl md:mx-0"
-              onClick={(e) => e.stopPropagation()}
+        <div aria-hidden className="absolute inset-0 bg-ink/60" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+          <Kicker className="text-white/80">The academy</Kicker>
+          <h2 id="fo-h" className="mt-3 font-display text-4xl uppercase tracking-wide text-white sm:text-5xl">
+            Built by coaches
+          </h2>
+          <p className="mt-4 max-w-lg text-sm text-white/85">
+            One belief runs through everything at ISA: champions are made on
+            court, session by session.
+          </p>
+        </div>
+      </div>
+      <div className="mx-auto max-w-6xl px-4 py-14">
+        <Reveal>
+          <div className="mx-auto flex max-w-md flex-col items-center gap-3 border border-border p-8 text-center">
+            <span
+              aria-hidden
+              className="flex size-20 items-center justify-center bg-ink font-display text-3xl text-white"
             >
-              <button
-                ref={closeRef}
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close dialog"
-                className="absolute -top-16 right-0 rounded-full bg-neutral-900/50 p-2 text-white ring-1 ring-white/50 backdrop-blur-md transition-colors hover:text-gold max-md:-bottom-16 max-md:top-auto"
-              >
-                <XIcon className="size-5" aria-hidden />
-              </button>
-              <div className="isolate z-[1] relative flex size-full items-center justify-center overflow-hidden border-2 border-white bg-ink">
-                <div className="max-w-xl px-8 text-center">
-                  <p className="font-display text-2xl uppercase tracking-wide text-white">
-                    The academy film belongs here.
-                  </p>
-                  <hr className="mx-auto my-5 h-0.5 w-14 border-0 bg-gold" />
-                  <p className="text-sm leading-relaxed text-muted-dark">
-                    Set <code>ISA_FILM_EMBED_URL</code> in{" "}
-                    <code>src/content/site.ts</code> to a license-cleared embed
-                    and this lightbox goes live. No stand-in footage is shown.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+              KI
+            </span>
+            <h3 className="font-display text-3xl uppercase tracking-wide">Karim Ibrahim</h3>
+            <Kicker>Founder &amp; head coach</Kicker>
+            <QuietLine>Full profile publishing soon.</QuietLine>
+          </div>
+        </Reveal>
+      </div>
+    </section>
   )
 }
 
-const DOORWAYS: { to: string; title: string; line: string; image: IsaImage }[] = [
-  {
-    to: "/programs",
-    title: "Programs",
-    line: "Memberships, seasons, Squash & School.",
-    image: IMG.clinic,
-  },
-  {
-    to: "/camps",
-    title: "Camps",
-    line: "Intensive weeks. Total focus.",
-    image: IMG.camp,
-  },
-  {
-    to: "/academy",
-    title: "Academy",
-    line: "The facility, the founder, the players.",
-    image: IMG.facility,
-  },
-]
-
-export default function Home() {
+/** Ambassadors: profile card grid. */
+function Ambassadors() {
+  const cards = [IMG.amb1, IMG.amb2, IMG.amb3]
   return (
-    <div className="pb-8">
-      {/* the monumental headline — revealed in the intro's easing family */}
-      <section className="px-4 pb-10 pt-14 text-center lg:pb-14 lg:pt-20" aria-labelledby="home-h">
-        <motion.div
-          initial={{ opacity: 0, y: 36 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: EASE, delay: 0.1 }}
-        >
-          <Kicker className="mb-4">Inspire Squash Academy</Kicker>
-          <h1
-            id="home-h"
-            className="mx-auto font-display text-[clamp(3rem,10vw,7.5rem)] uppercase leading-[0.94] tracking-wide text-ink"
-          >
-            We build
-            <br />
-            champions.
-          </h1>
-        </motion.div>
-      </section>
-
-      {/* the premiere — nothing on HOME competes with it */}
-      <motion.section
-        aria-label="The academy film"
-        className="mx-auto w-full max-w-6xl px-4"
-        initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.85, ease: EASE, delay: 0.3 }}
-      >
-        <Premiere />
-      </motion.section>
-
-      {/* quiet below: one credibility line */}
-      <section className="mt-20 bg-ink py-14 lg:mt-28" aria-label="The standard">
-        <Reveal>
-          <p className="mx-auto max-w-3xl px-4 text-center font-display text-2xl uppercase leading-tight tracking-wide text-white sm:text-3xl">
-            We measure ourselves by what
-            <br />
-            our athletes go on to do.
-          </p>
+    <section className="bg-paper-warm py-16 lg:py-24" aria-labelledby="am-h">
+      <div className="mx-auto max-w-6xl px-4">
+        <Reveal className="text-center">
+          <Kicker>The people around the academy</Kicker>
+          <h2 id="am-h" className="mt-3 font-display text-4xl uppercase tracking-wide">
+            Featured players
+          </h2>
+          <QuietLine className="mt-3">Player roster publishing soon.</QuietLine>
         </Reveal>
-      </section>
-
-      {/* quiet below: the doorways */}
-      <section className="mx-auto mt-16 max-w-6xl px-4 lg:mt-24" aria-label="Explore the academy">
-        <div className="grid gap-5 md:grid-cols-3">
-          {DOORWAYS.map((d, i) => (
-            <Reveal key={d.to} delay={i * 0.06}>
-              <Link to={d.to} className="group block">
-                <div className="overflow-hidden">
-                  <img
-                    src={d.image.src}
-                    alt={d.image.alt}
-                    width={d.image.width}
-                    height={d.image.height}
-                    loading="lazy"
-                    className="photo aspect-[4/3] w-full object-cover transition-transform duration-(--dur-slow) ease-(--ease) group-hover:scale-[1.03]"
-                  />
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {cards.map((im, i) => (
+            <Reveal key={im.src} delay={i * 0.06}>
+              <article className="border border-border bg-white">
+                <img
+                  src={im.src}
+                  alt={im.alt}
+                  width={im.width}
+                  height={im.height}
+                  loading="lazy"
+                  className="photo aspect-[3/4] w-full object-cover"
+                />
+                <div className="p-5 text-center">
+                  <QuietLine>Profile publishing soon.</QuietLine>
                 </div>
-                <h2 className="mt-5 font-display text-2xl uppercase tracking-wide">{d.title}</h2>
-                <p className="mt-1 text-sm text-muted-foreground">{d.line}</p>
-                <span className="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-(--dur-fast) ease-(--ease) group-hover:text-gold-text">
-                  Enter →
-                </span>
-              </Link>
+              </article>
             </Reveal>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
+  )
+}
+
+export default function Home() {
+  return (
+    <div>
+      <Hero />
+      <FeatureGrid />
+      <Discover />
+      <SquashSchool />
+      <StartPlaying />
+      <Locations />
+      <Founders />
+      <Ambassadors />
     </div>
   )
 }
