@@ -17,9 +17,9 @@ export function CourtFrame() {
         {/* court volume in one-point perspective, black edges */}
         <g stroke="#0B0A08" strokeWidth="2" fill="none">
           {/* front wall */}
-          <rect x="200" y="90" width="240" height="150" />
+          <rect x="200" y="90" width="240" height="150" fill="#FCFBF8" />
           {/* floor */}
-          <path d="M200 240 L60 420 L580 420 L440 240 Z" fill="#FFFFFF" />
+          <path d="M200 240 L60 420 L580 420 L440 240 Z" fill="#DCC29B" />
           {/* side walls */}
           <path d="M60 40 L200 90 L200 240 L60 420 Z" />
           <path d="M580 40 L440 90 L440 240 L580 420 Z" />
@@ -39,8 +39,8 @@ export function CourtFrame() {
         >
           ISA ACADEMY
         </text>
-        {/* gold play lines */}
-        <g stroke="#C6A15B" strokeWidth="2.5" fill="none">
+        {/* red play lines */}
+        <g stroke="#C8102E" strokeWidth="2.5" fill="none">
           {/* tin and front-wall service line */}
           <path d="M200 226 L440 226" />
           <path d="M200 182 L440 182" />
