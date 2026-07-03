@@ -1,0 +1,14 @@
+# Netlify configuration — static deploy of the Vite build.
+# The publish folder is dist/, which contains the built index.html at its
+# root plus all assets (everything in public/ is copied in at build time).
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Single-page app: every route must serve index.html so react-router can
+# take over (deep links like /coaches or /summer-camps).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
