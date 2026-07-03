@@ -44,6 +44,10 @@
  *  and the verbatim 21st.dev HeroVideoDialog takes over automatically. */
 export const ISA_FILM_EMBED_URL = ""
 
+/** Client-supplied contact number (2026-07-03). */
+export const PHONE_DISPLAY = "+1 646-696-8590"
+export const PHONE_TEL = "+16466968590"
+
 export const TOKENS = {
   film: "[PLACEHOLDER — official coaching video — client to supply]",
   bio: "[PLACEHOLDER — founder bio — client to confirm identity and supply details]",
@@ -137,24 +141,6 @@ export const IMG = {
     height: 335,
   },
   facility: {
-    src: "/img/coach/coach-6.jpg",
-    alt: "A coaching staff at an arena, glass court behind",
-    credit: CLIENT_FPO,
-    source: "client archive",
-    license: "FPO",
-    width: 678,
-    height: 452,
-  },
-  amb1: {
-    src: "/img/coach/coach-1.jpg",
-    alt: "Karim Ibrahim, arms crossed, at an indoor squash facility",
-    credit: CLIENT_FPO,
-    source: "client archive",
-    license: "FPO",
-    width: 400,
-    height: 400,
-  },
-  amb2: {
     src: "/img/coach/coach-8.jpg",
     alt: "A team celebrating with a flag on court",
     credit: CLIENT_FPO,
@@ -163,9 +149,27 @@ export const IMG = {
     width: 387,
     height: 516,
   },
-  amb3: {
+  amb1: {
     src: "/img/coach/coach-3.jpg",
-    alt: "Karim Ibrahim addressing a squash event",
+    alt: "Karim Ibrahim speaking at a lectern at a squash event",
+    credit: CLIENT_FPO,
+    source: "client archive",
+    license: "FPO",
+    width: 400,
+    height: 400,
+  },
+  amb2: {
+    src: "/img/coach/coach-5.jpg",
+    alt: "Karim Ibrahim with his brother holding college squash shirts",
+    credit: CLIENT_FPO,
+    source: "client archive",
+    license: "FPO",
+    width: 596,
+    height: 335,
+  },
+  amb3: {
+    src: "/img/coach/coach-8.jpg",
+    alt: "A team celebrating with a flag on court",
     credit: CLIENT_FPO,
     source: "client archive",
     license: "FPO",

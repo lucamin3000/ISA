@@ -41,7 +41,7 @@ export default function Coaches() {
   return (
     <div>
       <PageHero
-        image={COACH.staff}
+        image={COACH.team}
         kicker="The coaching team"
         title={
           <>

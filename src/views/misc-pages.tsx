@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react"
-import { IMG } from "@/content/site"
+import { Phone, MessageSquareText } from "lucide-react"
+import { IMG, PHONE_DISPLAY, PHONE_TEL } from "@/content/site"
 import { GoldCTA, Kicker, PageHero, QuietLine, Reveal } from "@/components/chrome/shared"
 
 /** BLOG — list layout; first posts publish when there is news to report. */
@@ -50,7 +51,8 @@ export function Resources() {
   )
 }
 
-/** BOOK NOW — mirrors the model's booking catalog as an enquiry grid. */
+/** BOOK NOW — a working booking page: call or text the academy directly,
+ *  or pick a date and time and the form composes the text message for you. */
 export function Book() {
   const [msg, setMsg] = useState("")
   const OPTIONS = [
@@ -59,27 +61,56 @@ export function Book() {
     { title: "Summer camp week", body: "Full-day intensives for committed juniors.", image: IMG.camp },
     { title: "Individual coaching", body: "One-to-one blocks with an ISA coach.", image: IMG.clinic },
   ]
+  const TIMES = ["Morning (7–10)", "Midday (10–2)", "After school (3–6)", "Evening (6–9)"]
+  const today = new Date().toISOString().slice(0, 10)
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const input = e.currentTarget.elements.namedItem("email") as HTMLInputElement
-    if (!input.value || !input.checkValidity()) {
-      setMsg("Please enter a valid email address.")
-      input.focus()
+    const f = e.currentTarget
+    const program = (f.elements.namedItem("program") as HTMLSelectElement).value
+    const date = (f.elements.namedItem("date") as HTMLInputElement).value
+    const time = (f.elements.namedItem("time") as HTMLSelectElement).value
+    const name = (f.elements.namedItem("name") as HTMLInputElement).value.trim()
+    if (!date) {
+      setMsg("Pick a date first.")
       return
     }
-    setMsg("Thank you — booking opens soon and you'll hear first.")
-    e.currentTarget.reset()
+    const body = `Hi ISA — I'd like to book: ${program}, ${date}, ${time}.${name ? ` — ${name}` : ""}`
+    setMsg(`Opening your messages… If nothing happens, text ${PHONE_DISPLAY}: "${body}"`)
+    window.location.href = `sms:${PHONE_TEL}?body=${encodeURIComponent(body)}`
   }
 
   return (
     <div>
       <PageHero image={IMG.camp} kicker="Book now" title="Get on court" compact />
-      <section className="mx-auto max-w-6xl px-4 py-16" aria-label="Booking options">
+
+      {/* direct contact — one tap */}
+      <section className="mx-auto max-w-3xl px-4 py-14 text-center" aria-labelledby="bk-call">
         <Reveal>
-          <QuietLine>Online booking opens soon — leave your email and you'll hear first.</QuietLine>
+          <Kicker>Fastest way</Kicker>
+          <h2 id="bk-call" className="mt-2 font-display text-3xl uppercase tracking-wide">
+            Call or text the academy
+          </h2>
+          <div className="mt-6 flex flex-wrap justify-center gap-4">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              className="inline-flex min-h-12 items-center gap-2 bg-gold px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
+            >
+              <Phone className="size-4" aria-hidden /> Call {PHONE_DISPLAY}
+            </a>
+            <a
+              href={`sms:${PHONE_TEL}`}
+              className="inline-flex min-h-12 items-center gap-2 border-2 border-ink px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-colors duration-(--dur-fast) ease-(--ease) hover:border-gold hover:text-gold-text"
+            >
+              <MessageSquareText className="size-4" aria-hidden /> Text us
+            </a>
+          </div>
         </Reveal>
-        <div className="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-4">
+      </section>
+
+      {/* what you can book */}
+      <section className="mx-auto max-w-6xl px-4 pb-4" aria-label="Booking options">
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
           {OPTIONS.map((o, i) => (
             <Reveal key={o.title} delay={i * 0.04}>
               <article className="flex h-full flex-col border border-border bg-white">
@@ -92,32 +123,73 @@ export function Book() {
             </Reveal>
           ))}
         </div>
+      </section>
 
-        <Reveal className="mx-auto mt-14 max-w-xl text-center">
-          <Kicker>Enquiries</Kicker>
-          <h2 className="mt-2 font-display text-3xl uppercase tracking-wide">Hear when booking opens</h2>
-          <form className="mt-6" noValidate onSubmit={onSubmit}>
-            <label htmlFor="bk-email" className="block text-sm text-muted-foreground">
-              One email when enrolment opens. No spam.
-            </label>
-            <div className="mt-3 flex flex-wrap justify-center gap-3">
-              <input
-                id="bk-email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="you@example.com"
-                className="min-h-11 min-w-56 flex-1 border-2 border-ink bg-transparent px-4 py-2.5 text-sm placeholder:text-muted-foreground/60 focus-visible:border-gold"
-              />
-              <button
-                type="submit"
-                className="inline-flex min-h-11 items-center bg-gold px-8 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
+      {/* request a slot — composes the text message for you */}
+      <section className="bg-paper-warm py-16" aria-labelledby="bk-cal">
+        <Reveal className="mx-auto max-w-xl px-4 text-center">
+          <Kicker>Or request a time</Kicker>
+          <h2 id="bk-cal" className="mt-2 font-display text-3xl uppercase tracking-wide">
+            Pick a slot
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Choose what and when — we'll draft the text message to{" "}
+            <a href={`tel:${PHONE_TEL}`} className="border-b border-gold text-ink hover:text-gold-text">
+              {PHONE_DISPLAY}
+            </a>{" "}
+            for you.
+          </p>
+          <form className="mt-8 grid gap-4 text-left" onSubmit={onSubmit}>
+            <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em]">
+              Program
+              <select
+                name="program"
+                className="min-h-11 border-2 border-ink bg-white px-3 py-2 text-sm font-normal normal-case tracking-normal focus-visible:border-gold"
               >
-                Notify me
-              </button>
+                {OPTIONS.map((o) => (
+                  <option key={o.title}>{o.title}</option>
+                ))}
+              </select>
+            </label>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em]">
+                Date
+                <input
+                  type="date"
+                  name="date"
+                  min={today}
+                  required
+                  className="min-h-11 border-2 border-ink bg-white px-3 py-2 text-sm font-normal normal-case tracking-normal focus-visible:border-gold"
+                />
+              </label>
+              <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em]">
+                Time
+                <select
+                  name="time"
+                  className="min-h-11 border-2 border-ink bg-white px-3 py-2 text-sm font-normal normal-case tracking-normal focus-visible:border-gold"
+                >
+                  {TIMES.map((t) => (
+                    <option key={t}>{t}</option>
+                  ))}
+                </select>
+              </label>
             </div>
-            <p role="status" aria-live="polite" className="mt-3 min-h-6 text-sm text-muted-foreground">
+            <label className="grid gap-1 text-sm font-semibold uppercase tracking-[0.08em]">
+              Your name <span className="font-normal normal-case text-muted-foreground">(optional)</span>
+              <input
+                type="text"
+                name="name"
+                autoComplete="name"
+                className="min-h-11 border-2 border-ink bg-white px-3 py-2 text-sm font-normal normal-case tracking-normal focus-visible:border-gold"
+              />
+            </label>
+            <button
+              type="submit"
+              className="mt-2 inline-flex min-h-12 items-center justify-center bg-gold px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
+            >
+              Send booking text
+            </button>
+            <p role="status" aria-live="polite" className="min-h-6 text-center text-sm text-muted-foreground">
               {msg}
             </p>
           </form>

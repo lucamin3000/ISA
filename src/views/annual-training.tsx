@@ -18,7 +18,7 @@ import {
 
 const LEVELS = [
   {
-    image: IMG.clinic,
+    image: IMG.camp,
     title: "Foundation squads",
     body: "New and developing juniors: technique, movement patterns and match habits, built in small groups.",
   },
@@ -28,7 +28,7 @@ const LEVELS = [
     body: "Ranked juniors training daily: individual technical blocks, sparring ladders and weekly match play.",
   },
   {
-    image: IMG.arena,
+    image: IMG.amb3,
     title: "Elite squads",
     body: "National-level athletes preparing for ranking events and college recruitment, with video review every block.",
   },

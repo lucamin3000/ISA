@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react"
 import { Link } from "react-router-dom"
+import { PHONE_DISPLAY, PHONE_TEL } from "@/content/site"
 import { QuietLine } from "./shared"
 
 /**
@@ -38,11 +39,15 @@ export function Footer() {
           <div>
             <h2 className="font-display text-xl uppercase tracking-wide">Contact</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Email and phone publish soon. Use{" "}
+              Call or text{" "}
+              <a href={`tel:${PHONE_TEL}`} className="border-b border-gold text-ink hover:text-gold-text">
+                {PHONE_DISPLAY}
+              </a>
+              , or use{" "}
               <Link to="/book" className="border-b border-gold text-ink hover:text-gold-text">
                 Book Now
-              </Link>{" "}
-              to reach the academy.
+              </Link>
+              . Email publishes soon.
             </p>
           </div>
         </div>
