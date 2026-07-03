@@ -181,8 +181,9 @@ export const IMG = {
    Client-supplied photos of the coach placed at public/img/coach/
    on this machine. They are third-party event/federation
    photography: comp only — clear or replace before publication.
-   The folder is gitignored; these files never enter the public
-   repository. Every slot renders whatever the client later clears.
+   Committed to the repository at the client's explicit direction
+   (2026-07-03) so Git-connected deploys include them; the FPO
+   status and clear-before-launch obligation are unchanged.
    ============================================================ */
 export interface CoachImage {
   src: string

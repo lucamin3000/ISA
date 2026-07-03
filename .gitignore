@@ -1,6 +1,2 @@
 node_modules
 dist
-
-# FPO comps — copyrighted third-party photos, local prototype only.
-# Never commit: clear or replace before publication.
-public/img/coach/
