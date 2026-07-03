@@ -94,11 +94,8 @@ export function Footer() {
             ISA.
           </Link>
           <p className="max-w-4xl text-[0.6875rem] leading-relaxed text-muted-foreground">
-            Photography: Wikimedia Commons — Simpkin98 · Vinod Divakaran · Ameykhanolkar ·
-            Saravanan Alagarsamy · Ian Butterworth · Jens B. Nielsen · Poly Haven · Doha Stadium
-            Plus (pictured: M. El Shorbagy, R. Ashour, M. Elshorbagy) — CC BY 2.0 / CC BY-SA
-            2.0–4.0 / CC0. Coach imagery: FPO comps, clear or replace before publication.
-            Video dialog: 21st.dev Magic UI.
+            All photography: client-supplied comps — clear or replace before
+            publication. Video dialog: 21st.dev Magic UI.
           </p>
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Inspire Squash Academy. All rights reserved.
