@@ -1,2 +1,5 @@
 node_modules
 dist
+
+# MSquash reference captures — local analysis only, never commit/publish
+reference/

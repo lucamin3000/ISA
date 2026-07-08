@@ -36,19 +36,8 @@ export function CourtFrame() {
           <path d="M200 90 L440 90" />
         </g>
 
-        {/* the wordmark in ink on the front wall */}
-        <text
-          x="320"
-          y="140"
-          textAnchor="middle"
-          fill="#1A1714"
-          style={{
-            font: '400 30px Anton, "Arial Narrow", Impact, sans-serif',
-            letterSpacing: "0.06em",
-          }}
-        >
-          ISA ACADEMY
-        </text>
+        {/* the Inspire Squash Academy logo on the front wall */}
+        <image href="/img/isa-logo.png" x="248" y="108" width="144" height="87" preserveAspectRatio="xMidYMid meet" />
 
         {/* painted red play lines */}
         <g stroke="#C8102E" strokeWidth="2.5" fill="none">

@@ -1,14 +1,11 @@
 import { useState, type FormEvent } from "react"
 import { Link } from "react-router-dom"
-import { PHONE_DISPLAY, PHONE_TEL } from "@/content/site"
-import { QuietLine } from "./shared"
+import { COACH, PHONE_DISPLAY, PHONE_TEL } from "@/content/site"
 
 /**
- * Multi-part footer mirroring the model's structure: two-column
- * location/contact block, centered newsletter capture, partner row
- * (quiet until real), then the legal line. One consolidated
- * photography credit covers the licensed set; coach comps are FPO,
- * local prototype only.
+ * Footer mirroring the model's black footer structure: player photo and
+ * location columns left, brand lockup center, newsletter capture and
+ * partner block right, legal line at the bottom. All content is ISA's own.
  */
 export function Footer() {
   const [msg, setMsg] = useState("")
@@ -26,84 +23,83 @@ export function Footer() {
   }
 
   return (
-    <footer className="mt-24 border-t border-border bg-white pt-14">
-      <div className="mx-auto max-w-6xl px-4">
-        {/* locations & contact — two columns */}
-        <div className="grid gap-10 text-center sm:grid-cols-2 sm:text-left">
-          <div>
-            <h2 className="font-display text-xl uppercase tracking-wide">Visit</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              ISA Squash Center — location details publish soon.
-            </p>
-          </div>
-          <div>
-            <h2 className="font-display text-xl uppercase tracking-wide">Contact</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Call or text{" "}
-              <a href={`tel:${PHONE_TEL}`} className="border-b border-gold text-ink hover:text-gold-text">
+    <footer className="mt-20 bg-ink pb-8 pt-14 text-white">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 lg:grid-cols-[1.1fr_0.8fr_1.1fr]">
+        {/* left: photo + locations + phone */}
+        <div className="flex gap-6">
+          <img
+            src={COACH.action.src}
+            alt={COACH.action.alt}
+            loading="lazy"
+            className="photo hidden h-56 w-36 shrink-0 object-cover object-left sm:block"
+          />
+          <div className="grid content-start gap-6 text-sm sm:grid-cols-2">
+            <div>
+              <p className="font-semibold uppercase tracking-[0.1em]">ISA Squash Center</p>
+              <p className="mt-1 text-white/60">Location details publish soon.</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-[0.1em]">Second location</p>
+              <p className="mt-1 text-white/60">Announcing soon.</p>
+            </div>
+            <p className="sm:col-span-2">
+              <a href={`tel:${PHONE_TEL}`} className="border-b border-gold text-white hover:text-gold">
                 {PHONE_DISPLAY}
               </a>
-              , or use{" "}
-              <Link to="/book" className="border-b border-gold text-ink hover:text-gold-text">
-                Book Now
-              </Link>
-              . Email publishes soon.
             </p>
           </div>
         </div>
 
-        {/* newsletter — centered capture */}
-        <div className="mx-auto mt-12 max-w-xl border-t border-border pt-10 text-center">
-          <h2 className="font-display text-2xl uppercase tracking-wide">
-            Want tips from the pros?
-          </h2>
-          <form className="mt-5" noValidate onSubmit={onSubmit}>
-            <label htmlFor="ft-email" className="block text-sm text-muted-foreground">
-              Training notes from ISA coaches. No spam, unsubscribe anytime.
-            </label>
-            <div className="mt-3 flex flex-wrap justify-center gap-3">
-              <input
-                id="ft-email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="you@example.com"
-                className="min-h-11 min-w-56 flex-1 border-2 border-ink bg-transparent px-4 py-2.5 text-sm placeholder:text-muted-foreground/60 focus-visible:border-gold"
-              />
-              <button
-                type="submit"
-                className="inline-flex min-h-11 items-center bg-gold px-8 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
-              >
-                Subscribe
-              </button>
-            </div>
-            <p role="status" aria-live="polite" className="mt-3 min-h-6 text-sm text-muted-foreground">
-              {msg}
-            </p>
-          </form>
-        </div>
-
-        {/* partner row — nothing invented */}
-        <div className="mt-10 border-t border-border pt-8 text-center">
-          <QuietLine>Partners announcing soon.</QuietLine>
-        </div>
-
-        {/* legal */}
-        <div className="mt-8 flex flex-col items-center gap-3 border-t border-border py-8 text-center">
+        {/* center: brand lockup */}
+        <div className="flex flex-col items-center justify-center text-center">
           <Link
             to="/"
-            className="font-display text-2xl uppercase leading-none tracking-wide text-ink"
+            className="font-display text-5xl uppercase leading-none tracking-wide"
             aria-label="Inspire Squash Academy — home"
           >
-            ISA.
+            ISA<span className="text-gold">.</span>
           </Link>
-          <p className="max-w-4xl text-[0.6875rem] leading-relaxed text-muted-foreground">
-            All photography: client-supplied comps — clear or replace before
-            publication. Video dialog: 21st.dev Magic UI.
+          <p className="mt-2 text-[0.6875rem] font-semibold uppercase tracking-[0.28em] text-white/70">
+            Inspire Squash Academy
           </p>
-          <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Inspire Squash Academy. All rights reserved.
+        </div>
+
+        {/* right: newsletter + partners + legal */}
+        <div>
+          <h2 className="text-sm font-bold uppercase tracking-[0.08em]">
+            Want tips from the pros?
+          </h2>
+          <p className="mt-1 text-sm text-white/60">
+            Sign up for drills, events, and academy news.
+          </p>
+          <form className="mt-3 flex gap-2" noValidate onSubmit={onSubmit}>
+            <label htmlFor="ft-email" className="sr-only">
+              Email
+            </label>
+            <input
+              id="ft-email"
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              placeholder="Email *"
+              className="min-h-10 min-w-0 flex-1 border border-white/30 bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/40 focus-visible:border-gold"
+            />
+            <button
+              type="submit"
+              className="inline-flex min-h-10 items-center bg-gold px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
+            >
+              Sign me up
+            </button>
+          </form>
+          <p role="status" aria-live="polite" className="mt-2 min-h-5 text-xs text-white/60">
+            {msg}
+          </p>
+          <p className="mt-4 text-xs text-white/40">Partners announcing soon.</p>
+          <p className="mt-4 text-[0.6875rem] leading-relaxed text-white/40">
+            &copy; {new Date().getFullYear()} Inspire Squash Academy. All rights
+            reserved. Photography: client-supplied comps — clear or replace
+            before publication. Video dialog: 21st.dev Magic UI.
           </p>
         </div>
       </div>

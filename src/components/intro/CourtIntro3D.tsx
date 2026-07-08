@@ -44,7 +44,6 @@ const LINE = "#C8102E" // standard painted red
 const WOOD = "#D3BD93" // maple
 const PLASTER = "#F7F5F1"
 const HALL = "#E5E1DA" // bright hall beyond the court
-const INK_TEXT = "#1A1714"
 
 const LOW_POWER =
   typeof navigator !== "undefined" && (navigator.hardwareConcurrency ?? 8) <= 4
@@ -68,36 +67,45 @@ function stripeMesh(length: number, material: THREE.Material): THREE.Mesh {
   return mesh
 }
 
-/** The wordmark — glowing on the front glass like arena signage. */
+/** The Inspire Squash Academy logo, sitting on the front wall like a
+ *  printed sponsor decal. The source PNG is on white, so we key the
+ *  near-white pixels to transparent and paint only the gold mark. */
 function makeWallText(): { mesh: THREE.Mesh; redraw: () => void } {
   const canvas = document.createElement("canvas")
-  canvas.width = 2048
-  canvas.height = 512
+  canvas.width = 1179
+  canvas.height = 712
   const texture = new THREE.CanvasTexture(canvas)
   texture.colorSpace = THREE.SRGBColorSpace
   texture.anisotropy = 4
-
-  const draw = () => {
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillStyle = INK_TEXT
-    ctx.textAlign = "center"
-    ctx.textBaseline = "middle"
-    ctx.font = '400 300px Anton, "Arial Narrow", Impact, sans-serif'
-    ctx.fillText("ISA ACADEMY", canvas.width / 2, canvas.height / 2 + 14)
-    texture.needsUpdate = true
-  }
-  draw()
 
   const material = new THREE.MeshBasicMaterial({
     map: texture,
     transparent: true,
     opacity: 0,
   })
-  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 1.2), material)
-  mesh.position.set(0, 3.05, -L / 2 + 0.08)
-  return { mesh, redraw: draw }
+  // logo aspect ≈ 1.656:1
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(3, 3 / 1.656), material)
+  mesh.position.set(0, 3.0, -L / 2 + 0.08)
+
+  const img = new Image()
+  img.onload = () => {
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    const px = data.data
+    for (let i = 0; i < px.length; i += 4) {
+      // drop near-white background to transparent; feather the edge
+      const min = Math.min(px[i], px[i + 1], px[i + 2])
+      if (min > 236) px[i + 3] = 0
+      else if (min > 205) px[i + 3] = Math.round(((236 - min) / 31) * 255)
+    }
+    ctx.putImageData(data, 0, 0)
+    texture.needsUpdate = true
+  }
+  img.src = "/img/isa-logo.png"
+
+  return { mesh, redraw: () => {} }
 }
 
 /** Post pipeline: bloom for the emissive gold only, subtle vignette. */

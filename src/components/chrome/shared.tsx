@@ -138,8 +138,8 @@ export function PhotoPair({
   )
 }
 
-/** Page hero — ink band, headline left, photo contained at native size
- *  on the right (never upscaled past its real resolution). */
+/** Page hero — the model's format: full-width photo with a dark scrim
+ *  and a centered overlay title + CTA. */
 export function PageHero({
   image,
   kicker,
@@ -148,41 +148,37 @@ export function PageHero({
   ctaTo,
   compact = false,
 }: {
-  image: (IsaImage | { src: string; alt: string; width?: number }) & { width?: number }
+  image: { src: string; alt: string }
   kicker?: string
   title: ReactNode
   cta?: string
   ctaTo?: string
   compact?: boolean
 }) {
-  const naturalMax = Math.min(image.width ?? 560, 620)
   return (
-    <section className="bg-ink text-white" aria-label="Page introduction">
-      <div
+    <section className="relative isolate" aria-label="Page introduction">
+      <img
+        src={image.src}
+        alt={image.alt}
+        fetchPriority="high"
         className={cn(
-          "mx-auto grid max-w-6xl items-center gap-8 px-4 lg:grid-cols-[3fr_2fr] lg:gap-12",
-          compact ? "py-10 lg:py-12" : "py-12 lg:py-16",
+          "photo w-full object-cover",
+          compact ? "h-[38svh] min-h-[16rem]" : "h-[52svh] min-h-[22rem]",
         )}
-      >
-        <div>
-          {kicker && (
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">{kicker}</p>
-          )}
-          <h1 className="mt-3 font-display text-[clamp(2.25rem,4.5vw,3.75rem)] uppercase leading-[0.98] tracking-wide">
-            {title}
-          </h1>
-          {cta && ctaTo && (
-            <GoldCTA to={ctaTo} className="mt-6">
-              {cta}
-            </GoldCTA>
-          )}
-        </div>
-        <img
-          src={image.src}
-          alt={image.alt}
-          className="photo w-full justify-self-center border border-white/15 lg:justify-self-end"
-          style={{ maxWidth: naturalMax }}
-        />
+      />
+      <div aria-hidden className="absolute inset-0 bg-ink/50" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+        {kicker && (
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/80">{kicker}</p>
+        )}
+        <h1 className="mt-2 font-display text-[clamp(2rem,4.5vw,3.5rem)] uppercase leading-[1.02] tracking-wide text-white">
+          {title}
+        </h1>
+        {cta && ctaTo && (
+          <GoldCTA to={ctaTo} className="mt-6">
+            {cta}
+          </GoldCTA>
+        )}
       </div>
     </section>
   )
