@@ -35,12 +35,11 @@ export default function SummerCamps() {
             </div>
             <div className="self-center">
               <p className="text-muted-foreground">
-                Morning fitness, technical blocks, tactical video review and
-                afternoon competition — full-day intensives for committed
-                juniors, grouped by assessment. Every camper leaves with a
-                written development plan for the season ahead.
+                Full days for committed juniors, grouped by assessment. Morning
+                fitness, technical blocks, video review, and afternoon matches.
+                Every camper leaves with a written plan for the season ahead.
               </p>
-              <QuietLine className="mt-3 text-left">Camp weeks and enrolment publish soon.</QuietLine>
+              <QuietLine className="mt-3 text-left">Weeks and sign-up post soon.</QuietLine>
             </div>
           </div>
         </Reveal>
@@ -65,14 +64,14 @@ export default function SummerCamps() {
                 />
                 <div className="p-6 text-center">
                   <h3 className="font-display text-2xl uppercase tracking-wide">ISA Squash Center</h3>
-                  <QuietLine className="mt-2">Address and map publish soon.</QuietLine>
+                  <QuietLine className="mt-2">Address and map post soon.</QuietLine>
                 </div>
               </article>
             </Reveal>
             <Reveal delay={0.06}>
               <article className="flex h-full items-center justify-center border border-border bg-white p-10 text-center">
                 <p className="text-sm text-muted-foreground">
-                  A second camp location is in the works — announcing soon.
+                  A second camp location is on the way. More soon.
                 </p>
               </article>
             </Reveal>

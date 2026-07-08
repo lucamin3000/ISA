@@ -14,26 +14,26 @@ const PROFILES = [
   {
     image: COACH.portrait,
     name: "Karim Ibrahim",
-    role: "Founder & head coach",
-    line: "Leads every squad's season plan and the coaching standard across the academy. Full profile publishing soon.",
+    role: "Founder and head coach",
+    line: "Leads every squad's season plan and sets the coaching standard. Full profile soon.",
   },
   {
     image: COACH.action,
     name: "Performance coaching",
-    role: "Squad & individual sessions",
-    line: "Daily technical and tactical work across all levels. Coach roster announcing soon.",
+    role: "Squad and individual sessions",
+    line: "Daily technical and tactical work at every level. Roster soon.",
   },
   {
     image: COACH.staff,
     name: "The wider team",
-    role: "Specialist & squad coaches",
-    line: "Mindset, S&C and squad specialists join through the season. Announcements publish here.",
+    role: "Specialist and squad coaches",
+    line: "Mindset, strength, and squad specialists join through the season. News posts here.",
   },
   {
     image: COACH.podium,
     name: "Guest coaching",
-    role: "Clinics & camps",
-    line: "Visiting professionals lead clinics through the year. Schedule publishes soon.",
+    role: "Clinics and camps",
+    line: "Visiting pros run clinics through the year. Schedule soon.",
   },
 ]
 
@@ -65,9 +65,8 @@ export default function Coaches() {
               </h2>
             </div>
             <p className="self-center text-muted-foreground">
-              One coaching philosophy runs through every ISA session: champions
-              are made on court, session by session. Every athlete's plan is
-              written down, reviewed every block, and owned by a coach.
+              Every athlete gets a written plan. A coach owns it, reviews it
+              each block, and holds the standard.
             </p>
           </div>
         </Reveal>
@@ -102,7 +101,7 @@ export default function Coaches() {
           <h2 id="co-film" className="text-center font-display text-3xl uppercase tracking-wide">
             Inside the academy
           </h2>
-          <QuietLine className="mb-8 mt-2">The academy film — coming soon.</QuietLine>
+          <QuietLine className="mb-8 mt-2">Academy film coming soon.</QuietLine>
           <FilmBlock />
         </Reveal>
       </section>

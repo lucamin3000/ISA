@@ -31,8 +31,7 @@ function Hero() {
             champions.
           </h1>
           <p className="mt-5 max-w-md text-[1.0625rem] text-white/85">
-            Elite coaching, junior development and lifelong squash — session by
-            session.
+            Coaching and junior development, session by session.
           </p>
           <GoldCTA to="/book" className="mt-7">
             Start training
@@ -57,23 +56,23 @@ const FEATURES: { image: IsaImage; title: string; line: string; to: string; cta:
   {
     image: IMG.clinic,
     title: "Programs",
-    line: "Memberships, seasonal squads and Squash & School — placement by assessment.",
+    line: "Memberships, seasonal squads, and school programs. We place by assessment.",
     to: "/annual-training",
-    cta: "Explore programs",
+    cta: "See programs",
   },
   {
     image: IMG.camp,
     title: "Camps",
-    line: "Full-day summer intensives and the Intro Pass for new players.",
+    line: "Full summer weeks, plus a first session for new players.",
     to: "/summer-camps",
     cta: "See camps",
   },
   {
     image: IMG.facility,
     title: "Academy",
-    line: "The facility, the founder and the people around the academy.",
+    line: "Meet the coaches and see where we train.",
     to: "/coaches",
-    cta: "Visit the academy",
+    cta: "Meet the team",
   },
 ]
 
@@ -114,8 +113,8 @@ function Discover() {
     {
       image: IMG.camp,
       kicker: "Summer",
-      title: "Elite Summer Camp",
-      body: "Full-day intensives for committed juniors: morning fitness, technical blocks, tactical video review, afternoon competition. Camp weeks publish soon.",
+      title: "Summer Camp",
+      body: "Full days for committed juniors. Fitness, technical work, video review, and match play. Weeks post soon.",
       to: "/summer-camps",
       cta: "Reserve a week",
     },
@@ -123,9 +122,9 @@ function Discover() {
       image: IMG.arena,
       kicker: "Fall season",
       title: "The Fall Block",
-      body: "A full season of structured development — squads built around school terms and ranking events, progress reviewed every block. Dates publish soon.",
+      body: "A full season of squad training built around school terms and ranking events. We review progress every block. Dates post soon.",
       to: "/annual-training",
-      cta: "Enquire about Fall",
+      cta: "Ask about Fall",
     },
   ]
   return (
@@ -177,10 +176,9 @@ function SquashSchool() {
           Squash &amp; School
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-center text-muted-foreground">
-          Serious training shouldn&rsquo;t cost a serious education. Daily
-          on-court development built around the school day — supervised study
-          blocks, progress reports for parents, coordination with each
-          athlete&rsquo;s school.
+          Serious training shouldn&rsquo;t cost a serious education. We build
+          court time around the school day, with study blocks and regular
+          reports for parents.
         </p>
       </Reveal>
       <Reveal className="mt-10">
@@ -200,8 +198,7 @@ function SquashSchool() {
       </Reveal>
       <Reveal className="mt-10 text-center">
         <p className="mx-auto max-w-xl text-sm text-muted-foreground">
-          Designed for juniors targeting ranking events and, eventually,
-          college squash.
+          Built for juniors aiming at ranking events and college squash.
         </p>
         <GoldCTA to="/school-and-squash" className="mt-6">
           Explore the program
@@ -217,15 +214,14 @@ function StartPlaying() {
     <section className="bg-paper-warm py-12 lg:py-16" aria-labelledby="sp-h">
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2">
         <Reveal>
-          <Kicker>New to squash?</Kicker>
+          <Kicker>New to squash</Kicker>
           <h2 id="sp-h" className="mt-3 font-display text-4xl uppercase tracking-wide sm:text-5xl">
             Start playing today
           </h2>
           <p className="mt-5 max-w-md text-muted-foreground">
-            The Intro Pass is the simplest way in: one assessment session with
-            an ISA coach, a personal development plan, and your first group
-            session — all in one visit. No experience, no equipment, no
-            problem.
+            The Intro Pass is the easiest way in. One visit covers an
+            assessment, a plan, and your first group session. Bring nothing but
+            yourself.
           </p>
           <GoldCTA to="/first-swings" className="mt-7">
             Book your intro pass
@@ -273,8 +269,7 @@ function Locations() {
             <div className="p-6">
               <h3 className="font-display text-2xl uppercase tracking-wide">ISA Squash Center</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Courts, strength &amp; conditioning, video analysis. Location
-                details publish soon.
+                Courts, strength room, and video analysis. Address posts soon.
               </p>
             </div>
           </article>
@@ -282,7 +277,7 @@ function Locations() {
         <Reveal delay={0.06}>
           <article className="flex h-full items-center justify-center border border-border bg-paper-warm p-10 text-center">
             <p className="text-sm text-muted-foreground">
-              A second location is in the works — announcing soon.
+              A second location is on the way. More soon.
             </p>
           </article>
         </Reveal>
@@ -304,8 +299,8 @@ function Founders() {
             Built by coaches
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm text-white/85">
-            One belief runs through everything at ISA: champions are made on
-            court, session by session.
+            Coaches run this academy. They set the standard and own every
+            player&rsquo;s plan.
           </p>
         </div>
       </div>
@@ -325,8 +320,8 @@ function Founders() {
                 className="photo size-28 rounded-full object-cover"
               />
               <h3 className="font-display text-2xl uppercase tracking-wide">Karim Ibrahim</h3>
-              <Kicker>Founder &amp; head coach</Kicker>
-              <QuietLine>Full profile publishing soon.</QuietLine>
+              <Kicker>Founder and head coach</Kicker>
+              <QuietLine>Full profile soon.</QuietLine>
             </div>
           </Reveal>
           <Reveal delay={0.06}>
@@ -338,8 +333,8 @@ function Founders() {
                 className="photo size-28 rounded-full object-cover"
               />
               <h3 className="font-display text-2xl uppercase tracking-wide">The coaching team</h3>
-              <Kicker>Squad &amp; specialist coaches</Kicker>
-              <QuietLine>Roster announcing soon.</QuietLine>
+              <Kicker>Squad and specialist coaches</Kicker>
+              <QuietLine>Roster soon.</QuietLine>
             </div>
           </Reveal>
         </div>
@@ -355,11 +350,11 @@ function Ambassadors() {
     <section className="bg-paper-warm py-12 lg:py-16" aria-labelledby="am-h">
       <div className="mx-auto max-w-6xl px-4">
         <Reveal className="text-center">
-          <Kicker>The people around the academy</Kicker>
+          <Kicker>Around the academy</Kicker>
           <h2 id="am-h" className="mt-3 font-display text-4xl uppercase tracking-wide">
             Featured players
           </h2>
-          <QuietLine className="mt-3">Player roster publishing soon.</QuietLine>
+          <QuietLine className="mt-3">Roster soon.</QuietLine>
         </Reveal>
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {cards.map((im, i) => (
@@ -374,7 +369,7 @@ function Ambassadors() {
                   className="photo aspect-[3/4] w-full object-cover"
                 />
                 <div className="p-5 text-center">
-                  <QuietLine>Profile publishing soon.</QuietLine>
+                  <QuietLine>Profile soon.</QuietLine>
                 </div>
               </article>
             </Reveal>

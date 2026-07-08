@@ -18,7 +18,7 @@ export function Footer() {
       input.focus()
       return
     }
-    setMsg("Thank you — sign-up opens soon.")
+    setMsg("Thank you. Sign-up opens soon.")
     e.currentTarget.reset()
   }
 
@@ -36,11 +36,11 @@ export function Footer() {
           <div className="grid content-start gap-6 text-sm sm:grid-cols-2">
             <div>
               <p className="font-semibold uppercase tracking-[0.1em]">ISA Squash Center</p>
-              <p className="mt-1 text-white/60">Location details publish soon.</p>
+              <p className="mt-1 text-white/60">Address coming soon.</p>
             </div>
             <div>
               <p className="font-semibold uppercase tracking-[0.1em]">Second location</p>
-              <p className="mt-1 text-white/60">Announcing soon.</p>
+              <p className="mt-1 text-white/60">Opening soon.</p>
             </div>
             <p className="sm:col-span-2">
               <a href={`tel:${PHONE_TEL}`} className="border-b border-gold text-white hover:text-gold">
@@ -55,7 +55,7 @@ export function Footer() {
           <Link
             to="/"
             className="font-display text-5xl uppercase leading-none tracking-wide"
-            aria-label="Inspire Squash Academy — home"
+            aria-label="Inspire Squash Academy, home"
           >
             ISA<span className="text-gold">.</span>
           </Link>
@@ -67,10 +67,10 @@ export function Footer() {
         {/* right: newsletter + partners + legal */}
         <div>
           <h2 className="text-sm font-bold uppercase tracking-[0.08em]">
-            Want tips from the pros?
+            Coaching notes by email
           </h2>
           <p className="mt-1 text-sm text-white/60">
-            Sign up for drills, events, and academy news.
+            Drills and academy news. We email now and then.
           </p>
           <form className="mt-3 flex gap-2" noValidate onSubmit={onSubmit}>
             <label htmlFor="ft-email" className="sr-only">
@@ -95,11 +95,11 @@ export function Footer() {
           <p role="status" aria-live="polite" className="mt-2 min-h-5 text-xs text-white/60">
             {msg}
           </p>
-          <p className="mt-4 text-xs text-white/40">Partners announcing soon.</p>
+          <p className="mt-4 text-xs text-white/40">Partners coming soon.</p>
           <p className="mt-4 text-[0.6875rem] leading-relaxed text-white/40">
             &copy; {new Date().getFullYear()} Inspire Squash Academy. All rights
-            reserved. Photography: client-supplied comps — clear or replace
-            before publication. Video dialog: 21st.dev Magic UI.
+            reserved. Photography: client comps, for layout only. Video dialog by
+            21st.dev Magic UI.
           </p>
         </div>
       </div>

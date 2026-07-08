@@ -66,7 +66,7 @@ export function IntroGate() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Inspire Squash Academy — loading"
+      aria-label="Inspire Squash Academy, loading"
       className="fixed inset-0 z-50 bg-[#E5E1DA]"
       style={{
         opacity: phase === "leaving" ? 0 : 1,

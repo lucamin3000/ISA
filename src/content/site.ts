@@ -83,7 +83,7 @@ export interface IsaImage {
   height: number
 }
 
-const CLIENT_FPO = "client-supplied — FPO, clear or replace before publication"
+const CLIENT_FPO = "client comp, clear or replace before publication"
 
 export const IMG = {
   film: {
@@ -182,7 +182,7 @@ export const IMG = {
    COACH IMAGERY — FPO COMPS (for placement only)
    Client-supplied photos of the coach placed at public/img/coach/
    on this machine. They are third-party event/federation
-   photography: comp only — clear or replace before publication.
+   photography: comp only, clear or replace before publication.
    Committed to the repository at the client's explicit direction
    (2026-07-03) so Git-connected deploys include them; the FPO
    status and clear-before-launch obligation are unchanged.
@@ -196,7 +196,7 @@ export interface CoachImage {
   height: number
 }
 
-const FPO_NOTE = "comp only — clear or replace before publication"
+const FPO_NOTE = "comp only, clear or replace before publication"
 
 export const COACH = {
   portrait: {

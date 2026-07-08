@@ -54,7 +54,7 @@ export function FilmBlock() {
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        aria-label="Play the academy film (video not yet supplied — opens placeholder)"
+        aria-label="Play the academy film (video coming soon)"
         className="group relative block w-full cursor-pointer"
       >
         <img
@@ -72,7 +72,7 @@ export function FilmBlock() {
           </span>
         </span>
         <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-semibold uppercase tracking-[0.24em] text-white/85">
-          Discover more
+          Watch
         </span>
       </button>
 
@@ -108,13 +108,11 @@ export function FilmBlock() {
               <div className="isolate z-[1] relative flex size-full items-center justify-center overflow-hidden border-2 border-white bg-ink">
                 <div className="max-w-xl px-8 text-center">
                   <p className="font-display text-2xl uppercase tracking-wide text-white">
-                    The academy film belongs here.
+                    Film coming soon
                   </p>
                   <hr className="mx-auto my-5 h-0.5 w-14 border-0 bg-gold" />
                   <p className="text-sm leading-relaxed text-muted-dark">
-                    Set <code>ISA_FILM_EMBED_URL</code> in{" "}
-                    <code>src/content/site.ts</code> to a license-cleared embed
-                    and this lightbox goes live.
+                    Our academy video lands here shortly. Check back soon.
                   </p>
                 </div>
               </div>

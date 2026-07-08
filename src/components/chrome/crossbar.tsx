@@ -17,27 +17,27 @@ interface NavItem {
 
 const NAV: NavItem[] = [
   {
-    label: "Annual Training",
+    label: "Training",
     to: "/annual-training",
     children: [
       { label: "First Swings", to: "/first-swings" },
-      { label: "Mindset Coaching", to: "/mindset-coaching" },
-      { label: "Strength & Conditioning", to: "/strength" },
+      { label: "Mindset", to: "/mindset-coaching" },
+      { label: "Strength", to: "/strength" },
     ],
   },
-  { label: "Summer Camps", to: "/summer-camps" },
-  { label: "Fall Training", to: "/annual-training" },
+  { label: "Camps", to: "/summer-camps" },
+  { label: "Fall", to: "/annual-training" },
   {
-    label: "School & Squash",
+    label: "School",
     to: "/school-and-squash",
     children: [
       { label: "School Squash", to: "/school-and-squash" },
       { label: "Online School", to: "/online-school" },
-      { label: "College Recruiting", to: "/college-recruiting" },
+      { label: "College", to: "/college-recruiting" },
     ],
   },
   {
-    label: "About Us",
+    label: "About",
     to: "/",
     children: [
       { label: "Coaches", to: "/coaches" },
@@ -65,7 +65,7 @@ export function Crossbar() {
         <Link
           to="/"
           className="font-display text-2xl uppercase leading-none tracking-wide text-ink"
-          aria-label="Inspire Squash Academy — home"
+          aria-label="Inspire Squash Academy, home"
         >
           ISA.
         </Link>

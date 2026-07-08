@@ -20,17 +20,17 @@ const LEVELS = [
   {
     image: IMG.camp,
     title: "Foundation squads",
-    body: "New and developing juniors: technique, movement patterns and match habits, built in small groups.",
+    body: "New and developing juniors in small groups. We build technique, movement, and match habits.",
   },
   {
     image: IMG.fall,
     title: "Performance squads",
-    body: "Ranked juniors training daily: individual technical blocks, sparring ladders and weekly match play.",
+    body: "Ranked juniors training daily. Technical blocks, sparring ladders, and weekly matches.",
   },
   {
     image: IMG.amb3,
     title: "Elite squads",
-    body: "National-level athletes preparing for ranking events and college recruitment, with video review every block.",
+    body: "Our top squad, preparing for ranking events and college. Video review every block.",
   },
 ]
 
@@ -61,9 +61,9 @@ export default function AnnualTraining() {
       {/* centered onboarding CTA */}
       <section className="py-10 text-center">
         <Reveal>
-          <QuietLine>Season dates publish soon.</QuietLine>
+          <QuietLine>Dates post soon.</QuietLine>
           <GoldCTA to="/book" className="mt-4">
-            Start onboarding
+            Get started
           </GoldCTA>
         </Reveal>
       </section>
@@ -79,9 +79,9 @@ export default function AnnualTraining() {
               </h2>
             </div>
             <p className="self-center text-muted-foreground">
-              Every ISA season plans the athlete's year as one arc — technique,
-              physicality, mindset and school — reviewed block by block with the
-              family. Placement is by assessment, not age.
+              Every ISA season plans the year as one arc. We work technique,
+              fitness, mindset, and school, then review it with the family each
+              block. We place by assessment, not age.
             </p>
           </div>
         </Reveal>
@@ -96,11 +96,10 @@ export default function AnnualTraining() {
               Your season, in your pocket
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Schedules, session notes, video clips and progress reviews live
-              in one place for every ISA family. The portal opens with the
-              season.
+              Schedules, session notes, video clips, and progress reviews in one
+              place for every ISA family. The portal opens with the season.
             </p>
-            <QuietLine className="mt-3 text-left">Portal preview publishing soon.</QuietLine>
+            <QuietLine className="mt-3 text-left">Preview soon.</QuietLine>
           </Reveal>
           <Reveal delay={0.06}>
             <div className="grid grid-cols-2 gap-4">
@@ -157,8 +156,8 @@ export default function AnnualTraining() {
                 />
                 <div>
                   <h3 className="font-display text-xl uppercase tracking-wide">Karim Ibrahim</h3>
-                  <p className="text-sm text-muted-foreground">Founder &amp; head coach</p>
-                  <QuietLine className="mt-1 text-left">Full profile publishing soon.</QuietLine>
+                  <p className="text-sm text-muted-foreground">Founder and head coach</p>
+                  <QuietLine className="mt-1 text-left">Full profile soon.</QuietLine>
                 </div>
               </div>
             </Reveal>
@@ -172,8 +171,8 @@ export default function AnnualTraining() {
                 />
                 <div>
                   <h3 className="font-display text-xl uppercase tracking-wide">The coaching team</h3>
-                  <p className="text-sm text-muted-foreground">Squad &amp; specialist coaches</p>
-                  <QuietLine className="mt-1 text-left">Roster announcing soon.</QuietLine>
+                  <p className="text-sm text-muted-foreground">Squad and specialist coaches</p>
+                  <QuietLine className="mt-1 text-left">Roster soon.</QuietLine>
                 </div>
               </div>
             </Reveal>
@@ -187,7 +186,7 @@ export default function AnnualTraining() {
           <h2 id="at-pack" className="text-center font-display text-3xl uppercase tracking-wide">
             Training plans
           </h2>
-          <QuietLine className="mt-3">Plans and pricing publish with the season.</QuietLine>
+          <QuietLine className="mt-3">Plans and prices post with the season.</QuietLine>
         </Reveal>
         <div className="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-3">
           {PACKAGES.map((p, i) => (
@@ -209,9 +208,9 @@ export default function AnnualTraining() {
       {/* closing CTA — coach photo left, text right (FPO comp) */}
       <CTABand
         image={COACH.action}
-        kicker="New to ISA?"
+        kicker="New to ISA"
         title="Start with an intro lesson"
-        body="One assessment session with an ISA coach, a personal development plan, and your first squad session — all in one visit."
+        body="One visit with an ISA coach. You get an assessment, a plan, and your first squad session."
         cta="Book your intro"
         ctaTo="/book"
       />

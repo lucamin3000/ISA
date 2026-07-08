@@ -10,9 +10,9 @@ export function Blog() {
       <PageHero image={IMG.arena} kicker="Blog" title="Notes from the academy" compact />
       <section className="mx-auto max-w-3xl px-4 py-14 text-center">
         <Reveal>
-          <QuietLine>First posts publish soon — season notes, results and coaching essays.</QuietLine>
+          <QuietLine>First posts soon. Season notes, results, and coaching write-ups.</QuietLine>
           <GoldCTA to="/book" className="mt-8">
-            Talk to the academy
+            Talk to us
           </GoldCTA>
         </Reveal>
       </section>
@@ -26,7 +26,7 @@ export function Resources() {
     { label: "Book a session", to: "/book" },
     { label: "Annual training", to: "/annual-training" },
     { label: "Summer camps", to: "/summer-camps" },
-    { label: "School & Squash", to: "/school-and-squash" },
+    { label: "School and Squash", to: "/school-and-squash" },
     { label: "Meet the coaches", to: "/coaches" },
     { label: "First Swings", to: "/first-swings" },
   ]
@@ -58,12 +58,12 @@ export function Resources() {
 export function Book() {
   const [msg, setMsg] = useState("")
   const OPTIONS = [
-    { title: "Intro lesson", body: "Assessment, plan, first session — one visit.", image: IMG.intro },
+    { title: "Intro lesson", body: "Assessment, plan, and first session in one visit.", image: IMG.intro },
     { title: "Squad training", body: "Weekly squads, placed by assessment.", image: IMG.fall },
-    { title: "Summer camp week", body: "Full-day intensives for committed juniors.", image: IMG.camp },
+    { title: "Summer camp week", body: "Full days for committed juniors.", image: IMG.camp },
     { title: "Individual coaching", body: "One-to-one blocks with an ISA coach.", image: IMG.clinic },
   ]
-  const TIMES = ["Morning (7–10)", "Midday (10–2)", "After school (3–6)", "Evening (6–9)"]
+  const TIMES = ["Morning (7-10)", "Midday (10-2)", "After school (3-6)", "Evening (6-9)"]
   const today = new Date().toISOString().slice(0, 10)
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -77,8 +77,8 @@ export function Book() {
       setMsg("Pick a date first.")
       return
     }
-    const body = `Hi ISA — I'd like to book: ${program}, ${date}, ${time}.${name ? ` — ${name}` : ""}`
-    setMsg(`Opening your messages… If nothing happens, text ${PHONE_DISPLAY}: "${body}"`)
+    const body = `Hi ISA, I'd like to book ${program} on ${date} (${time}).${name ? ` From ${name}.` : ""}`
+    setMsg(`Opening your messages. If nothing happens, text ${PHONE_DISPLAY} and say: "${body}"`)
     window.location.href = `sms:${PHONE_TEL}?body=${encodeURIComponent(body)}`
   }
 
@@ -135,7 +135,7 @@ export function Book() {
             Pick a slot
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Choose what and when — we'll draft the text message to{" "}
+            Choose what and when. We draft the text to{" "}
             <a href={`tel:${PHONE_TEL}`} className="border-b border-gold text-ink hover:text-gold-text">
               {PHONE_DISPLAY}
             </a>{" "}

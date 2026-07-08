@@ -22,18 +22,18 @@ const EASE = [0.22, 0.8, 0.3, 1] as const
 
 const TITLES: Record<string, string> = {
   "/": "Inspire Squash Academy",
-  "/annual-training": "Annual Training — Inspire Squash Academy",
-  "/first-swings": "First Swings — Inspire Squash Academy",
-  "/mindset-coaching": "Mindset Coaching — Inspire Squash Academy",
-  "/strength": "Strength & Conditioning — Inspire Squash Academy",
-  "/summer-camps": "Summer Camps — Inspire Squash Academy",
-  "/school-and-squash": "School & Squash — Inspire Squash Academy",
-  "/online-school": "Online School — Inspire Squash Academy",
-  "/college-recruiting": "College Recruiting — Inspire Squash Academy",
-  "/coaches": "Coaches — Inspire Squash Academy",
-  "/blog": "Blog — Inspire Squash Academy",
-  "/resources": "Resources — Inspire Squash Academy",
-  "/book": "Book Now — Inspire Squash Academy",
+  "/annual-training": "Training | Inspire Squash Academy",
+  "/first-swings": "First Swings | Inspire Squash Academy",
+  "/mindset-coaching": "Mindset | Inspire Squash Academy",
+  "/strength": "Strength | Inspire Squash Academy",
+  "/summer-camps": "Camps | Inspire Squash Academy",
+  "/school-and-squash": "School and Squash | Inspire Squash Academy",
+  "/online-school": "Online School | Inspire Squash Academy",
+  "/college-recruiting": "College | Inspire Squash Academy",
+  "/coaches": "Coaches | Inspire Squash Academy",
+  "/blog": "Blog | Inspire Squash Academy",
+  "/resources": "Resources | Inspire Squash Academy",
+  "/book": "Book | Inspire Squash Academy",
 }
 
 /** Legacy anchors and retired routes redirect to their new homes. */

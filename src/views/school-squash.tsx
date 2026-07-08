@@ -25,7 +25,7 @@ export default function SchoolSquash() {
     <div>
       <PageHero
         image={IMG.clinic}
-        kicker="School & Squash"
+        kicker="School and Squash"
         title={
           <>
             Train every day.
@@ -40,7 +40,7 @@ export default function SchoolSquash() {
       {/* partner row */}
       <section className="py-10 text-center" aria-label="School partners">
         <Reveal>
-          <QuietLine>School partners announcing soon.</QuietLine>
+          <QuietLine>Partners soon.</QuietLine>
         </Reveal>
       </section>
 
@@ -53,9 +53,9 @@ export default function SchoolSquash() {
           <div className="mt-10">
             <FeatureColumns
               items={[
-                { title: "Team first", body: "Squad training every day, with the standards of a team culture." },
-                { title: "Holistic growth", body: "Mindset, S&C and recovery built into the school week." },
-                { title: "Academic balance", body: "Supervised study blocks and progress reports for parents." },
+                { title: "Team first", body: "Squad training every day, with team standards." },
+                { title: "Whole athlete", body: "Mindset, strength, and recovery in the school week." },
+                { title: "Academic balance", body: "Study blocks and regular reports for parents." },
               ]}
             />
           </div>
@@ -126,13 +126,13 @@ export default function SchoolSquash() {
           <Reveal>
             <article className="border border-border bg-white p-8 text-center">
               <h3 className="font-display text-xl uppercase tracking-wide">Winter registration</h3>
-              <QuietLine className="mt-2">Opening dates publish soon.</QuietLine>
+              <QuietLine className="mt-2">Dates post soon.</QuietLine>
             </article>
           </Reveal>
           <Reveal delay={0.06}>
             <article className="border border-border bg-white p-8 text-center">
-              <h3 className="font-display text-xl uppercase tracking-wide">Results &amp; news</h3>
-              <QuietLine className="mt-2">First results publish as they're earned.</QuietLine>
+              <h3 className="font-display text-xl uppercase tracking-wide">Results and news</h3>
+              <QuietLine className="mt-2">Results post as they come.</QuietLine>
             </article>
           </Reveal>
         </div>
