@@ -7,12 +7,18 @@ import { GoldCTA, Kicker, PageHero, QuietLine, Reveal } from "@/components/chrom
 export function Blog() {
   return (
     <div>
-      <PageHero image={IMG.arena} kicker="Blog" title="Notes from the academy" compact />
+      <PageHero
+        image={IMG.arena}
+        kicker="Inspire Squash Academy"
+        title="Blog"
+        purpose="News and notes from the academy."
+        compact
+      />
       <section className="mx-auto max-w-3xl px-4 py-14 text-center">
         <Reveal>
           <QuietLine>First posts soon. Season notes, results, and coaching write-ups.</QuietLine>
           <GoldCTA to="/book" className="mt-8">
-            Talk to us
+            Contact the academy
           </GoldCTA>
         </Reveal>
       </section>
@@ -35,6 +41,10 @@ export function Resources() {
       <section className="mx-auto max-w-4xl px-4 pb-12 pt-14 text-center">
         <p className="font-display text-6xl uppercase leading-none tracking-wide text-ink">
           ISA<span className="text-gold">.</span>
+        </p>
+        <h1 className="mt-6 font-display text-3xl uppercase tracking-wide text-ink">Resources</h1>
+        <p className="mt-3 text-base text-muted-foreground">
+          Quick links to every part of the academy.
         </p>
         <div className="mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-2">
           {LINKS.map((l, i) => (
@@ -84,7 +94,13 @@ export function Book() {
 
   return (
     <div>
-      <PageHero image={IMG.camp} kicker="Book now" title="Get on court" compact />
+      <PageHero
+        image={IMG.camp}
+        kicker="Inspire Squash Academy"
+        title="Book a Lesson"
+        purpose="Call, text, or request a time to get on court."
+        compact
+      />
 
       {/* direct contact — one tap */}
       <section className="mx-auto max-w-6xl px-4 py-10 text-center" aria-labelledby="bk-call">

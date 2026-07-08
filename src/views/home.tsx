@@ -30,11 +30,11 @@ function Hero() {
             <br />
             champions.
           </h1>
-          <p className="mt-5 max-w-md text-[1.0625rem] text-white/85">
-            Coaching and junior development, session by session.
+          <p className="mt-5 max-w-md text-lg text-white/85">
+            A junior squash academy. Coaching, camps, and school programs.
           </p>
           <GoldCTA to="/book" className="mt-7">
-            Start training
+            Book a lesson
           </GoldCTA>
         </div>
         <img
@@ -78,7 +78,10 @@ const FEATURES: { image: IsaImage; title: string; line: string; to: string; cta:
 
 function FeatureGrid() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 lg:py-16" aria-label="Explore ISA">
+    <section className="mx-auto max-w-6xl px-4 py-12 lg:py-16" aria-labelledby="explore-h">
+      <h2 id="explore-h" className="mb-8 text-center font-display text-3xl uppercase tracking-wide sm:text-4xl">
+        Explore the academy
+      </h2>
       <div className="grid gap-8 md:grid-cols-3">
         {FEATURES.map((f, i) => (
           <Reveal key={f.to} delay={i * 0.06}>
@@ -91,8 +94,8 @@ function FeatureGrid() {
                 loading="lazy"
                 className="photo aspect-[4/3] w-full object-cover"
               />
-              <h2 className="mt-5 font-display text-2xl uppercase tracking-wide">{f.title}</h2>
-              <p className="mt-2 text-sm text-muted-foreground">{f.line}</p>
+              <h3 className="mt-5 font-display text-2xl uppercase tracking-wide">{f.title}</h3>
+              <p className="mt-2 text-base text-muted-foreground">{f.line}</p>
               <Link
                 to={f.to}
                 className="mt-4 border-b-2 border-gold pb-1 text-xs font-semibold uppercase tracking-[0.12em] transition-colors duration-(--dur-fast) ease-(--ease) hover:text-gold-text"
@@ -131,9 +134,9 @@ function Discover() {
     <section className="bg-paper-warm py-12 lg:py-16" aria-labelledby="disc-h">
       <div className="mx-auto max-w-6xl px-4">
         <Reveal>
-          <Kicker className="text-center">Discover ISA</Kicker>
+          <Kicker className="text-center">This season</Kicker>
           <h2 id="disc-h" className="mt-3 text-center font-display text-4xl uppercase tracking-wide">
-            Train with us
+            Camps and Fall training
           </h2>
         </Reveal>
         <div className="mt-10 flex flex-col gap-6">
@@ -151,7 +154,7 @@ function Discover() {
                 <div className="flex flex-col items-start gap-3 p-6 md:p-8">
                   <Kicker>{c.kicker}</Kicker>
                   <h3 className="font-display text-3xl uppercase tracking-wide">{c.title}</h3>
-                  <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+                  <p className="max-w-xl text-base leading-relaxed text-muted-foreground">{c.body}</p>
                   <GoldCTA to={c.to} className="mt-2 self-end">
                     {c.cta}
                   </GoldCTA>
@@ -201,7 +204,7 @@ function SquashSchool() {
           Built for juniors aiming at ranking events and college squash.
         </p>
         <GoldCTA to="/school-and-squash" className="mt-6">
-          Explore the program
+          See School Squash
         </GoldCTA>
       </Reveal>
     </section>
@@ -252,7 +255,7 @@ function Locations() {
           Our locations
         </h2>
         <GoldCTA to="/book" className="mt-6">
-          Plan your visit
+          Contact the academy
         </GoldCTA>
       </Reveal>
       <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -268,7 +271,7 @@ function Locations() {
             />
             <div className="p-6">
               <h3 className="font-display text-2xl uppercase tracking-wide">ISA Squash Center</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
+              <p className="mt-2 text-base text-muted-foreground">
                 Courts, strength room, and video analysis. Address posts soon.
               </p>
             </div>
@@ -276,7 +279,7 @@ function Locations() {
         </Reveal>
         <Reveal delay={0.06}>
           <article className="flex h-full items-center justify-center border border-border bg-paper-warm p-10 text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               A second location is on the way. More soon.
             </p>
           </article>
@@ -298,7 +301,7 @@ function Founders() {
           <h2 id="fo-h" className="mt-3 font-display text-4xl uppercase tracking-wide sm:text-5xl">
             Built by coaches
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-sm text-white/85">
+          <p className="mx-auto mt-4 max-w-lg text-base text-white/85">
             Coaches run this academy. They set the standard and own every
             player&rsquo;s plan.
           </p>

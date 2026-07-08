@@ -144,6 +144,7 @@ export function PageHero({
   image,
   kicker,
   title,
+  purpose,
   cta,
   ctaTo,
   compact = false,
@@ -151,6 +152,7 @@ export function PageHero({
   image: { src: string; alt: string }
   kicker?: string
   title: ReactNode
+  purpose?: string
   cta?: string
   ctaTo?: string
   compact?: boolean
@@ -166,14 +168,17 @@ export function PageHero({
           compact ? "h-[38svh] min-h-[16rem]" : "h-[52svh] min-h-[22rem]",
         )}
       />
-      <div aria-hidden className="absolute inset-0 bg-ink/50" />
+      <div aria-hidden className="absolute inset-0 bg-ink/55" />
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
         {kicker && (
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/80">{kicker}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-white/80">{kicker}</p>
         )}
-        <h1 className="mt-2 font-display text-[clamp(2rem,4.5vw,3.5rem)] uppercase leading-[1.02] tracking-wide text-white">
+        <h1 className="mt-2 font-display text-[clamp(2.5rem,5vw,4rem)] uppercase leading-[1.02] tracking-wide text-white">
           {title}
         </h1>
+        {purpose && (
+          <p className="mt-4 max-w-xl text-base text-white/85 sm:text-lg">{purpose}</p>
+        )}
         {cta && ctaTo && (
           <GoldCTA to={ctaTo} className="mt-6">
             {cta}
@@ -194,8 +199,8 @@ export function FeatureColumns({
     <div className="grid gap-8 sm:grid-cols-3">
       {items.map((f) => (
         <div key={f.title} className="text-center">
-          <h3 className="font-display text-xl uppercase tracking-wide">{f.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+          <h3 className="font-display text-2xl uppercase tracking-wide">{f.title}</h3>
+          <p className="mt-2 text-base leading-relaxed text-muted-foreground">{f.body}</p>
         </div>
       ))}
     </div>
@@ -229,7 +234,7 @@ export function CTABand({
         <Reveal delay={0.06}>
           <Kicker>{kicker}</Kicker>
           <h2 className="mt-3 font-display text-3xl uppercase tracking-wide sm:text-4xl">{title}</h2>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{body}</p>
+          <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">{body}</p>
           <GoldCTA to={ctaTo} className="mt-6">
             {cta}
           </GoldCTA>

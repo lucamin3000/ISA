@@ -19,15 +19,10 @@ export function FirstSwings() {
     <div>
       <PageHero
         image={IMG.clinic}
-        kicker="First Swings"
-        title={
-          <>
-            A first racquet,
-            <br />
-            done right
-          </>
-        }
-        cta="Start playing now"
+        kicker="Programs"
+        title="First Swings"
+        purpose="A starter program for kids new to squash."
+        cta="Book a first session"
         ctaTo="/book"
       />
       {/* why choose — text + bullets left, CTA right */}
@@ -77,7 +72,7 @@ export function FirstSwings() {
             </div>
           </div>
           <GoldCTA to="/book" className="mt-8">
-            Sign up
+            Book a first session
           </GoldCTA>
         </Reveal>
       </section>
@@ -90,15 +85,10 @@ export function MindsetCoaching() {
     <div>
       <PageHero
         image={IMG.arena}
-        kicker="Mindset coaching"
-        title={
-          <>
-            The match between
-            <br />
-            the ears
-          </>
-        }
-        cta="Enquire"
+        kicker="Programs"
+        title="Mindset"
+        purpose="Coaching for the mental side of the game."
+        cta="Contact the academy"
         ctaTo="/book"
       />
       <section className="mx-auto max-w-4xl px-4 py-12 text-center">
@@ -126,7 +116,7 @@ export function MindsetCoaching() {
         kicker="Work one-to-one"
         title="Build a competitor's toolkit"
         body="Sessions are shaped around each athlete's competition schedule and reviewed with the coaching team every block."
-        cta="Enquire about mindset"
+        cta="Contact the academy"
         ctaTo="/book"
       />
     </div>
@@ -138,15 +128,10 @@ export function Strength() {
     <div>
       <PageHero
         image={IMG.intro}
-        kicker="Strength and conditioning"
-        title={
-          <>
-            Built for the
-            <br />
-            fifth game
-          </>
-        }
-        cta="Ask us"
+        kicker="Programs"
+        title="Strength"
+        purpose="Fitness and conditioning built for squash."
+        cta="Contact the academy"
         ctaTo="/book"
       />
       <section className="mx-auto max-w-4xl px-4 py-12 text-center">
@@ -174,7 +159,7 @@ export function Strength() {
         kicker="Part of every plan"
         title="Training that travels"
         body="Every performance plan includes a strength block, with a home routine for tournament weeks."
-        cta="Ask about strength"
+        cta="Contact the academy"
         ctaTo="/book"
         flip
       />
@@ -187,15 +172,10 @@ export function OnlineSchool() {
     <div>
       <PageHero
         image={IMG.facility}
-        kicker="Online school"
-        title={
-          <>
-            Train mornings,
-            <br />
-            learn everywhere
-          </>
-        }
-        cta="Ask us"
+        kicker="School"
+        title="Online School"
+        purpose="Online school that fits the training day."
+        cta="Contact the academy"
         ctaTo="/book"
       />
       <section className="mx-auto max-w-4xl px-4 py-12 text-center">
@@ -225,15 +205,10 @@ export function CollegeRecruiting() {
     <div>
       <PageHero
         image={IMG.camp}
-        kicker="College recruiting"
-        title={
-          <>
-            From juniors to
-            <br />
-            college courts
-          </>
-        }
-        cta="Ask us"
+        kicker="School"
+        title="College Squash"
+        purpose="Recruiting help for juniors heading to college."
+        cta="Contact the academy"
         ctaTo="/book"
       />
       <section className="mx-auto max-w-4xl px-4 py-12 text-center">
@@ -249,7 +224,7 @@ export function CollegeRecruiting() {
         kicker="Guided step by step"
         title="A clear path to college"
         body="We guide each family through the recruiting timeline, from first list to signing."
-        cta="Start the conversation"
+        cta="Contact the academy"
         ctaTo="/book"
         flip
       />

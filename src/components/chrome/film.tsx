@@ -71,8 +71,8 @@ export function FilmBlock() {
             <Play className="ml-1 size-7 fill-ink text-ink" aria-hidden />
           </span>
         </span>
-        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-semibold uppercase tracking-[0.24em] text-white/85">
-          Watch
+        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm font-semibold uppercase tracking-[0.2em] text-white/90">
+          Watch the film
         </span>
       </button>
 

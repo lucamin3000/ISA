@@ -48,22 +48,17 @@ export default function AnnualTraining() {
     <div>
       <PageHero
         image={IMG.fall}
-        kicker="Annual training"
-        title={
-          <>
-            The Fall Block
-            <br />
-            at ISA
-          </>
-        }
+        kicker="Inspire Squash Academy"
+        title="Programs"
+        purpose="Year-round squad training for juniors, placed by level."
       />
 
       {/* centered onboarding CTA */}
       <section className="py-10 text-center">
         <Reveal>
-          <QuietLine>Dates post soon.</QuietLine>
+          <QuietLine>Season dates post soon.</QuietLine>
           <GoldCTA to="/book" className="mt-4">
-            Get started
+            Contact the academy
           </GoldCTA>
         </Reveal>
       </section>

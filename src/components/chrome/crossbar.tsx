@@ -17,7 +17,7 @@ interface NavItem {
 
 const NAV: NavItem[] = [
   {
-    label: "Training",
+    label: "Programs",
     to: "/annual-training",
     children: [
       { label: "First Swings", to: "/first-swings" },
@@ -26,7 +26,7 @@ const NAV: NavItem[] = [
     ],
   },
   { label: "Camps", to: "/summer-camps" },
-  { label: "Fall", to: "/annual-training" },
+  { label: "Fall Training", to: "/annual-training" },
   {
     label: "School",
     to: "/school-and-squash",
@@ -37,14 +37,14 @@ const NAV: NavItem[] = [
     ],
   },
   {
-    label: "About",
-    to: "/",
+    label: "Coaches",
+    to: "/coaches",
     children: [
-      { label: "Coaches", to: "/coaches" },
+      { label: "Meet the Coaches", to: "/coaches" },
       { label: "Blog", to: "/blog" },
     ],
   },
-  { label: "Resources", to: "/resources" },
+  { label: "Contact", to: "/book" },
 ]
 
 /** paths owned by each top-level item, for the active underline */
@@ -80,7 +80,7 @@ export function Crossbar() {
                   <NavLink
                     to={item.to ?? "#"}
                     className={cn(
-                      "flex items-center gap-1 border-b-2 px-3 py-5 text-[0.8125rem] font-medium uppercase tracking-[0.1em] transition-colors duration-(--dur-fast) ease-(--ease)",
+                      "flex items-center gap-1 border-b-2 px-3 py-5 text-sm font-semibold uppercase tracking-[0.08em] transition-colors duration-(--dur-fast) ease-(--ease)",
                       active
                         ? "border-gold text-ink"
                         : "border-transparent text-muted-foreground hover:text-gold-text",
@@ -97,7 +97,7 @@ export function Crossbar() {
                             to={c.to}
                             className={({ isActive }) =>
                               cn(
-                                "block px-4 py-3 text-[0.8125rem] uppercase tracking-[0.08em] transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-paper-warm hover:text-gold-text",
+                                "block px-4 py-3 text-sm font-medium uppercase tracking-[0.06em] transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-paper-warm hover:text-gold-text",
                                 isActive && "text-gold-text",
                               )
                             }
@@ -114,9 +114,9 @@ export function Crossbar() {
             <li className="pl-3">
               <Link
                 to="/book"
-                className="inline-flex min-h-10 items-center bg-gold px-5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
+                className="inline-flex min-h-10 items-center bg-gold px-5 py-2 text-sm font-semibold uppercase tracking-[0.1em] text-ink transition-colors duration-(--dur-fast) ease-(--ease) hover:bg-gold-deep"
               >
-                Book Now
+                Book a Lesson
               </Link>
             </li>
           </ul>

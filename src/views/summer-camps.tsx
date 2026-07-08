@@ -11,14 +11,9 @@ export default function SummerCamps() {
     <div>
       <PageHero
         image={IMG.camp}
-        kicker="Summer camps"
-        title={
-          <>
-            Earn your
-            <br />
-            summer
-          </>
-        }
+        kicker="Inspire Squash Academy"
+        title="Summer Camps"
+        purpose="Weekly camps for junior players over the summer."
         cta="Reserve a week"
         ctaTo="/book"
       />

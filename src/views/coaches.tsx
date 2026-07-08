@@ -42,14 +42,9 @@ export default function Coaches() {
     <div>
       <PageHero
         image={COACH.team}
-        kicker="The coaching team"
-        title={
-          <>
-            Here to make
-            <br />
-            you better
-          </>
-        }
+        kicker="Inspire Squash Academy"
+        title="Coaches"
+        purpose="Meet the people who coach at ISA."
         cta="Book a trial session"
         ctaTo="/book"
       />
@@ -107,7 +102,7 @@ export default function Coaches() {
       </section>
 
       <section className="pb-20 text-center">
-        <GoldCTA to="/book">Train with us</GoldCTA>
+        <GoldCTA to="/book">Book a trial session</GoldCTA>
       </section>
 
     </div>

@@ -25,15 +25,10 @@ export default function SchoolSquash() {
     <div>
       <PageHero
         image={IMG.clinic}
-        kicker="School and Squash"
-        title={
-          <>
-            Train every day.
-            <br />
-            Fall behind never.
-          </>
-        }
-        cta="Contact us"
+        kicker="School"
+        title="School Squash"
+        purpose="Squash training built around the school day."
+        cta="Contact the academy"
         ctaTo="/book"
       />
 
@@ -84,8 +79,8 @@ export default function SchoolSquash() {
                   </div>
                   <div className="p-5 text-center">
                     <h3 className="font-display text-xl uppercase tracking-wide">{d.title}</h3>
-                    <span className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-(--dur-fast) ease-(--ease) group-hover:text-gold-text">
-                      Discover →
+                    <span className="mt-2 inline-block text-sm font-semibold uppercase tracking-[0.12em] transition-colors duration-(--dur-fast) ease-(--ease) group-hover:text-gold-text">
+                      See program →
                     </span>
                   </div>
                 </Link>
@@ -115,7 +110,7 @@ export default function SchoolSquash() {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <GoldCTA to="/book">Contact us</GoldCTA>
+            <GoldCTA to="/book">Contact the academy</GoldCTA>
           </div>
         </Reveal>
       </section>
