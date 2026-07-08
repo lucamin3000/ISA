@@ -76,29 +76,46 @@ function makeWallText(): { mesh: THREE.Mesh; redraw: () => void } {
   canvas.height = 712
   const texture = new THREE.CanvasTexture(canvas)
   texture.colorSpace = THREE.SRGBColorSpace
-  texture.anisotropy = 4
+  // crisp: no mipmap blur, full anisotropic sampling
+  texture.anisotropy = 16
+  texture.generateMipmaps = false
+  texture.minFilter = THREE.LinearFilter
+  texture.magFilter = THREE.LinearFilter
 
   const material = new THREE.MeshBasicMaterial({
     map: texture,
     transparent: true,
     opacity: 0,
   })
-  // logo aspect ≈ 1.656:1
-  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(3, 3 / 1.656), material)
+  // logo aspect ≈ 1.656:1 — sized up a touch for presence
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 3.4 / 1.656), material)
   mesh.position.set(0, 3.0, -L / 2 + 0.08)
 
   const img = new Image()
   img.onload = () => {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = "high"
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
     const data = ctx.getImageData(0, 0, canvas.width, canvas.height)
     const px = data.data
     for (let i = 0; i < px.length; i += 4) {
-      // drop near-white background to transparent; feather the edge
-      const min = Math.min(px[i], px[i + 1], px[i + 2])
-      if (min > 236) px[i + 3] = 0
-      else if (min > 205) px[i + 3] = Math.round(((236 - min) / 31) * 255)
+      const r = px[i]
+      const g = px[i + 1]
+      const b = px[i + 2]
+      const min = Math.min(r, g, b)
+      // tighter key -> crisper edges against the pale wall
+      if (min > 240) {
+        px[i + 3] = 0
+        continue
+      } else if (min > 222) {
+        px[i + 3] = Math.round(((240 - min) / 18) * 255)
+      }
+      // deepen to a richer gold so it stands off the plaster
+      px[i] = Math.min(255, r * 1.02)
+      px[i + 1] = g * 0.86
+      px[i + 2] = b * 0.68
     }
     ctx.putImageData(data, 0, 0)
     texture.needsUpdate = true
